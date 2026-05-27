@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Claude Code per-user / per-machine state — never commit
+.claude/settings.local.json
+
+# Transient working area for one-off scripts and scratch
+temp/
