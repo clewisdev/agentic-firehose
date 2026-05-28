@@ -16,6 +16,15 @@ templates/      Frontmatter templates for new source / synthesis entries.
 
 Initial topic folders: `tool-use/`, `memory/`, `evals/`, `harnesses/`, `prompting/`. Create new ones freely as the field shifts — don't force-fit a new entry into an existing folder. Wait until you have 2–3 entries before promoting a tag into its own folder.
 
+## Named topic stubs
+
+Two topics are explicitly in scope even before sources exist:
+
+- **cost-management** — LLM API costs, rate limiting, token optimization, prompt caching, model selection economics. Route any material touching billing, quotas, token budgets, or efficiency patterns here. Create `topics/cost-management/` on the first source.
+- **ralph-loops** — a named agentic pattern from the UpHill workshop (2026-05-27). Create the folder on first source; don't force-fit into `harnesses/` until the pattern is understood.
+
+For these two: create the folder and `index.md` on the **first** source, not after 2–3.
+
 ## Triage / discernment (before capture)
 
 A lot of incoming URLs in this field are LinkedIn clickbait, content-marketing, hype, or aggregator posts dressed up as guidance. Capturing them all uncritically pollutes the KB. **Triage first.** Be willing to spend less effort — or refuse — on low-signal material.
@@ -47,6 +56,10 @@ Classify each source on first scan:
 - **Low signal**: brief capture (~150–300 words), explicit low-signal flag in the file body and in the topic index entry, `low-signal` tag in frontmatter. Do not propagate the source's claims into topic indexes uncritically. Do not add to open threads or create new tags on the strength of a low-signal source alone. The Aslam Kahn capture (`sources/2026-05-20-aslam-kahn-crash-course.md`) is the working example of this register.
 - **Negative signal**: surface to the owner before capturing — describe what you saw and recommend skipping. Don't waste the owner's time or the KB's space.
 
+### Author reputation tracking
+
+If the same author produces multiple low-signal or negative-signal captures, record this in `topics/meta/author-reputation.md` (create `topics/meta/` on first entry). Format: one line per author — name/handle, track record summary, feed-block recommendation if warranted. When encountering a new URL from a flagged author, note the flag in triage and apply heightened skepticism. Still fetch and triage — don't pre-emptively skip without checking — but be more willing to land in `sources/skipped/`. Update the record if a flagged author later produces high-signal material.
+
 ### When unsure
 
 If a source straddles signal levels or you can't tell on first scan, say so in one sentence and ask the owner whether to do a full capture, a brief capture, or skip. Don't default to full capture out of politeness.
@@ -63,6 +76,28 @@ If a source straddles signal levels or you can't tell on first scan, say so in o
 3. **Cross-link**: if related to existing material, link by relative path. If a topic folder applies, add a one-line entry to its `index.md` (create if missing).
 4. **Don't silently fold a source into `topics/`.** Topic notes are *distillation*, which requires synthesis across multiple sources.
 
+## Input types
+
+### Teams / Slack conversation snippets
+
+When the owner pastes a conversation (Teams, Slack, Discord, etc.):
+
+- Triage each distinct message or recommendation independently — don't aggregate mixed-signal content.
+- **Internal/corporate URLs** (private Bitbucket, internal wikis, private repos) will be inaccessible. Note the inaccessibility explicitly; capture any signal visible in the snippet text itself.
+- **Images**: if a screenshot is provided as a separate file, read it and incorporate visible content.
+- **YouTube and public URLs**: fetch and triage normally.
+- After processing, give a one-line summary: captured X, skipped Y, inaccessible Z (with follow-up note if anything is worth revisiting).
+
+### File-based material (PDFs, zips, slide decks)
+
+When the owner provides a file rather than a URL:
+
+- **Zip files**: extract and process each file inside. Read text files directly; attempt PDF extraction where tooling allows.
+- **PDFs**: attempt text extraction. If tooling is unavailable, say so plainly and describe what can be inferred from filenames and readable companion files. Never fabricate content from a PDF you couldn't read.
+- **Links files inside archives**: process exactly like a `links.txt` submission — triage each URL per the normal flow.
+- Slug captures with the event name and date when known (e.g., `sources/2026-05-27-uphill-session1.md`).
+- Conference/workshop material often has multiple components (session PDF, links list, slides). Treat each as a potential source and cross-link between captures from the same event.
+
 ## Synthesis flow (when the owner asks "what do you think about X" or "deep dive Y")
 
 1. Read everything in `sources/`, `topics/`, and `synthesis/` that's relevant. Read the files — don't recall from memory.
@@ -74,6 +109,17 @@ If a source straddles signal levels or you can't tell on first scan, say so in o
 ### Proactive synthesis reminders
 
 After each capture, scan the **Open threads** sections of the touched topic indexes. If any thread now has ≥3 supporting sources or shows a clearly resolvable disagreement across ≥2 sources, mention it briefly at the end of the response — name the thread and the candidate question, and ask whether the owner wants to write the synthesis now or continue capturing. Don't write the synthesis unprompted; just keep the option visible.
+
+## Cost and rate-limit awareness
+
+The owner is on a paid Claude plan with per-session usage limits. Hitting limits mid-session breaks flow and wastes context.
+
+- **Bulk triage first**: for batches of URLs or files, do a quick triage pass before any full writes — classify signal for each item, then commit text budget only to captures that warrant it.
+- **Brief register is correct, not a fallback**: 150–300 words for low-signal items is the right answer, not a compromise.
+- **Don't retry failed fetches**: if WebFetch fails once, log the URL as inaccessible and move on. One retry is fine; two is waste.
+- **Flag before writing long synthesis**: if a synthesis write-up will exceed ~1000 words or requires reading many files, flag it to the owner before starting rather than running out of context mid-write.
+- **Inaccessible internal URLs**: don't attempt to fetch internal corporate links (private Bitbucket, intranets). Skip immediately and note "inaccessible — internal URL."
+- **Batch completion order**: finish captures in progress before starting new ones. Don't leave a source half-written.
 
 ## Advice mode
 
