@@ -103,7 +103,34 @@ Per capture, ~1 WebFetch call + 1–3 Claude API completions for the writeup + 1
 
 Send format and `sources/skipped/` schema before any execution. Both are 10-minute decisions and don't need to be made now.
 
+## Context loading architecture — decision log
+
+**Decided 2026-05-28.** AGENTS.md is loaded as a static system-prompt prefix on every Worker invocation. This is CAG (Context-Augmented Generation), not RAG. The distinction matters for the evolution path.
+
+### Why CAG is correct for v1
+
+AGENTS.md is static (edited deliberately, not per-run), fits comfortably in the context window, and is needed in full for every capture. The UpHill start-simple ladder test: "Do you know the context? Does it fit in ~200K tokens?" Both yes. CAG is the right answer. No retrieval infrastructure, deterministic, trivially debuggable.
+
+One concrete action to include from day one: set `cache_control: {"type": "ephemeral"}` on the system prompt block in the Anthropic API call. If multiple captures land within a 5-minute window, AGENTS.md tokens cache. Zero implementation cost, small benefit at current volume, meaningful benefit if batch processing ever runs.
+
+### When to step up — three trigger points
+
+**Trigger 1: AGENTS.md pushes sessions past ~30% context fill before content is loaded.**
+Check the token counter during a normal capture session. If the static prefix + WebFetch content + in-progress capture file is already at 30% before writing, AGENTS.md is crowding the working space. Response: split into a lean always-load core (triage rules, capture flow, schemas) and on-demand sections (Teams snippet handling, file-based material guidance) loaded only when the input type warrants it. This is selective pull, not full RAG.
+
+**Trigger 2: Duplicate captures start appearing in sources/.**
+The Worker has no cross-KB awareness — it can't check whether a URL was already captured. If duplicates land, the fix is a lightweight lookup: maintain `sources/index.txt` (one URL per line), fetch it from GitHub at Worker startup, check before processing. One small retrieval step, not a vector pipeline.
+
+**Trigger 3: Capture volume grows to batches within the same 5-minute window.**
+At personal volume (a few URLs/day, spaced hours apart), prompt cache hits are rare. At batch volume (conference link dumps, RSS feeds), multiple captures within 5 minutes will hit the cache. At that point, verify the `cache_control` flag is set and measure cache hit rates in Worker logs.
+
+### What does NOT trigger a step-up
+
+- AGENTS.md growing longer from normal maintenance. Growth is a "keep lean" discipline problem, not an architecture problem. Prune before considering RAG.
+- "It would be nice to have richer context." Earn the next step with a measured constraint, not a hypothetical benefit.
+
 ## Revision log
 
 - **2026-05-27** — drafted (initial planning).
 - **2026-05-27** — Path A chosen (Worker + laptop Claude Code). Path B (always-on VM) explicitly discounted at this stage with rationale preserved. Path C / D / original-A also documented as discounted. Resolved: private GitHub, Cloudflare custom-domain inbox, auto-commit, autonomous triage with `sources/skipped/` audit trail, Worker Secrets for API key, no notification at v1. Open items reduced to send format, skipped-file schema, failure handling, future Managed Agents evolution.
+- **2026-05-28** — Context loading architecture decided: AGENTS.md as CAG static prefix (not RAG). Three trigger points for stepping up logged. Concrete v1 action: `cache_control` flag on system prompt block.

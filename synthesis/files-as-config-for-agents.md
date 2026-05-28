@@ -12,7 +12,9 @@ sources:
   - sources/2026-05-20-rosenthal-company-os.md
   - sources/2026-05-20-claude-mem.md
   - sources/2026-05-20-berkin-harness-engineering.md
+  - sources/2026-05-28-safishamsi-graphify.md
 status: draft
+updated: 2026-05-28
 ---
 
 # Files-as-config for agents: when, why, and how
@@ -54,9 +56,18 @@ The honest disagreements are along two axes:
 
 **1. Scale at which the pattern hits its ceiling.**
 
-[claude-mem](../sources/2026-05-20-claude-mem.md) is the counter-position. It uses harness hooks to auto-capture observations into Postgres + Chroma with hybrid retrieval — *because* it's targeting cross-session observation logs that, at scale, exceed what a markdown filesystem can serve. claude-mem's v6→v13 trajectory (SQLite → Postgres + Redis + BullMQ + queues) is itself evidence that file-as-config doesn't scale forever.
+Three positions now, not two:
 
-POHA is the explicit opposite manifesto: *"No vector DB. No RAG. No fine-tuning. Just files."* The disagreement isn't really about which is "right" — it's about **where the boundary is**. POHA is right for single-user curated memory bounded to dozens of files; claude-mem is right for automated observation capture across many sessions with hybrid search.
+[POHA](../sources/2026-05-20-poha.md) is the explicit minimum: *"No vector DB. No RAG. No fine-tuning. Just files."* Hand-edited markdown, bounded to dozens of files, single user.
+
+[Graphify](../sources/2026-05-28-safishamsi-graphify.md) (captured 2026-05-28) occupies the middle ground: it converts the filesystem into a queryable knowledge graph committed as `graph.json`, rebuilt via git hooks on each commit. More structured than raw files (tree-sitter AST, Leiden community clustering, confidence-labelled relationships), but lighter than a full vector store — no external service, no RAG pipeline. Critically, it's a **team artefact**: everyone who pulls the repo starts with the same map. This is a meaningful step beyond POHA's single-user posture without taking the full claude-mem infrastructure step.
+
+[claude-mem](../sources/2026-05-20-claude-mem.md) is the full stack counter-position: Postgres + Chroma + Redis + BullMQ for automated cross-session observation capture. claude-mem's v6→v13 trajectory (SQLite → full queue infrastructure) is itself evidence that file-as-config doesn't scale forever for *automated* capture.
+
+The disagreement is about where the ceiling is and what workload triggers the step-up:
+- POHA: curated single-user memory, dozens of files → files win
+- Graphify: structured codebase/corpus understanding shared across a team, no real-time updates → committed graph wins
+- claude-mem: automated observation capture, many sessions, append-only, hybrid search → DB stack wins
 
 **2. How much governance lives in the files.**
 
@@ -103,7 +114,9 @@ Files-as-config works until at least one of:
 - Content is too sensitive for plaintext. Gitignored markdown gives you privacy-by-exclusion, not privacy-by-encryption.
 - Search needs cross-document semantic similarity, not lexical. (Though `grep` plus a decent INDEX.md is more competitive here than people assume.)
 
-When you hit one of these, the right move is **add the heavier system as a complement, not a replacement**. Keep the curated files; add a Postgres / Chroma / vector store for the workload that broke them. claude-mem is doing this — it's not replacing files, it's serving a use case files were never going to serve well.
+When you hit one of these, the right move is **add the heavier system as a complement, not a replacement**. Keep the curated files; add the next layer up only for the workload that broke them.
+
+The upgrade path now has an intermediate step: **graphify before the full DB stack**. If the corpus is getting large but updates are commit-based (not streaming), and you need structured relationship queries rather than free-text search, graphify occupies the right slot — committed to git, no external service, team-shareable. Only step up to Postgres + vector store when you need real-time append-only observation capture across many sessions.
 
 ### Operational recommendations
 
