@@ -11,3 +11,4 @@ Evaluation frameworks, benchmarks, and methodologies for assessing agent and LLM
 ## Open threads
 
 - No sources yet on: eval design for non-coding agents, eval for RAG quality, or evaluation methodology for long-horizon agentic tasks. SWE-bench covers coding specifically — the broader question of "how do you eval an agent that does X" is unaddressed.
+- DORA as insufficient for AI-era DX measurement: Hurst (2026) notes adoption metrics tell you what people use, not whether the org is better off. No successor framework exists. See `sources/2026-05-29-jamie-hurst-is-this-sustainable.md` and `topics/dx-culture/index.md`.
