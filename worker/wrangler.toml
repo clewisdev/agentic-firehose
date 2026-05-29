@@ -1,0 +1,22 @@
+name = "agents-kb-capture"
+main = "src/index.ts"
+compatibility_date = "2026-05-29"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+
+[vars]
+GITHUB_OWNER = "clewisdev"
+GITHUB_REPO = "agents-kb"
+GITHUB_DEFAULT_BRANCH = "main"
+# Comma-separated list of email addresses allowed to trigger captures.
+# Update this when your sending address changes.
+ALLOWED_SENDERS = "REDACTED_EMAIL"
+
+# Secrets — set these once via wrangler CLI, never commit them:
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put GITHUB_TOKEN
+#
+# GITHUB_TOKEN needs: Contents (read + write) on clewisdev/agents-kb
+# Minimum scopes — use a fine-grained PAT, not a classic token.

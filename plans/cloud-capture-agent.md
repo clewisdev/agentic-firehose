@@ -1,8 +1,8 @@
 ---
 title: "Cloud-hosted email-triggered capture agent"
-status: planning  # planning | in-progress | shipped | abandoned
+status: in-progress  # planning | in-progress | shipped | abandoned
 drafted: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-29
 owner: chris
 ---
 
@@ -134,3 +134,4 @@ At personal volume (a few URLs/day, spaced hours apart), prompt cache hits are r
 - **2026-05-27** — drafted (initial planning).
 - **2026-05-27** — Path A chosen (Worker + laptop Claude Code). Path B (always-on VM) explicitly discounted at this stage with rationale preserved. Path C / D / original-A also documented as discounted. Resolved: private GitHub, Cloudflare custom-domain inbox, auto-commit, autonomous triage with `sources/skipped/` audit trail, Worker Secrets for API key, no notification at v1. Open items reduced to send format, skipped-file schema, failure handling, future Managed Agents evolution.
 - **2026-05-28** — Context loading architecture decided: AGENTS.md as CAG static prefix (not RAG). Three trigger points for stepping up logged. Concrete v1 action: `cache_control` flag on system prompt block.
+- **2026-05-29** — Worker implemented. `worker/` at repo root: `src/index.ts` (email handler), `src/email.ts` (postal-mime parsing, URL + override extraction), `src/fetch.ts` (URL content fetch + HTML strip, 30K char budget), `src/github.ts` (fetch AGENTS.md + commit files via REST API), `src/claude.ts` (Anthropic Messages API, prompt caching on AGENTS.md). Open decisions resolved: bare URL in subject/body, `[skip|brief|full]` override tags, `sources/skipped/` schema as in plan. Remaining manual steps before shipping: npm install in worker/, set ANTHROPIC_API_KEY + GITHUB_TOKEN secrets, configure CF Email Routing → Worker in CF dashboard, wrangler deploy.
