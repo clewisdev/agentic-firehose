@@ -58,6 +58,12 @@ export default {
 
     console.log(`[capture] signal=${result.signal_level} path=${result.file_path}`);
 
+    // Guard against a hallucinated or adversarial file_path writing outside sources/.
+    // Claude's response is untrusted input; this is the last line before a repo write.
+    if (!result.file_path.startsWith('sources/')) {
+      throw new Error(`Rejected unsafe file_path from Claude: "${result.file_path}"`);
+    }
+
     const commitMessage = result.file_path.startsWith('sources/skipped/')
       ? `skip [${result.signal_level}]: ${parsed.url.slice(0, 80)}`
       : `capture: ${result.file_path.replace(/^sources\//, '')}`;

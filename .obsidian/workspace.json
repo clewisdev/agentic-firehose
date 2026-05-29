@@ -11,14 +11,10 @@
             "id": "f8594f80e9839f6c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "topics/evals/index.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "index"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "topics/evals/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for index"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "topics/evals/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from index"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "topics/evals/index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of index"
+              "title": "Outline"
             }
           }
         ]
@@ -185,18 +178,23 @@
   },
   "active": "f8594f80e9839f6c",
   "lastOpenFiles": [
+    "topics/harnesses/index.md.tmp.25738.7cb6acfe48d5",
+    "topics/evals/index.md",
+    "sources/2026-05-29-claude-code-session-management.md",
+    "sources/2026-05-29-claude-code-session-management.md.tmp.25738.7f2a1b358d75",
+    "topics/evals/index.md.tmp.25738.a6144bfa990a",
+    "topics/harnesses/index.md.tmp.25738.83aa6eb7e118",
+    "topics/dx-culture/index.md",
+    "topics/dx-culture/index.md.tmp.25738.8e6fbf8f97ae",
+    "topics/dx-culture",
+    "sources/2026-05-29-jamie-hurst-is-this-sustainable.md",
+    "sources/2026-05-29-jamie-hurst-is-this-sustainable.md.tmp.25738.6bb9675f0f0d",
+    "temp/jamie-hurst-article.pdf",
+    "worker/src/index.ts.tmp.25738.a407f26f8169",
     "sources/skipped/2026-05-29-bowley-hurst-sustainable.md",
     "README.md.tmp.25738.f5e32e5beb6a",
     "worker/src/index.ts.tmp.25738.0c2c8e847b01",
-    "worker/src/index.ts.tmp.25738.49de176b9f22",
-    "worker/src/email.ts.tmp.25738.2b851c37996d",
-    "worker/src/types.ts.tmp.25738.f259f55686cd",
     "README.md",
-    "README.md.tmp.25738.00dd9f238a25",
-    "worker/wrangler.toml.tmp.25738.54fa9c988cfa",
-    "worker/src/email.ts.tmp.25738.3cfe6c8f856e",
-    "worker/tsconfig.json.tmp.25738.3cdf4a34957c",
-    "worker/node_modules/@cloudflare/workerd-darwin-64",
     "worker/node_modules/@emnapi/runtime/README.md",
     "worker/node_modules/tslib/README.md",
     "worker/node_modules/tslib/SECURITY.md",
@@ -217,11 +215,6 @@
     "worker/node_modules/undici/docs/docs/best-practices/mocking-request.md",
     "worker/node_modules/undici/docs/docs/best-practices/crawling.md",
     "worker/node_modules/undici/docs/docs/best-practices/client-certificate.md",
-    "worker/node_modules/undici/docs/docs/api/WebSocket.md",
-    "worker/node_modules/undici/docs/docs/api/Util.md",
-    "worker/node_modules/undici/docs/docs/api/Socks5ProxyAgent.md",
-    "worker/node_modules/undici/docs/docs/api/SnapshotAgent.md",
-    "worker/node_modules/undici/docs/docs/api/RoundRobinPool.md",
     "worker/node_modules/@cloudflare/workers-types/entrypoints.svg"
   ]
 }
