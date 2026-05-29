@@ -75,8 +75,23 @@ Both described as "short, sharp SKILL.md files: easy to adopt, hard to outgrow."
 - Is captain-hindsight publicly available anywhere outside the Regnology Bitbucket? The concept is generalizable; the implementation might be.
 - How does the Regnology model routing hold up with model updates? GPT-5.5 as preferred for "complex bigger scopes" is a claim about relative model capability that ages quickly.
 
+## The wider skill-issue catalog (now known)
+
+The Regnology `skill-issue` Bitbucket repo contains 15 skills + 1 rule. Full list obtained via captainhindsight.zip (2026-05-28). Skills beyond those referenced in the Teams snippet:
+
+`bitbucket-pr`, `drawio-diagram`, `iam-roles-ep-integration`, `jenkins-pipeline-debugging`, `jenkins-pr-logs-fetcher`, `jira-story-creator`, `jira-xray-test`, `karpathy-guidelines`, **`knowledge-base-wiki`**, `mermaid-diagrams`, `perfect-sd-tickets`, `skill-contributor`, `sonar-issues`
+
+Rule: `measure-twice-cut-once`
+
+Also pins third-party submodules: Matt Pocock's skills + Anthropic's official skills catalog.
+
+**Flagged for follow-up:** `knowledge-base-wiki` — "Build and maintain a personal LLM-powered knowledge base rooted at `~/knowledge-base`" — directly relevant to this project's architecture. The owner can share the SKILL.md if access is available.
+
+Detailed captain-hindsight capture: `sources/2026-05-28-captain-hindsight-skill.md`
+
 ## Related
 
+- `sources/2026-05-28-captain-hindsight-skill.md` — full captain-hindsight skill capture
 - `sources/2026-05-28-brussee-caveman-code.md` — full caveman-code benchmark
 - `sources/2026-05-20-pocock-skills.md` — Matt Pocock's skills framework
 - `topics/cost-management/index.md`

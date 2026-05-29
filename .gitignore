@@ -9,3 +9,7 @@ Thumbs.db
 
 # Transient working area for one-off scripts and scratch
 temp/
+
+# Worker dependencies
+worker/node_modules/
+worker/.wrangler/

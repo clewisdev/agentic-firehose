@@ -12,6 +12,7 @@ sources/        Raw captures of URLs (summary + key quotes + link to original).
 synthesis/      Cross-source essays — what to conclude after reading 3+ sources on a topic.
 plans/          Forward-looking design / planning documents for evolving this KB itself.
 templates/      Frontmatter templates for new source / synthesis entries.
+skills/         Preserved operational skills (SKILL.md + companion files). One subdirectory per skill.
 ```
 
 Initial topic folders: `tool-use/`, `memory/`, `evals/`, `harnesses/`, `prompting/`. Create new ones freely as the field shifts — don't force-fit a new entry into an existing folder. Wait until you have 2–3 entries before promoting a tag into its own folder.
@@ -73,8 +74,29 @@ If a source straddles signal levels or you can't tell on first scan, say so in o
    - Verbatim quotes worth preserving, with surrounding context.
    - **Takeaways**: 3–5 bullets on what this means for how the owner should build agents.
    - **Open questions**: where the source overreaches or where to look further.
-3. **Cross-link**: if related to existing material, link by relative path. If a topic folder applies, add a one-line entry to its `index.md` (create if missing).
+3. **Cross-link**: if related to existing material, link by relative path. For **each folder named in the source's `topics:` frontmatter**, add a one-line entry to that folder's `index.md` (create if missing). Check every topic listed — don't rely on judgment about which one is "most relevant."
+3b. **If the cross-link points to an existing `synthesis/` file**: open it and check whether the new source changes the synthesis — new term, new framing, new failure mode, new evidence. If yes: update the synthesis body, add the source to its `sources:` frontmatter, and **refresh the `updated:` date to today**. If mid-bulk-capture and context budget is tight, add a brief `## Pending updates` note directly in the synthesis file (source name + what needs incorporating) before moving on. Never leave a synthesis cross-linked from a new source but silently stale.
 4. **Don't silently fold a source into `topics/`.** Topic notes are *distillation*, which requires synthesis across multiple sources.
+
+## Preserving ephemeral material
+
+Content arrives via `temp/` which is gitignored and may be deleted at any time. Two distinct preservation paths depending on what the material is:
+
+### Articles, PDFs, and one-off documents
+
+Preserve via the normal `sources/` capture flow. The critical rule: **if the source cannot be re-fetched** (PDF dropped by the owner, internal document, zip archive), the source capture file must be self-contained — embed the substantive content directly in the capture, not just a summary. The capture should read correctly even if the original file is gone. Do not rely on the temp path as a reference.
+
+For web articles at public URLs, a summary + link is sufficient; the original is always re-fetchable.
+
+### Reusable skills (SKILL.md files and companion templates)
+
+Skills are operational artefacts, not knowledge. Preserve them in `skills/<skill-name>/`, mirroring the structure of the source directory exactly (SKILL.md + any `references/` or companion files). This keeps them installable via `npx skills add` or direct copy without modification.
+
+In addition to the preservation copy in `skills/`, install skills intended for use in this project's Claude Code sessions under `.claude/commands/<skill-name>.md`. A skill in `.claude/commands/` becomes available immediately as a slash command.
+
+Write a `sources/` capture for each skill (what it does, signal level, how it applies to this KB) — separately from the preservation copy. The `sources/` entry is for knowledge; the `skills/` entry is for reuse.
+
+**Do not mix these paths.** A `sources/` capture of a skill does not make it usable; a `skills/` copy does not make it discoverable as KB knowledge. Both are needed for different purposes.
 
 ## Input types
 
@@ -97,6 +119,7 @@ When the owner provides a file rather than a URL:
 - **Links files inside archives**: process exactly like a `links.txt` submission — triage each URL per the normal flow.
 - Slug captures with the event name and date when known (e.g., `sources/2026-05-27-uphill-session1.md`).
 - Conference/workshop material often has multiple components (session PDF, links list, slides). Treat each as a potential source and cross-link between captures from the same event.
+- **Project temp dir is `temp/` at the repo root** (`<project-root>/temp/`). Do not search `/tmp` or `/temp` — those are system paths unrelated to this KB.
 
 ## Synthesis flow (when the owner asks "what do you think about X" or "deep dive Y")
 

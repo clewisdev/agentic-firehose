@@ -13,8 +13,10 @@ sources:
   - sources/2026-05-20-claude-mem.md
   - sources/2026-05-20-berkin-harness-engineering.md
   - sources/2026-05-28-safishamsi-graphify.md
+  - sources/2026-05-28-uphill-agentic-ladder.md
+  - sources/2026-05-29-cag-vs-vanilla-prompting.md
 status: draft
-updated: 2026-05-28
+updated: 2026-05-29
 ---
 
 # Files-as-config for agents: when, why, and how
@@ -82,6 +84,22 @@ Rosenthal puts `.claude/hooks/` for role-based tiered approvals *in the same rep
 
 ## My take
 
+### What this pattern actually is: CAG, not RAG
+
+The [UpHill workshop ladder](../sources/2026-05-28-uphill-agentic-ladder.md) gives this pattern its proper name: **CAG (Context-Augmented Generation)**. The ladder runs:
+
+```
+Prompting → CAG → RAG → Workflows → Agents → Multi-agent
+```
+
+CAG is the right choice when context is *known and static* — you already have the information, it fits in the window, and it doesn't change frequently. RAG is for context that is *unknown at query time* — too large to load, changes frequently, or needs citation/traceability.
+
+Loading `AGENTS.md`, `CLAUDE.md`, and reference docs at session start is CAG. It is not a primitive form of RAG or a stepping stone to it — it's a distinct, appropriate choice for this workload class.
+
+The practical implication: **prompt caching is the right optimization for CAG, not retrieval infrastructure.** Large static prefixes (`AGENTS.md`, domain lexicon, reference docs) should be cached, not replaced with a vector store. The question is whether your context is stable enough to hit the cache TTL (5 minutes for Claude's current prompt cache); long-running or intermittent agents may not, which affects the cost model.
+
+One nuance worth flagging: Anthropic's own context-engineering guidance does not advocate pure-CAG. Alongside files-as-config it promotes **just-in-time context** — hold lightweight identifiers (paths, queries, links) and pull data into context only when the task needs it, rather than preloading everything. The dominant pattern in practice is therefore a hybrid: lean files-as-config base for durable project-wide truths, JIT loading for large or volatile material, sharp inline prompting for the specific task. CAG names the preloading end of this spectrum; it is not the whole strategy.
+
 ### Why this pattern wins
 
 Three forces stack:
@@ -106,10 +124,13 @@ Most agent projects need 2–4 of these. The mistake is collapsing all of them i
 
 ### When the pattern breaks down
 
-Files-as-config works until at least one of:
+The clean way to state the boundary: **CAG works when context is known, static, and fits in the window. When it stops being any of those, you're in RAG or DB territory.** More precisely, files-as-config fails when at least one of:
 
-- The corpus exceeds what an index-guided read can usefully serve (probably 100s–1000s of files for current models, but depends on how often the agent traverses it).
+- Context is *unknown at query time* — you can't determine at session start what the agent will need. Switch to retrieval.
+- **The context load degrades model performance.** This is empirical now, not theoretical. The Chroma 2025 study (*Context Rot*) tested 18 frontier models — GPT-4.1, Claude Opus 4, Gemini 2.5 Pro, Qwen3, and others — and found every one degrades as input length grows, even on simple tasks well within the nominal context window. Liu et al. (Stanford / TACL 2024, *Lost in the Middle*) found >30% accuracy drop when relevant material sits mid-context. Du et al. (EMNLP 2025) found context length alone hurts performance even when retrieval is perfect. Anthropic's guidance identifies the practical ceiling at **~50% window fill**. A bloated config file can make the agent measurably worse.
+- The corpus exceeds what an index-guided read can usefully serve (probably 100s–1000s of files for current models, depending on traversal frequency).
 - Updates need to be transactional / multi-writer / append-only across many sessions. Filesystems are poor at this; you want a queue + DB. *This is the claude-mem boundary.*
+- Context refreshes faster than the cache TTL. If sessions are long-running or intermittent and context changes frequently, cache hits evaporate and the CAG cost advantage erodes.
 - Latency budget forbids on-demand file reads at every turn. Pre-indexed retrieval is faster.
 - Content is too sensitive for plaintext. Gitignored markdown gives you privacy-by-exclusion, not privacy-by-encryption.
 - Search needs cross-document semantic similarity, not lexical. (Though `grep` plus a decent INDEX.md is more competitive here than people assume.)
@@ -122,13 +143,16 @@ The upgrade path now has an intermediate step: **graphify before the full DB sta
 
 For any new agent project — including this KB:
 
-1. **Default to files-as-config.** The cost of adding it later is low; the cost of building DB-backed memory on day one when you didn't need it is high.
-2. **Minimum viable setup**: a `CLAUDE.md` / `AGENTS.md` (behaviour + pointers) plus one other file matching your primary content type from the taxonomy above. Don't pre-build the other six.
-3. **Factor by type, not chronology.** Don't have a `notes/` folder; have folders for distinct kinds of knowledge (this KB's `topics/`, `sources/`, `synthesis/`, `templates/` is an example).
-4. **Add `INDEX.md` only when the agent starts wasting tokens scanning.** Premature indexing is overhead.
-5. **Keep governance separate from content.** Rosenthal's `.claude/hooks/` cleanly separates from `wiki/`. Mixing them rots both.
-6. **Treat staleness as a first-class concern from the start.** Decide who owns each file's freshness. Without ownership, every file rots silently.
-7. **Migrate to a DB-backed store only when you hit a measured constraint, not preemptively.**
+1. **Default to files-as-config (CAG).** The cost of adding it later is low; the cost of building DB-backed memory on day one when you didn't need it is high. Name it CAG when talking to others — the term clarifies that this is a deliberate architectural choice, not a shortcut.
+2. **Cache your static prefixes.** If you're loading `AGENTS.md` / `CLAUDE.md` / reference docs at session start, enable prompt caching on the static prefix. This is the primary cost lever for CAG workloads.
+3. **Keep the file lean.** Context rot is real: every frontier model degrades with input length, and Anthropic identifies ~50% window fill as the practical ceiling. Guidance: keep the whole `AGENTS.md` / `CLAUDE.md` under ~150 lines, front-load critical rules, cut anything that doesn't earn its place. Acid test: ask the agent to recite your build commands. **What it can't recite, it won't follow** — over-long files get truncated or lost in context.
+4. **Treat rules as nudges, not guarantees.** Instructions in config files make the model *more likely* to comply, not certain to. For irreversible or high-stakes operations, the correct safeguard is a hard policy or sandbox enforced outside the model — not a sentence in a markdown file.
+5. **Minimum viable setup**: a `CLAUDE.md` / `AGENTS.md` (behaviour + pointers) plus one other file matching your primary content type from the taxonomy above. Don't pre-build the other six.
+6. **Factor by type, not chronology.** Don't have a `notes/` folder; have folders for distinct kinds of knowledge (this KB's `topics/`, `sources/`, `synthesis/`, `templates/` is an example).
+7. **Add `INDEX.md` only when the agent starts wasting tokens scanning.** Premature indexing is overhead.
+8. **Keep governance separate from content.** Rosenthal's `.claude/hooks/` cleanly separates from `wiki/`. Mixing them rots both.
+9. **Treat staleness as a first-class concern from the start.** Decide who owns each file's freshness. Without ownership, every file rots silently.
+10. **Migrate to a DB-backed store only when you hit a measured constraint, not preemptively.**
 
 ### Frank framing
 
@@ -145,7 +169,7 @@ This is also why the pattern travels well across domains. It works for software 
 
 ## What would change my mind
 
-- **A serious eval** showing that vanilla prompting + small CLAUDE.md outperforms a well-factored files-as-config setup at similar token budget. None exists in the captured sources.
+- **A controlled comparison** of configured versus unconfigured agents at matched token budget. The METR RCT (Becker et al. 2025) is the closest thing — it found AI made experienced developers 19% *slower* on mature codebases — but it measured AI-allowed vs AI-disallowed, not configured vs unconfigured. METR's Feb 2026 follow-up concluded the new data was too noisy. The clean head-to-head still doesn't exist.
 - **Convincing evidence that vendor-built memory layers** (Cowork's project memory, Claude Code's auto-compaction, OS-level features I'm not aware of yet) are subsuming the manual files-as-config approach for most users. If Anthropic/OpenAI ship enough automated context management, the manual approach loses its edge.
 - **A staleness mechanism** that actually works at team scale — i.e. someone solving Lorenzo's tacit-knowledge-into-markdown problem in a generalisable way. If this remains unsolved, the pattern will keep producing rotten files at scale and someone will design an alternative that handles staleness intrinsically.
 - **A new failure mode** I haven't seen. The captured sources are all current proponents; an experienced detractor with a specific failure story would update me.
