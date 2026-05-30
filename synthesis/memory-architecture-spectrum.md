@@ -1,0 +1,104 @@
+---
+title: "The memory architecture spectrum: files, graphs, and vectors"
+written: 2026-05-30
+updated: 2026-05-30
+topics: [memory, harnesses]
+tags: [files-as-memory, knowledge-graph, rag, vector-db, working-memory, episodic-memory, profile-memory, ttl, retrieval-patterns]
+sources:
+  - sources/2026-05-20-poha.md
+  - sources/2026-05-20-claude-mem.md
+  - sources/2026-05-28-safishamsi-graphify.md
+  - sources/2026-05-28-uphill-agentic-ladder.md
+  - sources/2026-05-30-fowler-genai-patterns.md
+status: draft
+---
+
+# The memory architecture spectrum: files, graphs, and vectors
+
+## Memory is not one thing
+
+Before choosing a memory architecture, name what kind of memory you need. The UpHill workshop offers the clearest taxonomy:
+
+- **Working memory**: in-prompt, per-task. The contents of the current context window. Managed by context design, not a memory system.
+- **Episodic memory**: vector DB or log, retrieved on demand. "What happened before in similar situations."
+- **Profile memory**: durable facts about the user, project, or environment. Changes slowly; should survive indefinitely.
+
+These three answer different questions and have different durability, retrieval cost, and maintenance burden. A system that conflates them will be over-engineered for the simple cases and under-equipped for the complex ones.
+
+## The spectrum of approaches
+
+Four sources in this KB each represent a distinct position on the memory architecture spectrum.
+
+### Position 1: Files-as-memory (POHA)
+
+**Philosophy**: No vector DB. No RAG. No fine-tuning. Just files.
+
+Seven hand-curated markdown files (`people`, `commitments`, `life`, `insights`, `finances`, `health`, `private carry-on`). Human-editable, grep-able, version-controlled. The agent reads them directly; no retrieval layer.
+
+**When it wins**: bounded corpus, single user, content that benefits from human curation and inspection. POHA's files are not auto-captured — they are deliberately maintained. The curation cost is the point: it keeps the corpus lean and auditable. Five minutes per week.
+
+**Where it breaks**: when the corpus grows beyond what index-guided reads can serve. If you need to answer "what did I do three months ago on project X" from an auto-captured observation log, grep is not your retrieval mechanism.
+
+This KB uses the same shape — `sources/` and `topics/` as curated markdown. The argument for this design is identical.
+
+### Position 2: Hook-based capture + hybrid retrieval (claude-mem)
+
+**Philosophy**: instrument the harness to capture everything; retrieve semantically on demand.
+
+Five lifecycle hooks (SessionStart, UserPromptSubmit, PostToolUse, Stop, SessionEnd) feed observations into a background worker. Storage is hybrid: Postgres for structured observations, Chroma for vector embeddings. Retrieval is exposed as MCP tools structured in three layers designed to minimise token cost: compact index → chronological context → full body on demand.
+
+**When it wins**: high-volume automatic capture, cross-session recall, teams with multiple agents hitting the same memory store.
+
+**Where it breaks**: operationally heavy. The architecture escalation from SQLite (v6) to Postgres + Redis + BullMQ + auth (v13) reflects what "production memory" actually requires at scale. Not viable as a local single-user tool anymore. Also: the 3-layer retrieval pattern adds latency; hook overhead fires on every tool call.
+
+**Design pattern worth keeping regardless of the tool**: the three-layer retrieval shape (compact index → context → full body) is reusable anywhere you have a large result set. Pay token cost only for what the agent actually needs to read.
+
+### Position 3: Knowledge graph (Graphify)
+
+**Philosophy**: structured intermediate representation, committed to the repo as a team artefact.
+
+`/graphify .` processes a codebase through AST extraction (tree-sitter, 33 languages), LLM-assisted semantic analysis, and Leiden clustering. Output is `graph.json` — committed to the repo, auto-rebuilt on commits via git hooks.
+
+**When it wins**: large codebases where files-as-memory can't fit and full vector RAG is over-engineered. The graph is structured (not a bag of embeddings), portable (any platform can query it), and team-shared (not per-developer). Confidence levels (EXTRACTED/INFERRED/AMBIGUOUS) tell the agent which relationships to trust.
+
+**Where it breaks**: the graph ages with the codebase; the cost of regenerating it, and whether diffs are stable, is unclear. Leiden clusters may not align with human domain boundaries. Best suited to codebases with stable structure; less suited to highly dynamic content.
+
+**Key distinction from vector RAG**: the graph answers "what depends on what" and "what are the high-connectivity hubs" — structural questions. Vector RAG answers "what content is semantically similar to this query." Different queries, different tools.
+
+### Position 4: Production RAG (Fowler/Subramaniam)
+
+**Philosophy**: extend LLM knowledge beyond training data at production scale with augmented retrieval.
+
+The Fowler/Subramaniam pattern catalogue covers the full production RAG stack: embeddings → vector DB → query rewriting → hybrid retrieval (dense + sparse/BM25) → reranking → context injection with explicit gap-acknowledgment instructions.
+
+**When it wins**: large, volatile, unstructured document corpora where semantic similarity is the right retrieval primitive. The production case study (17,000 life-sciences research reports, days-to-weeks queries reduced to minutes) is the clearest signal of where this justifies its cost.
+
+**Where it breaks**: basic RAG almost never ships to production as-is. The life sciences case required all four enhancement patterns: Hybrid Retriever, Query Rewriting, Reranker, Guardrails. Each adds engineering cost and a new failure mode to eval. The "Lost in the Middle" effect (>30% accuracy drop for mid-context material) means you can't just retrieve more — reranking before injection is the mitigation.
+
+**Important scope constraint**: embeddings are for *semantic* similarity on unstructured data. For exact matches, relational queries, or numerical comparisons, use SQL or traditional DBs. Don't stretch embeddings into structured-data problems.
+
+## The decision framework
+
+| Situation | Architecture |
+|-----------|-------------|
+| Bounded corpus, curated, human-editable, single user | Files-as-memory |
+| Known static context that fits in the window | CAG / direct load (not memory at all) |
+| Large codebase, structural/dependency questions | Knowledge graph (Graphify) |
+| High-volume auto-capture, cross-session recall, multi-user | Hook-based + hybrid retrieval (claude-mem pattern) |
+| Large volatile unstructured document corpus | Production RAG (with Hybrid Retriever + Reranker) |
+
+These are not mutually exclusive. The KB uses files-as-memory for the curated layer and would use RAG if the corpus grew to thousands of sources. Graphify is for codebase structure, not document knowledge. Claude-mem is for automatic observation capture, not deliberate knowledge curation.
+
+## What UpHill adds: stale memory is a new hallucination class
+
+The UpHill workshop surfaces a principle that none of the implementation-focused sources name explicitly:
+
+> "TTL time-bound facts — stale memory confidently cited is a new hallucination class."
+
+A memory system without explicit expiry or provenance is a liability as it ages. A working recommendation: any memory entry that encodes a state of the world (a person's role, a project's status, a tool's capability) should carry a `freshness_until` date. This KB already does this in source frontmatter. For a hook-based system capturing observations, building decay or review mechanisms in is necessary, not optional.
+
+## Frank summary
+
+Files win at small, curated, human-maintained. Vector RAG wins at large, volatile, unstructured. Knowledge graphs fill the structural middle ground for codebases. Hook-based capture wins at automatic observation logs.
+
+The failure mode to watch: escalating to RAG because it feels more "production-grade" before the corpus justifies it. POHA is right that for a personal agent with bounded knowledge, curated files are genuinely competitive with embedding pipelines on signal-per-effort — and dramatically easier to audit, debug, and version. The complexity of claude-mem's v13 architecture is not evidence of superior design; it reflects what scale forces.

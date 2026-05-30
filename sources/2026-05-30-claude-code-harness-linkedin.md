@@ -6,7 +6,7 @@ captured: 2026-05-30
 source_type: thread
 topics: [harnesses]
 tags: [claude-code, harness, guardrails, drift-detection, multi-agent, workflow]
-status: raw
+status: summarized
 confidence: low
 freshness_until: 2026-Q3
 ---

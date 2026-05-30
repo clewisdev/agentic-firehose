@@ -27,6 +27,8 @@ LLM API costs, rate limiting, token optimization, prompt caching, and model sele
 | Per-response | Caveman skill | Compressed model output (65% reduction) | During session |
 | Per-response | Per-tool output caps | ANSI stripping, JSON extraction, cap at N tokens | During session (caveman-code) |
 
+- [UpHill Workshop — Index](../../sources/2026-05-28-uphill-workshop-pdfs.md) — workshop index; cost-management content is in the real-workflows capture (smart/dumb zone, model routing).
+- [Dynamic Workflows for Claude Code](../../sources/2026-05-30-claude-code-dynamic-workflows.md) — explicitly flagged as high token consumption by Anthropic; commenter reports session limits in 30–40 min on Max 20x. Dynamic multi-agent runs need a cost-management strategy before use. [low-signal]
 - [CAG vs vanilla prompting](../../sources/2026-05-29-cag-vs-vanilla-prompting.md) — **context rot** (Chroma 2025, 18 frontier models): every model degrades with input length, even below nominal window capacity. *Lost in the middle* (TACL 2024): >30% accuracy drop for mid-context material. EMNLP 2025: context length alone hurts even with perfect retrieval. Practical ceiling: ~50% window fill. Reinforces lean-AGENTS.md practice and the Caveman/caveman-code approach.
 
 ## Open threads
