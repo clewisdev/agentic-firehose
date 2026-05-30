@@ -5,7 +5,7 @@ authors: [Bharani Subramaniam, Martin Fowler]
 captured: 2026-05-30
 source_type: blog
 topics: [evals, memory, prompting, harnesses]
-tags: [rag, embeddings, guardrails, fine-tuning, evals, llm-as-judge, query-rewriting, reranker, hybrid-retrieval, production]
+tags: [rag, embeddings, guardrails, fine-tuning, evals, llm-as-judge, query-rewriting, reranking, hybrid-retrieval]
 status: summarized
 confidence: high
 freshness_until: 2027-Q1
@@ -13,67 +13,62 @@ freshness_until: 2027-Q1
 
 # Emerging Patterns in Building GenAI Products
 
-**Source:** martinfowler.com · Bharani Subramaniam & Martin Fowler · Published 25 Feb 2025  
-**Signal level:** High — Thoughtworks practitioners documenting patterns from real client engagements, not tutorial content. Fowler's editorial oversight adds signal discipline. Code examples and named failure modes throughout.
+**Source**: martinfowler.com — Bharani Subramaniam (CTO Thoughtworks India/ME) and Martin Fowler  
+**Published**: 25 February 2025  
+**Signal**: High. Thoughtworks practitioners writing from real client engagements, not tutorial-style theory. Named production deployments (17,000-document life sciences RAG system). Pattern-language format with explicit "when to use" discipline. Fowler's editorial standards apply.
+
+---
 
 ## Summary
 
-This is a practitioner pattern catalogue covering the journey from basic LLM usage to production-grade GenAI systems. The framing is explicit: proof-of-concept to production is the hard problem, and most teams underestimate it by treating GenAI products as extensions of transactional systems. The article is structured as named patterns in the GoF sense — each has a "when to use it" section, and the authors are clear that the anti-pattern is applying them indiscriminately.
+This is a practitioner-oriented pattern catalogue for production GenAI systems, structured around a core thesis: the jump from PoC to production fails when teams treat LLM-based systems as extensions of transactional/analytical systems. The unique problems are hallucination, unbounded data access, and non-determinism — and the patterns address each.
 
-### Patterns catalogued
+### Patterns covered
 
-**Direct Prompting** — baseline: connect user to foundation LLM. Named primarily to establish what's *insufficient*: knowledge cutoff, context blindness, hallucination confidence, prompt injection risk. Every other pattern is a mitigation.
+**1. Direct Prompting**  
+Sending user input straight to a foundation model. Described as the baseline that almost always needs augmentation — knowledge cutoffs, hallucination, and adversarial prompt risks make it insufficient alone for production. Useful to name explicitly so you know when you're *not* doing it.
 
-**Evals** — the article treats evals as the non-negotiable foundation before any other enhancement. Key framing: evals are to GenAI what tests are to traditional software, but they're non-binary (scores + thresholds, not pass/fail). Three judging strategies:
-- *Self-evaluation*: explicitly discouraged — reinforces errors/biases
-- *LLM-as-judge*: a different (possibly smaller) model scores the output; popular for automation
-- *Human evaluation ("vibe checking")*: informal but catches qualitative failures automated scoring misses
+**2. Evals**  
+The centrepiece of the article. Evals are the non-deterministic equivalent of tests — not binary pass/fail, but scored across a range of scenarios. Three judging approaches:
+- *Self-evaluation*: explicitly warned against. Models reinforce their own errors.
+- *LLM-as-judge*: a different model (more capable LLM or specialized SLM) scores output. Reduces shared-bias risk. Recommended for automation.
+- *Human evaluation / vibe checking*: manual, unscalable, but catches qualitative failures automated scoring misses.
 
-Recommended combination: LLM-as-judge + human eval. Example uses [DeepEval](https://github.com/confident-ai/deepeval) with `AnswerRelevancyMetric`. Evals run in CI pipeline *and* against the live production system continuously — framed analogously to performance testing.
+Recommendation: combine LLM-as-judge with human eval for comprehensive coverage. Evals run in the build pipeline (like performance tests — threshold-based, not binary) AND on the live production system to catch drift. Individual components (guardrails, query rewriting) can be evaled independently.
 
-Distinction drawn between **benchmarking** (model-level, standardized datasets, LLM vendors' job) and **evals** (product-level, custom datasets, your job).
+Code example uses [DeepEval](https://github.com/confident-ai/deepeval) with `AnswerRelevancyMetric`.
 
-**Embeddings** — explained mechanically with a worked image-embedding example (CLIP model, cosine similarity). Key conceptual point: embeddings encode semantic similarity, not surface pattern matching. Limitation noted: not appropriate for structured/relational data where SQL queries are superior.
+**3. Embeddings**  
+Lossy compression of data (text, images) into high-dimensional numeric vectors where semantic similarity ≈ geometric proximity. Explained via image embeddings (CLIP model, 768-dim vectors, cosine similarity) then generalised to text. Key "when to use" guidance: embeddings are for *semantic* similarity on unstructured data; for exact matches, relational queries, or numerical comparisons, use SQL/traditional DBs. Don't over-apply.
 
-**RAG (Retrieval Augmented Generation)** — the central pattern. Framing: gives the "over-confident junior researcher" a dossier of relevant docs before answering. Standard pipeline: chunk → embed → vector store → ANN similarity search → inject context into prompt template.
+**4. Retrieval Augmented Generation (RAG)**  
+The recommended default for extending LLM knowledge beyond training data. Core metaphor: giving a junior researcher a curated dossier before asking a question. Basic flow: chunk documents → embed → vector DB → embed query → ANN similarity search → inject retrieved fragments into prompt with a template that explicitly instructs the LLM to acknowledge gaps.
 
-RAG template structure provided explicitly:
-```
-User prompt: {{user_query}}
-Relevant context: {{retrieved_text}}
-Instructions:
-1. Use context; be accurate
-2. If context insufficient, acknowledge gap
-3. No unsupported speculation
-```
+Production case study: 17,000 life-sciences research reports (thousands of pages each, text + tabular data). Pre-RAG: days-to-weeks to answer a query. Post-RAG chatbot: minutes. Required all four enhancement patterns below to ship.
 
-Real engagement: 17,000 reports / thousands of pages for a life sciences company. Before: days-to-weeks of manual PDF search. After: minutes via multi-hop chatbot queries. Named as successful but requiring four enhancements to become production-viable:
+The original RAG paper is cited (Meta AI); authors note the blog post companion is more approachable than the paper.
 
-| Limitation | Mitigating Pattern |
-|---|---|
-| Inefficient retrieval (dense embeddings lose semantic detail) | Hybrid Retriever |
-| Minimalistic/ambiguous user queries | Query Rewriting |
-| Context bloat / "Lost in the Middle" problem | Reranker |
-| Gullibility (LLM accepts false context) | Guardrails |
+**5. Hybrid Retriever**  
+Addresses the core RAG limitation: dense vector embeddings alone compress too much semantic detail. A hybrid retriever combines dense embedding search with sparse/keyword retrieval (e.g., BM25). Neither approach dominates across query types; combining them recovers recall that either alone misses. Footnote mentions ColBERT as an interesting alternative — token-level rather than passage-level embeddings.
 
-**Hybrid Retriever** — combines dense vector search with other techniques (e.g. BM25 keyword search). Rationale: single-embedding retrieval compresses paragraphs into one vector and inevitably loses semantic detail. ColBERT mentioned as an alternative (token-level embeddings per passage rather than paragraph-level).
+**6. Query Rewriting**  
+Addresses short/ambiguous user queries that fail to retrieve relevant chunks. An LLM generates multiple alternative formulations of the query; all are searched; results are merged. Compensates for users who can't articulate intent precisely.
 
-**Query Rewriting** — uses an LLM to generate multiple alternative phrasings of the user's query, then searches with all of them. Addresses the problem that real users write short, ambiguous queries that don't match document vocabulary.
+**7. Reranker**  
+Addresses context bloat: even if retrieval returns many relevant fragments, stuffing them all into the context window degrades performance ("Lost in the Middle" effect — LLMs favour content at start/end of context, not middle). A reranker re-scores retrieved fragments for relevance to the specific query and sends only the top-k. Logically distinct from the retriever; can be evaled independently.
 
-**Reranker** — after retrieval returns a candidate set, a reranker scores fragments by usefulness and sends only the top results to the LLM. Directly addresses "Lost in the Middle": LLMs perform best when relevant content is at the beginning or end of context, not buried in the middle.
+**8. Guardrails**  
+Separate LLM calls (or embedding-based checks, or rule-based filters) applied at input and/or output. Three implementation modes:
+- *LLM-based guardrails*: a separate model call to detect harmful/off-topic input or sanitize output.
+- *Embedding-based guardrails*: classify input semantically against known safe/unsafe categories.
+- *Rule-based guardrails*: regex/pattern matching for known failure modes.
 
-**Guardrails** — separate LLM calls to sanitize inputs and/or outputs. Three approaches:
-- *LLM-based guardrails*: a second model checks for dangerous/off-topic inputs or problematic outputs
-- *Embeddings-based guardrails*: similarity checks against known-bad patterns
-- *Rule-based guardrails*: regex/keyword filters, simpler and faster
+All three can be layered. Guardrails are independently evaluable components.
 
-Note: guardrails address "gullibility" — the risk that adversarial context injected through RAG retrieval can manipulate the LLM's response.
+**9. Fine Tuning**  
+Additional training on a pre-trained model for domain-specific knowledge. Described as expensive and usually not the right first move — RAG is preferable in most situations. Fine tuning becomes worthwhile when the domain vocabulary or behaviour is so specialized that in-context injection (RAG) consistently underperforms. Article notes this as "further work" territory, suggesting the authors have less production pattern experience here vs. RAG.
 
-**Fine Tuning** — additional training on a pre-trained LLM for domain-specific knowledge. Framed as a last resort: expensive, resource-intensive, and usually worse ROI than RAG. Authors include it but explicitly recommend exhausting RAG enhancements first.
-
-### The realistic RAG stack
-
-The article builds toward a "realistic RAG" that combines all enhancement patterns: Hybrid Retriever → Query Rewriting → Reranker → Guardrails wrapping the whole pipeline. Each layer addresses a specific failure mode of basic RAG.
+---
 
 ## Key quotes
 
@@ -81,28 +76,41 @@ The article builds toward a "realistic RAG" that combines all enhancement patter
 
 > "The difficult part of using evals lies in fact that it is still early days in our understanding of what mechanisms are best for scoring and judging. Despite this, we see evals as crucial to using LLM-based systems outside of situations where we can be comfortable that users treat the LLM-system with a healthy amount of skepticism."
 
-> "When you're just starting with retrieval systems, it's a shock to realize that relying solely on document chunk embeddings in a vector store won't lead to efficient retrieval. The common assumption is that chunk embeddings alone will work, but in reality it is useful but not very effective on its own."
+> "When we create a single embedding vector for a document chunk, we compress multiple paragraphs into one dense vector. While dense embeddings are good at finding similar paragraphs, they inevitably lose some semantic detail. No amount of fine-tuning can completely bridge this gap."
 
-> "The Lost in the Middle paper reveals that LLMs currently struggle to effectively leverage information within lengthy input contexts. Performance is generally strongest when relevant details are positioned at the beginning or end of the context."
+> "A common metaphor for an LLM is a junior researcher. Someone who is articulate, well-read in general, but not well-informed on the details of the topic - and woefully over-confident, preferring to make up a plausible answer rather than admit ignorance."
 
-> "Fine-tuning requires substantially greater resources, and thus most of the time we've found RAG to be more effective."
+> "Performance is generally strongest when relevant details are positioned at the beginning or end of the context. However, it drops considerably when models must retrieve critical information from the middle of long inputs. This limitation persists even in models specifically designed for large context."
+
+---
 
 ## Takeaways
 
-1. **Evals before everything else.** Don't build enhancements without a baseline eval suite. The article is structured this way deliberately — you can't tell if RAG, guardrails, or reranking are helping unless you can measure. Run evals in CI *and* continuously in production.
+1. **Evals are the load-bearing pattern.** Every other pattern's value is only knowable through evals. Instrument evals per-component (guardrails, query rewriting, reranker) not just end-to-end — this localises regressions. Run them in CI and on production.
 
-2. **Basic RAG will disappoint in production.** Chunk-level dense embeddings alone fail in four specific ways (retrieval quality, query ambiguity, context length, adversarial inputs). Expect to implement Hybrid Retriever + Query Rewriting + Reranker + Guardrails for any serious use case.
+2. **Basic RAG is almost never sufficient for production.** The life sciences case shows that all four enhancement patterns (Hybrid Retriever, Query Rewriting, Reranker, Guardrails) were needed together. Treat basic RAG as the starting point for iteration, not a destination.
 
-3. **LLM-as-judge + human spot-check is the practical eval combination.** Self-eval is actively harmful. Pure automation misses qualitative failure modes. The combination is imperfect but better than either alone.
+3. **LLM-as-judge + human eval is the recommended eval combination.** Self-evaluation is actively discouraged — it reinforces model errors. The hybrid approach gives automated coverage with qualitative signal.
 
-4. **Embeddings ≠ relational data.** Don't reach for vector search when SQL is appropriate. Embeddings are for semantic similarity over unstructured text/images; exact matching and numerical comparisons belong in traditional databases.
+4. **Embeddings have a clear scope boundary.** Semantic similarity on unstructured data: yes. Exact matching, relational queries, numerical comparisons: use traditional DBs. Don't stretch embeddings into structured-data problems.
 
-5. **Fine-tuning is expensive enough to treat as a last resort.** The authors have tried both approaches across many engagements and consistently find RAG (with enhancements) more practical than fine-tuning for domain adaptation.
+5. **"Lost in the Middle" is a real production failure mode.** Context window size doesn't eliminate the problem. Reranking before context injection is the mitigation — don't assume more context is always better.
+
+---
 
 ## Open questions
 
-- The article was published Feb 2025 — how does this hold up against late-2025/2026 models with much larger context windows? The "Lost in the Middle" problem may be partially addressed by newer models; the reranker pattern's necessity should be re-evaluated.
-- Guardrail implementation details are high-level. What are the practical false-positive rates for LLM-based vs. embeddings-based vs. rule-based guardrails? The article doesn't give operational numbers.
-- ColBERT is mentioned as an alternative to chunk embeddings but not developed. Worth a separate capture.
-- The article predates widespread MCP and tool-use patterns — these patterns predate agentic multi-step workflows. How do they compose with tool-calling agents rather than single-shot RAG?
-- No discussion of cost trade-offs between running multiple LLM calls (guardrails, query rewriting, LLM-as-judge) vs. latency and API spend.
+- The article is light on **fine tuning specifics** — when exactly does RAG underperform enough to justify the cost? Needs a separate source.
+- **Eval thresholds**: how do practitioners calibrate acceptable score ranges for metrics like answer relevancy? DeepEval's `threshold=0.5` in the example seems arbitrary — is there guidance?
+- **Hybrid retriever weighting**: what's the right balance between dense and sparse retrieval? Does this need to be tuned per corpus or per query type?
+- The article mentions ColBERT as a chunk-embedding alternative but doesn't give production experience. Worth tracking separately.
+- Article dated Feb 2025 — the RAG tooling landscape moves fast. Check whether specific library recommendations (DeepEval, CLIP model versions) are still current.
+
+---
+
+## Related
+
+- `topics/evals/index.md` — primary home for eval patterns
+- `topics/memory/index.md` — embeddings and RAG are the memory architecture for most agents
+- `topics/harnesses/index.md` — guardrails pattern fits here
+- `topics/prompting/index.md` — RAG template and query rewriting are prompting patterns
