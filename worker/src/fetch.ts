@@ -1,6 +1,6 @@
 // Truncate fetched content to keep it within a reasonable context budget.
-// A typical webpage at 30K chars is ~7-8K tokens — enough for triage and capture.
-const MAX_CHARS = 30_000;
+// 8K chars (~2K tokens) is enough for triage classification and metadata extraction.
+const MAX_CHARS = 8_000;
 
 export async function fetchUrl(url: string): Promise<{ content: string; error?: string }> {
   try {
@@ -24,7 +24,7 @@ export async function fetchUrl(url: string): Promise<{ content: string; error?: 
     }
 
     if (text.length > MAX_CHARS) {
-      text = text.slice(0, MAX_CHARS) + '\n\n[content truncated at 30 000 chars]';
+      text = text.slice(0, MAX_CHARS) + '\n\n[content truncated at 8 000 chars]';
     }
 
     return { content: text };
