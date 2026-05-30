@@ -17,6 +17,8 @@ skills/         Preserved operational skills (SKILL.md + companion files). One s
 
 Initial topic folders: `tool-use/`, `memory/`, `evals/`, `harnesses/`, `prompting/`. Create new ones freely as the field shifts — don't force-fit a new entry into an existing folder. Wait until you have 2–3 entries before promoting a tag into its own folder.
 
+**When creating a new topic folder**: update the topic table in `README.md` in the same turn. Don't leave the README stale.
+
 ## Named topic stubs
 
 Two topics are explicitly in scope even before sources exist:
@@ -100,6 +102,19 @@ Write a `sources/` capture for each skill (what it does, signal level, how it ap
 
 ## Input types
 
+### User-derived learnings
+
+When the owner reports something learned by direct experience — from running this KB, operating the Cloudflare Worker, debugging a capture, or observing agent behaviour over time — treat it as a source with distinct properties:
+
+- **Epistemic status**: primary evidence, not secondary. The owner observed it directly with a specific, auditable system. It is more grounded than an external practitioner's account and more grounded than theoretical claims.
+- **Perishability**: user-derived observations describe what was true at a moment in this KB's history. Date them precisely. They go stale as the system evolves.
+- **Signal level**: treat as high signal by default if the observation is specific and falsifiable. Vague impressions ("it feels slower") are medium at best — ask for a concrete example before capturing.
+- **Reuse potential**: user-derived observations are candidates for external sharing — blog posts, talks, case study submissions. Flag this explicitly in the capture if the observation is distinctive or surprising. A source capturing something the owner discovered is worth more as publishable material than a summary of someone else's post.
+- **source_type**: `user_derived`
+- **Capture location**: `sources/` as normal, with `source_type: user_derived`. Cross-link to the relevant topic index. If the observation relates to KB operations or agentic systems meta-behaviour, also cross-link to `topics/meta/index.md`.
+
+Do not conflate user-derived learnings with synthesis. Synthesis draws conclusions across multiple sources. A user-derived learning is itself a source — it should be captured first, then fed into synthesis when enough related material exists.
+
 ### Teams / Slack conversation snippets
 
 When the owner pastes a conversation (Teams, Slack, Discord, etc.):
@@ -163,7 +178,7 @@ title: "..."                              # source's own title
 url: https://...
 authors: [Name, ...]
 captured: 2026-05-20                      # date the owner shared it
-source_type: blog | paper | docs | video | thread | repo | talk
+source_type: blog | paper | docs | video | thread | repo | talk | user_derived
 topics: [tool-use, memory]                # which topic folders this maps to
 tags: [react, reflection, mcp]            # finer-grained
 status: raw | summarized
@@ -185,6 +200,12 @@ sources: [sources/2026-05-20-foo.md, sources/2026-04-10-bar.md]
 status: draft | stable | needs-revision
 ---
 ```
+
+## Capturing owner plans
+
+When the owner describes future work, enhancements, or ideas during a session — even informally — write a `plans/` stub in the same turn. Don't defer until asked.
+
+A stub needs only: frontmatter (`title`, `status: planning`, `drafted`, `owner`), a one-paragraph goal, and bullet-point open questions. Thin is fine; lost is not. Use `plans/` for KB-evolution work; use topic open threads for external research gaps.
 
 ## What not to do
 

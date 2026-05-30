@@ -23,9 +23,11 @@ worker/       Cloudflare Worker — email-triggered automated capture
 | Folder | Covers |
 |---|---|
 | `topics/cost-management/` | API costs, prompt caching, token budgets, model selection |
+| `topics/dx-culture/` | Developer experience, engineering culture, human/org effects of AI adoption |
 | `topics/evals/` | Evaluation design for agent workflows |
 | `topics/harnesses/` | Agent harness patterns, orchestration, tool loops |
 | `topics/memory/` | Memory architectures, context management |
+| `topics/meta/` | KB operations, self-observation, context drift, author reputation |
 | `topics/prompting/` | Prompt engineering, AGENTS.md / CLAUDE.md patterns, CAG vs RAG |
 | `topics/ralph-loops/` | Named agentic pattern from UpHill workshop |
 | `topics/tool-use/` | Tool design, MCP, tool loop patterns |
