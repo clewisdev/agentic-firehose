@@ -182,6 +182,8 @@ source_type: blog | paper | docs | video | thread | repo | talk | user_derived
 topics: [tool-use, memory]                # which topic folders this maps to
 tags: [react, reflection, mcp]            # finer-grained
 status: raw | summarized
+# raw = content written by the Worker, not yet cross-linked to topic indexes
+# summarized = cross-linked to every topic in the `topics:` frontmatter list
 confidence: high | medium | low
 freshness_until: 2026-Q4 | unknown | evergreen
 ---
@@ -200,6 +202,10 @@ sources: [sources/2026-05-20-foo.md, sources/2026-04-10-bar.md]
 status: draft | stable | needs-revision
 ---
 ```
+
+## Completing plans
+
+Before declaring a plan complete, re-read the plan file (`plans/<name>.md`) and confirm every listed item is shipped. Multi-part plans frequently have a second half (e.g. a skill to accompany a Worker change) that is easy to miss when the first half is working and tested.
 
 ## Capturing owner plans
 
