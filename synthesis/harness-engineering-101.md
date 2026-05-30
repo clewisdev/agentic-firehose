@@ -14,7 +14,10 @@ sources:
   - sources/2026-05-28-brussee-caveman-code.md
   - sources/2026-05-28-claude-ralph-loop-plugin.md
   - sources/2026-05-28-owasp-llm-top10.md
+  - sources/2026-05-30-fowler-genai-patterns.md
+  - sources/2026-05-30-fowler-maintainability-sensors.md
 status: stable
+updated: 2026-05-30
 ---
 
 # Harness Engineering: A 101
@@ -67,6 +70,8 @@ What the model is *allowed* to do even when it *could* do more. Rosenthal's `.cl
 
 **Why it matters:** A prompt can tell the model not to do X. A permission rule can *prevent* X from happening. The difference matters when the model is operating autonomously and there's no human in the loop to catch a mistake.
 
+Fowler/Subramaniam (2025) add a concrete implementation taxonomy for guardrails: (1) **LLM-based** — a separate model call to detect harmful or off-topic input/output; (2) **embedding-based** — classify input semantically against known safe/unsafe categories; (3) **rule-based** — regex/pattern matching for known failure modes. All three can be layered, and each is independently evaluable — meaning you can run targeted evals against the guardrail component alone without needing an end-to-end test.
+
 ### 4. Orchestration
 
 How multiple agents, models, or sessions are coordinated. This ranges from simple (the ralph-loop: one agent re-running the same task iteratively) to complex (orchestrator agent delegating subtasks to specialist subagents, as in Superpowers' subagent-driven-development pattern).
@@ -94,6 +99,17 @@ Token budgets, per-tool output caps, rate-limit handling, model routing by task 
 ### 8. Evaluation
 
 Measuring whether the agent is actually producing good outputs. SWE-bench for coding agents. Triage rules in AGENTS.md for this KB's capture quality. Without eval, changes to the harness are flying blind — you don't know if adding a new skill helped or degraded the agent's overall performance.
+
+Fowler/Subramaniam (2025) articulate the production eval methodology: evals are non-deterministic equivalents of tests — scored across scenarios, not binary pass/fail. The recommended combination is **LLM-as-judge** (a different, more capable model scores outputs, reducing shared-bias risk) plus **human evaluation** for qualitative failures automated scoring misses. Self-evaluation is explicitly discouraged: models reinforce their own errors. Eval per component (guardrail, reranker, query-rewriting step) localises regressions; run in the build pipeline and on the live production system to catch drift.
+
+Böckeler (2025) extends this with a **sensors framework** specifically for coding agents: sensors are automated feedback mechanisms that run during sessions, in CI, or on a schedule. Two types:
+
+- **Computational (deterministic)**: type checker, ESLint, dependency-cruiser, mutation testing (Stryker) — fast, no token cost, binary outcomes. These run in the agent loop directly.
+- **Inferential (LLM-based)**: modularity reviews, coupling analysis, security checklists — slower, token cost, but able to apply semantic judgment that rules cannot.
+
+Critical design principle: **a sensor only helps if its output feeds back into the agent's self-correction loop.** A lint rule that produces output the agent never reads is CI theater. The corollary: encode self-correction guidance *in the sensor output itself* — custom ESLint formatters that explain what to do, not just what went wrong, measurably changed agent behavior. Böckeler frames this as "prompt injection via lint output."
+
+For mutation testing specifically: 100% code coverage does not mean effective tests. Stryker surfaces mutation survivors — code mutations that don't cause test failures, revealing where assertions are missing. Use a custom CLI to query Stryker's JSON output rather than feeding raw files into context.
 
 ## The difference from "writing better prompts"
 

@@ -11,9 +11,13 @@ External observation logs, retrieval layers, and cross-session context for agent
 
 ## Synthesis
 
+- [The memory architecture spectrum: files, graphs, and vectors](../../synthesis/memory-architecture-spectrum.md) (2026-05-30, draft) — decision framework across all four positions: files-as-memory (POHA), knowledge graph (Graphify), hook-based capture (claude-mem), production RAG (Fowler). When each wins, where each breaks, and the TTL/staleness principle.
 - [Files-as-config for agents: when, why, and how](../../synthesis/files-as-config-for-agents.md) (2026-05-20, draft) — addresses the claude-mem vs POHA boundary directly: files-as-config wins until the corpus exceeds what index-guided reads can serve, or updates need transactional / multi-writer semantics. The heavier system should complement curated files, not replace them.
 
+- [UpHill Workshop — Index](../../sources/2026-05-28-uphill-workshop-pdfs.md) — workshop index; memory content is in the agentic ladder capture below.
 - [UpHill — Agentic ladder](../../sources/2026-05-28-uphill-agentic-ladder.md) — three-layer memory model: working (in-prompt, per-task), episodic (vector DB, retrieved on demand), profile (durable facts, files). Memory governance: explicit read/write calls, provenance, TTLs, user inspection. "TTL time-bound facts — stale memory confidently cited is a new hallucination class."
+
+- [Fowler/Subramaniam — Emerging Patterns in Building GenAI Products](../../sources/2026-05-30-fowler-genai-patterns.md) — RAG as the default for extending LLM knowledge; embeddings explained (lossy compression, cosine similarity, scope boundary: unstructured/semantic only). Production case: 17k-document life sciences RAG, all four enhancement patterns (Hybrid Retriever, Query Rewriting, Reranker, Guardrails) needed together. "Lost in the Middle" effect: >30% accuracy drop for mid-context material — reranking before injection is the mitigation.
 
 ## Open threads
 
