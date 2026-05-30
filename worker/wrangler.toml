@@ -1,6 +1,7 @@
 name = "agents-kb-capture"
 main = "src/index.ts"
 compatibility_date = "2026-05-29"
+account_id = "29c6995e7586ac3f55f4c39def9a4307"
 compatibility_flags = ["nodejs_compat"]
 
 [observability]

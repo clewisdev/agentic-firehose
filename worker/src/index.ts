@@ -1,7 +1,7 @@
 import type { Env } from './types.js';
 import { parseEmail } from './email.js';
 import { fetchUrl } from './fetch.js';
-import { fetchAgentsMd, commitFile } from './github.js';
+import { commitFile } from './github.js';
 import { runCapture } from './claude.js';
 
 export default {
@@ -39,7 +39,6 @@ export default {
       return;
     }
 
-    const agentsMd = await fetchAgentsMd(env);
     const { content: fetchedContent, error: fetchError } = await fetchUrl(parsed.url);
 
     if (fetchError) {
@@ -48,7 +47,6 @@ export default {
 
     const result = await runCapture(
       env,
-      agentsMd,
       parsed.url,
       fetchedContent,
       fetchError,
