@@ -31,7 +31,7 @@ Show the count and file list. If >5 files, flag the batch size and ask whether t
 **b. Cross-link to topic indexes.**
 For each topic in the source's `topics:` frontmatter:
 - Read `topics/<topic>/index.md`. If it doesn't exist, create it with a minimal header.
-- Add a one-line entry under the relevant section: `- [Title](../../sources/YYYY-MM-DD-slug.md) — one-line hook`
+- Add a one-line entry under `## Sources` (or the most specific matching section if the index has one, e.g. `## Synthesis` for synthesis pointers). Format: `- [Title](../../sources/YYYY-MM-DD-slug.md) — one-line hook`
 - For low-signal sources, append ` [low-signal]` to the entry and do not add to open threads.
 
 **c. Check synthesis files.**
