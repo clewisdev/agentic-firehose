@@ -1,6 +1,6 @@
 ---
 title: "Two-tier processing: cheap automated capture, capable interactive synthesis"
-status: planning
+status: complete
 drafted: 2026-05-30
 updated: 2026-05-30
 owner: chris
