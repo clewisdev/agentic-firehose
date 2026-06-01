@@ -19,6 +19,21 @@ Initial topic folders: `tool-use/`, `memory/`, `evals/`, `harnesses/`, `promptin
 
 **When creating a new topic folder**: update the topic table in `README.md` in the same turn. Don't leave the README stale.
 
+## Setup (after a fresh clone)
+
+A straight `git clone` is not enough — this repo depends on global Claude Code skills that live outside it.
+
+**Global skills** (must be present at `~/.claude/skills/<name>/SKILL.md`):
+- `captain-hindsight` — post-session retro skill
+- `caveman` — compressed output mode
+- `handoff` — session handoff / context compaction
+
+To restore after a fresh OS install or laptop rebuild, copy these from another machine or re-create them manually. They were originally developed in `skills/` here and moved to the global directory so they work across all projects.
+
+**Project skills** (already in this repo, no extra steps):
+- `knowledge-base-wiki` — KB capture and synthesis workflow
+- `synthesise` — interactive cross-linking pass for status:raw sources
+
 ## Named topic stubs
 
 Two topics are explicitly in scope even before sources exist:
