@@ -66,7 +66,9 @@ Every rejected or skipped item lands in `sources/skipped/` with a one-line reaso
 
 ## Claude Code skills
 
-Three custom skills are installed under `.claude/commands/` and available as slash commands in any Claude Code session in this repo:
+### Global skills (live at `~/.claude/skills/`, not in this repo)
+
+These are project-agnostic utilities. They must be present on the machine — a bare `git clone` will not include them.
 
 | Skill | Command | Purpose |
 |---|---|---|
@@ -74,7 +76,14 @@ Three custom skills are installed under `.claude/commands/` and available as sla
 | Caveman | `/caveman` | Ultra-compressed output mode (~65–75% fewer tokens). Useful when approaching context limits. `/caveman stop` to return to normal. |
 | Handoff | `/handoff` | Compacts the current session into a handoff doc for a fresh agent session. Run when approaching context limits or switching tasks. |
 
-The raw skill files live in `skills/<name>/` (preserves the installable structure). The `.claude/commands/` copies are what activate them as slash commands.
+To restore after a fresh OS install, copy the `SKILL.md` for each into `~/.claude/skills/<name>/SKILL.md`.
+
+### Project skills (in this repo under `skills/`)
+
+| Skill | Purpose |
+|---|---|
+| `knowledge-base-wiki` | KB capture and synthesis workflow |
+| `synthesise` | Interactive cross-linking pass for `status:raw` sources |
 
 ---
 
@@ -123,9 +132,13 @@ Each capture logs: sender, subject, URL, signal level, and committed file path. 
 
 ### Adding or updating a custom skill
 
+For a **project-specific skill** (only needed in this repo):
 1. Drop the skill files into `skills/<skill-name>/` (preserving the original structure)
-2. Copy the main `SKILL.md` to `.claude/commands/<skill-name>.md`
-3. Write a `sources/` capture for it (what it does, signal level, how it applies here)
+2. Write a `sources/` capture for it (what it does, signal level, how it applies here)
+
+For a **global skill** (useful across multiple projects):
+1. Drop the skill files into `~/.claude/skills/<skill-name>/`
+2. Document it in this README under "Global skills" so it shows up in a rebuild checklist
 
 ### Rotating secrets
 
