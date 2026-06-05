@@ -4,41 +4,55 @@ url: https://www.linkedin.com/posts/responsibleai_msft-build-day-2-dispatch-the-
 authors: [Edward Achtner]
 captured: 2026-06-05
 source_type: thread
-topics: [ai-sdlc, agent-architecture, testing, evaluation, production-systems]
-tags: [ci-cd, clean-code, financial-services, agent-composition]
+topics: [ai-sdlc, agent-architecture, testing-evals, enterprise-deployment]
+tags: [ci-cd, clean-code, tooling, governance]
 signal_level: medium
 status: raw
 confidence: medium
-freshness_until: unknown
+freshness_until: 2026-Q3
 ---
 
 ## Summary
 
-Edward Achtner, a technology leader, reflects on Microsoft Build Day 2 sessions focused on AI SDLC (Software Development Lifecycle). The post raises a critical friction point: the industry is enabling manufacturing of "hundreds-to-thousands of Agents" simultaneously, yet lacks the rigorous engineering discipline required for production-grade systems—particularly in financial services where 10,000–30,000 high-quality releases per year with complex CI/CD pipelines are standard.
+Edward Achtner (ResponsibleAI) reflects on Microsoft Build Day 2 with focus on AI SDLC (Software Development Lifecycle) and the tension between agent proliferation and production-grade engineering discipline.
 
-Achtner's core argument: low-code/abstracted agent-build products in enterprise contexts will likely fail without addressing evals, testing, tooling, and architectural discipline. He references Robert Martin's *Clean Code* as a conceptual anchor, and expresses concern that the industry is conflating capability scaling with production-readiness.
+**Core tension articulated**: The industry can now manufacture "hundreds-to-thousands of agents" simultaneously, but this capability clashes fundamentally with the rigorous requirements for world-class CI/CD pipelines—particularly in financial services, where releases demand orders of magnitude higher quality (10,000–30,000 high-quality releases/year).
 
-A secondary narrative emphasizes System 3 Thinking (evolution of Kahneman's Fast & Slow), preceptorship in engineering, and cognitive studies as foundational to sustainable engineering craft.
+Achtner explicitly challenges the low-code/abstracted agent-build product narrative, calling it "a false prophet" in most enterprise cases. He cites missing foundational practices:
 
-## Key Quotes
+- Evals and testing frameworks
+- Tooling for agent composition and lifecycle
+- Clean architecture and ruthless architectural discipline
+- Model Risk Management (MRM)
+
+The post invokes Robert C. Martin's *Clean Code* as a moral anchor—suggesting the gap between agent-manufacturing hype and the unglamorous, incremental work required to make agents ship reliably in regulated environments.
+
+Most inspiring conversation: Mark Russinovich + Scott Hanselman on System 3 Thinking (evolution of Kahneman's Fast & Slow), cognitive load in engineering cultures, and preceptorship for the next generation of builders.
+
+## Verbatim Quotes
 
 > "Emerging capabilities now allow for the simultaneous manufacturing of hundreds-to-thousands of Agents. Perhaps because I lack the skill, imagination (or both), I cannot reconcile that with what I know to be the rigorous requirements necessary to enable world class CI/CD pipelines that ship 10,000 - 30,000 high quality releases/year (in financial services!)."
 
 > "low-code/abstracted build products, in most enterprise cases, will turn out to be a false prophet."
 
-> "The companies that win with agentic AI won't be the ones that build thousands of agents - they'll be the ones that build systems where agents can compose and evolve themselves." [Jeffrey Fleischer, comment thread]
+> "I'm wishing for a whiteboard and philosophical conversation with Pete Towns and Frank McGrath at this moment...."
+
+(Comment from Jeffrey Fleischer, high-signal follow-up:)
+
+> "The companies that win with agentic AI won't be the ones that build thousands of agents - they'll be the ones that build systems where agents can compose and evolve themselves."
 
 ## Takeaways
 
-- **Agent scaling ≠ production readiness**: Raw agent manufacturing capability is orthogonal to SDLC maturity, evals, testing infrastructure, and architectural discipline.
-- **Financial services as forcing function**: Regulated environments with strict release gates and quality bars expose weaknesses in low-code agent platforms.
-- **Self-composition as differentiator**: A commenter suggests agent *composition* and *evolution* pipelines—not raw count—will separate winners from commoditized builders.
-- **Craft and cognitive load**: System 3 thinking and thoughtful engineering preceptorship are necessary counterweights to hype-driven acceleration.
-- **MRM / architectural discipline**: Referenced but not elaborated—suggests familiarity with Model Risk Management and formal architectural patterns as missing from current agentic tooling.
+- **Agent volume is not a competitive advantage**: Raw agent manufacturing capacity without integration into robust SDLC, testing, and governance is enterprise theatre.
+- **SDLC for AI agents remains immature**: Evals, tooling, MRM, and clean architecture are acknowledged gaps, not solved problems.
+- **Low-code agent platforms are a category risk**: Abstraction that hides deployment complexity (testing, versioning, observability) is likely to create production debt, especially in regulated industries.
+- **Architectural discipline + human preceptorship matter**: The most valuable framing from Build wasn't hype but meta-conversation about how to teach the next generation to build sustainably.
+- **Financial services is the forcing function**: If 10k–30k releases/year is the bar, agents in banking will expose every immaturity in the current toolchain.
 
 ## Open Questions
 
-- What does production-grade agent CI/CD actually look like? (Evals? Synthetic data? Drift detection?)
-- How do agent-composition systems differ from traditional service orchestration in SDLC rigor?
-- What specific gaps exist in low-code platforms when deployed into financial-services environments?
-- How does "System 3 Thinking" apply concretely to agent design and testing?
+- What does a production-grade CI/CD pipeline for agents *actually look like* in financial services today?
+- Are there concrete examples of agent composition frameworks that satisfy MRM requirements?
+- How do teams measure eval coverage and testing ROI when agent behavior is stochastic?
+- What role does "System 3 Thinking" (Kahneman + Russinovich framing) play in agent system design?
+
