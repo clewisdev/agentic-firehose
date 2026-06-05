@@ -6,7 +6,7 @@ export async function fetchUrl(url: string): Promise<{ content: string; error?: 
   try {
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'agents-kb-capture/1.0 (+https://github.com/chrislewisdev2/agents-kb)',
+        'User-Agent': 'agents-kb-capture/1.0 (+https://github.com/clewisdev/agents-kb)',
         Accept: 'text/html,text/plain,application/json,*/*',
       },
       redirect: 'follow',
