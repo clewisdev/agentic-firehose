@@ -107,11 +107,15 @@ For web articles at public URLs, a summary + link is sufficient; the original is
 
 ### Reusable skills (SKILL.md files and companion templates)
 
-Skills are operational artefacts, not knowledge. Preserve them in `skills/<skill-name>/`, mirroring the structure of the source directory exactly (SKILL.md + any `references/` or companion files). This keeps them installable via `npx skills add` or direct copy without modification.
+Skills are operational artefacts, not knowledge. Two installation targets depending on scope:
 
-In addition to the preservation copy in `skills/`, install skills intended for use in this project's Claude Code sessions under `.claude/commands/<skill-name>.md`. A skill in `.claude/commands/` becomes available immediately as a slash command.
+**Project-specific skills** (only needed in this repo): preserve in `skills/<skill-name>/`, mirroring the source directory exactly (SKILL.md + any `references/` or companion files).
 
-Write a `sources/` capture for each skill (what it does, signal level, how it applies to this KB) — separately from the preservation copy. The `sources/` entry is for knowledge; the `skills/` entry is for reuse.
+**Cross-project skills** (useful across multiple projects): install at `~/.claude/skills/<skill-name>/SKILL.md`. Do NOT also add a copy under `skills/` or `.claude/commands/` — that creates duplicates that show up twice in the skill list and require a separate cleanup. Document them in the README "Global skills" table instead.
+
+`.claude/commands/` is the old registration mechanism and is no longer used. Do not add new skills there. If you find a skill in `.claude/commands/` that is already in `~/.claude/skills/`, delete the `.claude/commands/` copy.
+
+Write a `sources/` capture for each skill (what it does, signal level, how it applies to this KB) — separately from the installation copy. The `sources/` entry is for knowledge; the `skills/` entry is for reuse.
 
 **Do not mix these paths.** A `sources/` capture of a skill does not make it usable; a `skills/` copy does not make it discoverable as KB knowledge. Both are needed for different purposes.
 
