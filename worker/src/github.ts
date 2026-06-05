@@ -57,16 +57,18 @@ export async function commitFile(
   content: string,
   message: string,
 ): Promise<void> {
-  let sha: string | undefined;
   try {
     const existing = await request<FileResponse>(
       env,
       'GET',
       `/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${filePath}`,
     );
-    sha = existing.sha;
+    if (existing.sha) {
+      console.log(`[capture] skipping duplicate — ${filePath} already exists`);
+      return;
+    }
   } catch {
-    // File doesn't exist yet — omit sha to create
+    // File doesn't exist yet — proceed to create
   }
 
   await request(
