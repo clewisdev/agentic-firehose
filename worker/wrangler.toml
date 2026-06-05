@@ -13,7 +13,7 @@ GITHUB_REPO = "agents-kb"
 GITHUB_DEFAULT_BRANCH = "main"
 # Comma-separated list of email addresses allowed to trigger captures.
 # Update this when your sending address changes.
-ALLOWED_SENDERS = "REDACTED_EMAIL"
+ALLOWED_SENDERS = "REDACTED_EMAIL,REDACTED_EMAIL"
 
 # Secrets — set these once via wrangler CLI, never commit them:
 #   wrangler secret put ANTHROPIC_API_KEY
