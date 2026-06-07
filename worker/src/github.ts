@@ -80,7 +80,6 @@ export async function commitFile(
       content: encodeBase64(content),
       branch: env.GITHUB_DEFAULT_BRANCH,
       committer: { name: 'agents-kb capture', email: 'capture@agents-kb.local' },
-      ...(sha ? { sha } : {}),
     },
   );
 }
