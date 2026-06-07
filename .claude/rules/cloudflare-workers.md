@@ -17,6 +17,14 @@ Cloudflare Email Routing can deliver the same email twice. This is not hypotheti
 
 The current `commitFile` in `worker/src/github.ts` implements this: it GETs the file first and returns early if a SHA is found. Do not change this behaviour. If you add new write paths (new file types, new commit flows), apply the same check.
 
+## esbuild does not type-check — TypeScript errors deploy silently
+
+Wrangler uses esbuild to bundle, which strips types without running `tsc`. This means code with TypeScript errors (including undeclared variables, type mismatches, scoping bugs) will deploy successfully even with `"strict": true` in `tsconfig.json`.
+
+**Rule**: before deploying, run `tsc --noEmit` from the `worker/` directory to catch errors that esbuild would silently ignore.
+
+This has already caused a production outage: a variable declared inside a `try` block was referenced after the `catch`, esbuild deployed it without complaint, and V8 threw `ReferenceError` on every capture for two days (issue #1).
+
 ## Why
 
 The `message.raw` stream-is-single-use gotcha was written into `worker/src/email.ts` in the first draft and only caught after loading the skill reactively. The routing.md Gotchas section lists it explicitly. Loading the skill first costs one tool call; missing it costs a buggy first draft and an extra fix cycle.
