@@ -9,6 +9,7 @@ sources:
   - sources/2026-05-29-cag-vs-vanilla-prompting.md
   - sources/2026-05-30-fowler-genai-patterns.md
   - sources/2026-05-30-fowler-maintainability-sensors.md
+  - sources/2026-06-05-msft-build-ai-sdlc.md
 status: draft
 ---
 

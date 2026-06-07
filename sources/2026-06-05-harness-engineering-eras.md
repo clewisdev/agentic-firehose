@@ -7,7 +7,7 @@ source_type: thread
 topics: [context-engineering, harness-engineering, system-design, memory, personalization]
 tags: [claude, workflow, architecture]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

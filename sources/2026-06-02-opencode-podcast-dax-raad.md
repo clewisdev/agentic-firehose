@@ -7,7 +7,7 @@ source_type: podcast
 topics: [ai-coding-tools, engineering-judgment, product-strategy, tech-debt, team-dynamics]
 tags: [opencode, claude, anthropic, openai, product-positioning]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

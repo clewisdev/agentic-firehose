@@ -19,6 +19,10 @@ Initial topic folders: `tool-use/`, `memory/`, `evals/`, `harnesses/`, `promptin
 
 **When creating a new topic folder**: update the topic table in `README.md` in the same turn. Don't leave the README stale.
 
+## Session start
+
+At the beginning of every session, check whether `handoff.md` exists in the working directory. If it does, read it before doing anything else — it contains context from the previous session (accomplished work, current state, next steps).
+
 ## Setup (after a fresh clone)
 
 A straight `git clone` is not enough — this repo depends on global Claude Code skills that live outside it.

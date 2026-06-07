@@ -7,7 +7,7 @@ source_type: thread
 topics: [rag, retrieval, document-indexing]
 tags: [pageindex, vectorless, tree-search, financial-documents, embeddings]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

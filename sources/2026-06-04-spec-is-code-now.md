@@ -7,7 +7,7 @@ source_type: thread
 topics: [spec-driven-development, ai-agents, architecture, code-generation]
 tags: [sdd, spec-first, agent-guardrails, api-contracts, collaboration]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2027-Q2
 ---

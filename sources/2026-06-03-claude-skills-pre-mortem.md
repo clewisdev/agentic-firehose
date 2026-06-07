@@ -7,7 +7,7 @@ source_type: repo
 topics: [risk-analysis, product-discovery, decision-making]
 tags: [pre-mortem, prospective-hindsight, gary-klein, risk-categorization]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: evergreen
 ---
