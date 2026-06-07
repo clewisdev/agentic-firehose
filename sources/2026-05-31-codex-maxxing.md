@@ -7,7 +7,7 @@ source_type: blog
 topics: [agent-interfaces, long-context-work, memory-systems, agentic-workflows, tool-use]
 tags: [codex, voice-input, durable-threads, steering, obsidian, memory-management, computer-use]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

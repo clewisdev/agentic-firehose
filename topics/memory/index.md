@@ -8,6 +8,8 @@ External observation logs, retrieval layers, and cross-session context for agent
 - [POHA](../../sources/2026-05-20-poha.md) — files-as-memory: seven hand-edited markdown files, no vector DB, no RAG. Deliberate counter-position to heavyweight memory systems. 2-day-old repo, treat aspirationally.
 - [Graphify](../../sources/2026-05-28-safishamsi-graphify.md) — converts any codebase/folder to a queryable knowledge graph committed as `graph.json`. Team-shared artefact (git hooks auto-rebuild). Intermediate position: more structured than files-as-memory, lighter than full vector DB. 55.2k stars, Y Combinator S26, production-grade.
 - [knowledge-base-wiki skill](../../sources/2026-05-28-kbwiki-skill.md) — Karpathy-inspired two-layer KB skill (raw/ + wiki/). Four operations: Ingest, Query, Archive, Lint. Targets `~/knowledge-base`, not agents-kb. Preserved in `skills/knowledge-base-wiki/` for reference; not installed as active command. Key idea: raw/wiki split keeps sources immutable while compiled layer evolves freely.
+- [Pydantic AI Harness — Production](../../sources/2026-05-31-pydantic-ai-harness-production.md) — memory as a composable harness module (session persistence); one of six capability matrix dimensions required for production agents.
+- [Harness Engineering Eras](../../sources/2026-06-05-harness-engineering-eras.md) — memory as one of five core harness components; "memory, context, and actions compound over time" for businesses that build workflows rather than one-off tool use.
 
 ## Synthesis
 

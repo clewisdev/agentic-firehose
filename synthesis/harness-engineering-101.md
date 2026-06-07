@@ -16,8 +16,10 @@ sources:
   - sources/2026-05-28-owasp-llm-top10.md
   - sources/2026-05-30-fowler-genai-patterns.md
   - sources/2026-05-30-fowler-maintainability-sensors.md
+  - sources/2026-05-31-pydantic-ai-harness-production.md
+  - sources/2026-06-05-harness-engineering-eras.md
 status: stable
-updated: 2026-05-30
+updated: 2026-06-07
 ---
 
 # Harness Engineering: A 101
@@ -148,6 +150,24 @@ From OWASP LLM Top 10, mapped to harness concerns:
 | Agent runs forever / costs too much | Unbounded Consumption (#10) | Cost controls; iteration ceilings |
 | Agent acts on wrong/unsanitized output | Improper Output Handling (#5) | Output validation gates before downstream action |
 | Internal instructions exposed | System Prompt Leakage (#7) | Permissions; don't put secrets in the system prompt |
+
+## Historical context: the three eras of AI engineering
+
+Hills (2026) provides a useful periodization that makes the harness-engineering frame easier to teach:
+
+- **Era 1 — Prompt Engineering (2022–2024)**: output quality determined by prompt wording. Instructions, role, and format bundled into a single message; no memory, tools, or system state.
+- **Era 2 — Context Engineering (2025)**: attributed to Karpathy. Treating finite context windows as the primary design constraint; curation of relevant docs, tools, memory, and conversation history. "Better context beats a cleverer prompt."
+- **Era 3 — Harness Engineering (2026)**: attributed to Hashimoto. Context engineering plus five structural components: personalisation, delegation, memory, context, and action.
+
+The value of this framing: it separates people who are still in Era 1 ("how do I write this prompt better?") from practitioners who've moved to Era 3 ("what system does this AI need around it to actually do the work?"). Most of the Berkin taxonomy below lives in Era 3.
+
+## Industry confirmation: "The harness is the product"
+
+Iusztin (2026), writing from inside Pydantic AI, names the same shift from a practitioner angle: "The model is no longer the product... The harness is." His capability matrix (execution / context management / memory / orchestration / reliability / safety) maps directly onto Berkin's eight concerns, arrived at independently. The convergence is notable — harness engineering is not an academic framing, it's the operational reality of production AI teams.
+
+Iusztin also names the architectural direction: "The industry is moving away from giant monolithic agent frameworks. We're now seeing more composable harness layers around smaller agents." This aligns with the contractor analogy — you don't want one omnipotent agent; you want specialized workers inside a controlled environment.
+
+A practitioner comment from the same thread reinforces the conclusion: "Building the agent is usually the easy part. Making it reliable, observable, secure, and maintainable in production is where most of the work actually begins."
 
 ## Frank summary
 

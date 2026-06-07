@@ -8,3 +8,6 @@ How agents call tools, how tool calls and results flow through the loop, and pat
 
 - [claude-mem](../../sources/2026-05-20-claude-mem.md) — observes `PostToolUse` to build an external log of every tool call. Exposes retrieval as MCP tools shaped in 3 layers (compact index → context → full body) for token efficiency.
 - [Google agent skills](../../sources/2026-05-28-google-skills-repo.md) — vendor-published compact skills for GCP APIs. Demonstrates agent-first documentation format as the alternative to feeding full API docs into context. Skill Registry API suggests runtime-discoverable tools.
+- [I Don't Want an AI God](../../sources/2026-05-30-ai-god-agent-orchestration.md) — unified capture via Telegram/Siri/Gmail/feeds; worker loop picks one task per invocation and exits without cross-project context — minimal tool exposure per task as a design principle.
+- [Codex-maxxing](../../sources/2026-05-31-codex-maxxing.md) — scoped tool access by context type ($browser, @chrome, @computer) prevents mode confusion; each context surface has its own tool namespace.
+- [Pydantic AI Harness — Production](../../sources/2026-05-31-pydantic-ai-harness-production.md) — MCP and CodeMode (sandboxed Python) as tool-access harness modules; excessive agency risk when tool surface is not deliberately scoped.

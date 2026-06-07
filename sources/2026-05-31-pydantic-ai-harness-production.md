@@ -7,7 +7,7 @@ source_type: thread
 topics: [agent-architecture, orchestration, memory, safety, tool-use, evaluation]
 tags: [pydantic, mcp, production, harness, verification, guardrails]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2027-Q2
 ---

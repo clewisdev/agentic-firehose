@@ -7,7 +7,7 @@ source_type: thread
 topics: [ai-assisted-engineering, code-review, engineering-judgment, system-design]
 tags: [hanselman, agentic-review, context-engineering, qodo]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

@@ -43,7 +43,15 @@ Scan `synthesis/` for any file whose `topics:` frontmatter overlaps with this so
 **d. Mark as processed.**
 Edit the source file's frontmatter: `status: raw` → `status: summarized`.
 
-### 4. After all sources — open thread scan
+### 4. After all sources — cross-link new indexes
+
+If this run created any new topic indexes, scan them for conceptual overlap with each other. For any pair that clearly covers adjacent or overlapping ground, add a `## See also` section to each with a one-line pointer to the other.
+
+Example pairs that warrant cross-links: `agent-orchestration` ↔ `agent-architecture`, `agentic-workflows` ↔ `workflow-automation`, `memory-systems` ↔ `memory`.
+
+Only add cross-links where the overlap is concrete and navigable — not every adjacent topic. Skip if the batch created fewer than 3 new indexes.
+
+### 5. After all sources — open thread scan
 
 Check the **Open threads** sections in every topic index touched during this run. If any thread now has ≥3 supporting sources or shows a clearly resolvable disagreement across ≥2 sources, surface it briefly:
 

@@ -7,7 +7,7 @@ source_type: thread
 topics: [ai-sdlc, agent-architecture, testing-evals, enterprise-deployment]
 tags: [ci-cd, clean-code, tooling, governance]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

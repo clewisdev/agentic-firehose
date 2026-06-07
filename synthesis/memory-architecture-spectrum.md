@@ -1,7 +1,7 @@
 ---
 title: "The memory architecture spectrum: files, graphs, and vectors"
 written: 2026-05-30
-updated: 2026-05-30
+updated: 2026-06-07
 topics: [memory, harnesses]
 tags: [files-as-memory, knowledge-graph, rag, vector-db, working-memory, episodic-memory, profile-memory, ttl, retrieval-patterns]
 sources:
@@ -10,6 +10,8 @@ sources:
   - sources/2026-05-28-safishamsi-graphify.md
   - sources/2026-05-28-uphill-agentic-ladder.md
   - sources/2026-05-30-fowler-genai-patterns.md
+  - sources/2026-05-31-codex-maxxing.md
+  - sources/2026-06-05-vectorless-rag-pageindex.md
 status: draft
 ---
 
@@ -40,6 +42,8 @@ Seven hand-curated markdown files (`people`, `commitments`, `life`, `insights`, 
 **Where it breaks**: when the corpus grows beyond what index-guided reads can serve. If you need to answer "what did I do three months ago on project X" from an auto-captured observation log, grep is not your retrieval mechanism.
 
 This KB uses the same shape — `sources/` and `topics/` as curated markdown. The argument for this design is identical.
+
+**Codex-maxxing corroborates at scale** (Liu 2026): a vault organized as `people/`, `projects/`, `agent/`, `notes/` acts as a shared notebook across multiple pinned threads. "Files force the agent to compress experience into a form that can survive the thread." Diff review of vault writes (accept/reject what the agent chose to remember) is a lightweight audit mechanism. This extends the audibility argument: files-as-memory wins not just on simplicity but on reviewability — you can inspect the agent's memory at rest.
 
 ### Position 2: Hook-based capture + hybrid retrieval (claude-mem)
 
@@ -77,6 +81,8 @@ The Fowler/Subramaniam pattern catalogue covers the full production RAG stack: e
 
 **Important scope constraint**: embeddings are for *semantic* similarity on unstructured data. For exact matches, relational queries, or numerical comparisons, use SQL or traditional DBs. Don't stretch embeddings into structured-data problems.
 
+**Vectorless RAG refines this constraint** (Kubicka/PageIndex, 2026): for professional documents with stable hierarchical structure (financial reports, legal filings, technical specs), vector similarity fails because "similarity is not the same as relevance." Tree-based indexing — generating a table-of-contents structure and reasoning through it — outperforms vector similarity on FinanceBench (98.7% claimed, methodology not detailed). The auditable output (page + section references) also satisfies governance requirements that "vibe retrieval" does not. Caveat: structural assumptions are a liability; PDFs with broken hierarchies or OCR errors undermine the approach. "No chunking" is a reframing, not an elimination — structural chunking just moves layers. This approach sits between knowledge graph and production RAG on the spectrum.
+
 ## The decision framework
 
 | Situation | Architecture |
@@ -85,6 +91,7 @@ The Fowler/Subramaniam pattern catalogue covers the full production RAG stack: e
 | Known static context that fits in the window | CAG / direct load (not memory at all) |
 | Large codebase, structural/dependency questions | Knowledge graph (Graphify) |
 | High-volume auto-capture, cross-session recall, multi-user | Hook-based + hybrid retrieval (claude-mem pattern) |
+| Structured professional docs (finance, legal, technical) with stable hierarchy | Vectorless RAG / tree-based indexing (PageIndex) |
 | Large volatile unstructured document corpus | Production RAG (with Hybrid Retriever + Reranker) |
 
 These are not mutually exclusive. The KB uses files-as-memory for the curated layer and would use RAG if the corpus grew to thousands of sources. Graphify is for codebase structure, not document knowledge. Claude-mem is for automatic observation capture, not deliberate knowledge curation.

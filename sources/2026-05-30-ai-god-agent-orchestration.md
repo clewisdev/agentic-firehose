@@ -7,7 +7,7 @@ source_type: blog
 topics: [agent-orchestration, workflow-automation, tool-use, task-delegation]
 tags: [gtd, ralph, claude, n8n, memory, reversibility, reflection]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: unknown
 ---
