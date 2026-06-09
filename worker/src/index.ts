@@ -39,22 +39,49 @@ export default {
       return;
     }
 
-    const { content: fetchedContent, error: fetchError } = await fetchUrl(parsed.url);
+    const { content: fetchedContent, outboundUrls, rawHtml, error: fetchError } = await fetchUrl(parsed.url);
 
-    if (fetchError) {
-      console.log(`[capture] fetch failed: ${fetchError}`);
+    if (fetchError || !fetchedContent) {
+      console.log(`[capture] fetch failed: ${fetchError ?? 'empty response'} — skipping without triage`);
+      await commitSkipped(env, parsed.url, today, 'unfetchable', fetchError ?? 'empty response');
+      return;
+    }
+
+    // For LinkedIn posts, follow the first outbound URL (article/repo linked from the post)
+    // and triage based on that content rather than the LinkedIn wrapper.
+    let captureUrl = parsed.url;
+    let captureContent = fetchedContent;
+    if (parsed.url.includes('linkedin.com/') && outboundUrls.length > 0) {
+      const secondaryUrl = outboundUrls[0];
+      const { content: secondaryContent, error: secondaryError } = await fetchUrl(secondaryUrl);
+      if (!secondaryError && secondaryContent) {
+        console.log(`[capture] following secondary URL: ${secondaryUrl}`);
+        captureUrl = secondaryUrl;
+        captureContent = secondaryContent;
+      } else {
+        console.log(`[capture] secondary URL fetch failed (${secondaryError}), falling back to LinkedIn content`);
+      }
     }
 
     const result = await runCapture(
       env,
-      parsed.url,
-      fetchedContent,
-      fetchError,
+      captureUrl,
+      captureContent,
+      undefined,
       parsed.override,
       today,
     );
 
     console.log(`[capture] signal=${result.signal_level} path=${result.file_path}`);
+
+    // When Haiku classifies a 200-response as unfetchable (e.g. login wall, paywall modal),
+    // commit the raw HTML alongside the skipped file so the block can be inspected manually.
+    if (result.signal_level === 'unfetchable' && rawHtml) {
+      const debugSlug = toSlug(parsed.url, 40);
+      const debugPath = `sources/debug/${today}-${debugSlug}.html`;
+      await commitFile(env, debugPath, rawHtml, `debug: raw HTML for unfetchable ${parsed.url.slice(0, 60)}`);
+      console.log(`[capture] committed debug HTML: ${debugPath}`);
+    }
 
     // Guard against a hallucinated or adversarial file_path writing outside sources/.
     // Claude's response is untrusted input; this is the last line before a repo write.
