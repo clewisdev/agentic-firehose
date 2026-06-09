@@ -18,7 +18,7 @@ Annie Vella, a researcher, announces that her masters research on "supervisory e
 
 Vella references Thoughtworks' framing of supervisory engineering as work that exists in software's "middle loop." The post is primarily an announcement that her qualitative research findings are resonating with practitioners interested in AI's impact on software engineering roles.
 
-The actual detailed framing and analysis lives in the linked Thoughtworks article (not fetched here), but this post indicates:
+The actual detailed framing and analysis lives in the linked Thoughtworks article (captured separately as `sources/2026-06-09-supervisory-engineering-middle-loop.md`), but this post indicates:
 
 1. **Supervisory engineering** is an empirically-derived category from qualitative research
 2. It operates in a "middle loop" of software systems

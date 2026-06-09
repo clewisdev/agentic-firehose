@@ -19,7 +19,7 @@ Do NOT cross-link. Do NOT update topic indexes. Do NOT synthesise.
 - **Medium signal**: framing / vocabulary pieces or well-argued opinion from credible authors. Useful for terminology and mental models.
 - **Low signal**: aggregator / listicle / resource-list posts, content-marketing, engagement-farming, generic advice with no rationale.
 - **Negative signal**: actively misleading — fabricated statistics, prescriptive rules with no evidence, obviously LLM-written and unedited.
-- **Unfetchable**: fetch failed or content is empty.
+- **Unfetchable**: fetch failed, returned an error status, or the response is genuinely empty. A page that overlays a sign-in modal but contains readable post content in the DOM is NOT unfetchable — triage the actual content.
 
 ## Hype tells (low/negative signal indicators)
 
@@ -97,11 +97,11 @@ export async function runCapture(
   env: Env,
   url: string,
   fetchedContent: string,
-  fetchError: string | undefined,
+  _fetchError: undefined,
   override: 'skip' | 'brief' | 'full' | null,
   today: string,
 ): Promise<CaptureResult> {
-  const userMessage = buildUserMessage(url, fetchedContent, fetchError, override, today);
+  const userMessage = buildUserMessage(url, fetchedContent, override, today);
 
   const response = await fetch(API_URL, {
     method: 'POST',
@@ -136,7 +136,6 @@ export async function runCapture(
 function buildUserMessage(
   url: string,
   content: string,
-  fetchError: string | undefined,
   override: 'skip' | 'brief' | 'full' | null,
   today: string,
 ): string {
@@ -148,16 +147,24 @@ function buildUserMessage(
     );
   }
 
-  if (fetchError || !content) {
+  if (isLinkedInUrl(url)) {
     parts.push(
-      `Fetch result: FAILED — ${fetchError ?? 'empty response'}`,
-      `Route to sources/skipped/ with triage_classification: unfetchable`,
+      'Note: this is a LinkedIn page. LinkedIn overlays a sign-in modal on publicly accessible posts — the stripped content below may begin with sign-in / cookie-consent text. Skip past that noise and triage the actual post content that follows.',
     );
-  } else {
-    parts.push(`Fetched content:\n${content}`);
   }
 
+  parts.push(`Fetched content:\n${content}`);
+
   return parts.join('\n\n');
+}
+
+function isLinkedInUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname;
+    return host === 'linkedin.com' || host.endsWith('.linkedin.com');
+  } catch {
+    return false;
+  }
 }
 
 function parseCaptureResult(raw: string): CaptureResult {
