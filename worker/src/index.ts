@@ -39,17 +39,35 @@ export default {
       return;
     }
 
-    const { content: fetchedContent, error: fetchError } = await fetchUrl(parsed.url);
+    const { content: fetchedContent, outboundUrls, error: fetchError } = await fetchUrl(parsed.url);
 
-    if (fetchError) {
-      console.log(`[capture] fetch failed: ${fetchError}`);
+    if (fetchError || !fetchedContent) {
+      console.log(`[capture] fetch failed: ${fetchError ?? 'empty response'} — skipping without triage`);
+      await commitSkipped(env, parsed.url, today, 'unfetchable', fetchError ?? 'empty response');
+      return;
+    }
+
+    // For LinkedIn posts, follow the first outbound URL (article/repo linked from the post)
+    // and triage based on that content rather than the LinkedIn wrapper.
+    let captureUrl = parsed.url;
+    let captureContent = fetchedContent;
+    if (parsed.url.includes('linkedin.com/') && outboundUrls.length > 0) {
+      const secondaryUrl = outboundUrls[0];
+      const { content: secondaryContent, error: secondaryError } = await fetchUrl(secondaryUrl);
+      if (!secondaryError && secondaryContent) {
+        console.log(`[capture] following secondary URL: ${secondaryUrl}`);
+        captureUrl = secondaryUrl;
+        captureContent = secondaryContent;
+      } else {
+        console.log(`[capture] secondary URL fetch failed (${secondaryError}), falling back to LinkedIn content`);
+      }
     }
 
     const result = await runCapture(
       env,
-      parsed.url,
-      fetchedContent,
-      fetchError,
+      captureUrl,
+      captureContent,
+      undefined,
       parsed.override,
       today,
     );

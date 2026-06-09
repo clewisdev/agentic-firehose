@@ -2,7 +2,11 @@
 // 8K chars (~2K tokens) is enough for triage classification and metadata extraction.
 const MAX_CHARS = 8_000;
 
-export async function fetchUrl(url: string): Promise<{ content: string; error?: string }> {
+// Hosts excluded from outbound URL extraction — navigation, social, or platform chrome.
+// lnkd.in is intentionally NOT excluded: it's LinkedIn's shortener for external article links.
+const EXCLUDED_HOSTS = ['linkedin.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com'];
+
+export async function fetchUrl(url: string): Promise<{ content: string; outboundUrls: string[]; error?: string }> {
   try {
     const response = await fetch(url, {
       headers: {
@@ -13,13 +17,15 @@ export async function fetchUrl(url: string): Promise<{ content: string; error?: 
     });
 
     if (!response.ok) {
-      return { content: '', error: `HTTP ${response.status} ${response.statusText}` };
+      return { content: '', outboundUrls: [], error: `HTTP ${response.status} ${response.statusText}` };
     }
 
     const contentType = response.headers.get('content-type') ?? '';
     let text = await response.text();
 
+    let outboundUrls: string[] = [];
     if (contentType.includes('text/html')) {
+      outboundUrls = extractOutboundUrls(text);
       text = stripHtml(text);
     }
 
@@ -27,10 +33,28 @@ export async function fetchUrl(url: string): Promise<{ content: string; error?: 
       text = text.slice(0, MAX_CHARS) + '\n\n[content truncated at 8 000 chars]';
     }
 
-    return { content: text };
+    return { content: text, outboundUrls };
   } catch (err) {
-    return { content: '', error: String(err) };
+    return { content: '', outboundUrls: [], error: String(err) };
   }
+}
+
+export function extractOutboundUrls(html: string): string[] {
+  const seen = new Set<string>();
+  const results: string[] = [];
+  for (const [, url] of html.matchAll(/href="(https?:\/\/[^"]+)"/gi)) {
+    if (seen.has(url)) continue;
+    seen.add(url);
+    try {
+      const host = new URL(url).hostname;
+      if (!EXCLUDED_HOSTS.some(ex => host === ex || host.endsWith('.' + ex))) {
+        results.push(url);
+      }
+    } catch {
+      // skip malformed URLs
+    }
+  }
+  return results;
 }
 
 function stripHtml(html: string): string {

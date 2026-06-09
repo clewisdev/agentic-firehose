@@ -97,11 +97,11 @@ export async function runCapture(
   env: Env,
   url: string,
   fetchedContent: string,
-  fetchError: string | undefined,
+  _fetchError: undefined,
   override: 'skip' | 'brief' | 'full' | null,
   today: string,
 ): Promise<CaptureResult> {
-  const userMessage = buildUserMessage(url, fetchedContent, fetchError, override, today);
+  const userMessage = buildUserMessage(url, fetchedContent, override, today);
 
   const response = await fetch(API_URL, {
     method: 'POST',
@@ -136,7 +136,6 @@ export async function runCapture(
 function buildUserMessage(
   url: string,
   content: string,
-  fetchError: string | undefined,
   override: 'skip' | 'brief' | 'full' | null,
   today: string,
 ): string {
@@ -148,14 +147,7 @@ function buildUserMessage(
     );
   }
 
-  if (fetchError || !content) {
-    parts.push(
-      `Fetch result: FAILED — ${fetchError ?? 'empty response'}`,
-      `Route to sources/skipped/ with triage_classification: unfetchable`,
-    );
-  } else {
-    parts.push(`Fetched content:\n${content}`);
-  }
+  parts.push(`Fetched content:\n${content}`);
 
   return parts.join('\n\n');
 }
