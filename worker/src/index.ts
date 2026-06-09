@@ -39,7 +39,7 @@ export default {
       return;
     }
 
-    const { content: fetchedContent, outboundUrls, error: fetchError } = await fetchUrl(parsed.url);
+    const { content: fetchedContent, outboundUrls, rawHtml, error: fetchError } = await fetchUrl(parsed.url);
 
     if (fetchError || !fetchedContent) {
       console.log(`[capture] fetch failed: ${fetchError ?? 'empty response'} — skipping without triage`);
@@ -73,6 +73,15 @@ export default {
     );
 
     console.log(`[capture] signal=${result.signal_level} path=${result.file_path}`);
+
+    // When Haiku classifies a 200-response as unfetchable (e.g. login wall, paywall modal),
+    // commit the raw HTML alongside the skipped file so the block can be inspected manually.
+    if (result.signal_level === 'unfetchable' && rawHtml) {
+      const debugSlug = toSlug(parsed.url, 40);
+      const debugPath = `sources/debug/${today}-${debugSlug}.html`;
+      await commitFile(env, debugPath, rawHtml, `debug: raw HTML for unfetchable ${parsed.url.slice(0, 60)}`);
+      console.log(`[capture] committed debug HTML: ${debugPath}`);
+    }
 
     // Guard against a hallucinated or adversarial file_path writing outside sources/.
     // Claude's response is untrusted input; this is the last line before a repo write.

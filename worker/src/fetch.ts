@@ -7,7 +7,7 @@ const MAX_CHARS = 8_000;
 // licdn.com is LinkedIn's CDN for images/static assets — must be excluded alongside linkedin.com.
 const EXCLUDED_HOSTS = ['linkedin.com', 'licdn.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com'];
 
-export async function fetchUrl(url: string): Promise<{ content: string; outboundUrls: string[]; error?: string }> {
+export async function fetchUrl(url: string): Promise<{ content: string; outboundUrls: string[]; rawHtml?: string; error?: string }> {
   try {
     const response = await fetch(url, {
       headers: {
@@ -29,9 +29,14 @@ export async function fetchUrl(url: string): Promise<{ content: string; outbound
     let text = await response.text();
 
     let outboundUrls: string[] = [];
+    let rawHtml: string | undefined;
     if (contentType.includes('text/html')) {
       const authorSlug = extractLinkedInAuthorSlug(url);
       outboundUrls = extractOutboundUrls(text, authorSlug);
+      // Preserve DOM structure for debug capture (scripts/styles removed to reduce size)
+      rawHtml = text
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '');
       text = stripHtml(text);
     }
 
@@ -39,7 +44,7 @@ export async function fetchUrl(url: string): Promise<{ content: string; outbound
       text = text.slice(0, MAX_CHARS) + '\n\n[content truncated at 8 000 chars]';
     }
 
-    return { content: text, outboundUrls };
+    return { content: text, outboundUrls, rawHtml };
   } catch (err) {
     return { content: '', outboundUrls: [], error: String(err) };
   }
