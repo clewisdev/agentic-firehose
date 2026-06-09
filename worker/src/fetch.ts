@@ -81,8 +81,24 @@ export function extractOutboundUrls(html: string, authorSlug?: string): string[]
   const results: string[] = [];
 
   for (const match of html.matchAll(/href="(https?:\/\/[^"]+)"/gi)) {
-    const url = match[1];
+    let url = match[1];
     const pos = match.index!;
+
+    // Resolve LinkedIn redirect wrapper → real destination before exclusion check.
+    // LinkedIn wraps post body links as linkedin.com/redir/redirect?url=ENCODED_URL,
+    // which would otherwise be filtered by EXCLUDED_HOSTS.
+    try {
+      const parsed = new URL(url);
+      const isLinkedIn = parsed.hostname === 'linkedin.com' || parsed.hostname.endsWith('.linkedin.com');
+      if (isLinkedIn && parsed.pathname === '/redir/redirect') {
+        const dest = parsed.searchParams.get('url');
+        if (!dest) continue;
+        url = dest;
+      }
+    } catch {
+      continue;
+    }
+
     if (seen.has(url)) continue;
 
     try {

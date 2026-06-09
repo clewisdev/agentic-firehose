@@ -106,6 +106,19 @@ describe('extractOutboundUrls — LinkedIn author attribution', () => {
     expect(extractOutboundUrls(html, 'alindnbrg')).toEqual(['https://github.com/author/repo']);
   });
 
+  it('resolves linkedin.com/redir/redirect wrappers in post body (regression: annievella case)', () => {
+    // Real LinkedIn HTML wraps post body links in /redir/redirect?url=... — these
+    // were previously excluded because the wrapper host is linkedin.com.
+    const encoded = encodeURIComponent('https://www.thoughtworks.com/insights/blog/supervisory-engineering');
+    const html = linkedInHtml({
+      authorSlug: 'annievella',
+      postBodyLinks: [`https://www.linkedin.com/redir/redirect?url=${encoded}&amp;trk=public_post-text`],
+    });
+    expect(extractOutboundUrls(html, 'annievella')).toEqual([
+      'https://www.thoughtworks.com/insights/blog/supervisory-engineering',
+    ]);
+  });
+
   it('returns both post body and author comment links when both exist', () => {
     const html = linkedInHtml({
       authorSlug: 'alindnbrg',
@@ -169,5 +182,21 @@ describe('extractOutboundUrls — no author (non-LinkedIn pages)', () => {
       <a href="https://example.com/article">article</a>
     `;
     expect(extractOutboundUrls(html)).toEqual(['https://example.com/article']);
+  });
+
+  it('resolves linkedin.com/redir/redirect wrapper to real destination', () => {
+    // LinkedIn wraps post body outbound links in a redirect URL; the destination
+    // must be extracted and used rather than the linkedin.com wrapper being excluded.
+    const encoded = encodeURIComponent('https://www.thoughtworks.com/insights/blog/supervisory-engineering');
+    const html = `<a href="https://www.linkedin.com/redir/redirect?url=${encoded}&amp;trk=public_post-text">article</a>`;
+    expect(extractOutboundUrls(html)).toEqual([
+      'https://www.thoughtworks.com/insights/blog/supervisory-engineering',
+    ]);
+  });
+
+  it('resolves redirect wrapper and still excludes linkedin.com destinations', () => {
+    const encoded = encodeURIComponent('https://www.linkedin.com/in/someuser');
+    const html = `<a href="https://www.linkedin.com/redir/redirect?url=${encoded}&amp;trk=public_post-text">profile</a>`;
+    expect(extractOutboundUrls(html)).toEqual([]);
   });
 });
