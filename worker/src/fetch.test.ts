@@ -2,6 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { extractOutboundUrls, extractLinkedInAuthorSlug } from './fetch.js';
 
 // Minimal LinkedIn HTML fixture — mirrors the real trk parameter patterns.
+//
+// Real LinkedIn HTML wraps ALL outbound links in /redir/redirect?url=ENCODED wrappers.
+// This fixture does the same so tests exercise the actual code path end-to-end.
 function linkedInHtml({
   authorSlug,
   postBodyLinks = [],
@@ -13,14 +16,17 @@ function linkedInHtml({
   authorCommentLinks?: string[];
   otherComments?: Array<{ slug: string; links: string[] }>;
 }): string {
-  const postBodyAnchors = postBodyLinks.map(u => `<a href="${u}">link</a>`).join(' ');
-  const authorCommentAnchors = authorCommentLinks.map(u => `<a href="${u}">link</a>`).join(' ');
+  const wrap = (u: string) =>
+    `https://www.linkedin.com/redir/redirect?url=${encodeURIComponent(u)}&amp;trk=public_post-text`;
+
+  const postBodyAnchors = postBodyLinks.map(u => `<a href="${wrap(u)}">link</a>`).join(' ');
+  const authorCommentAnchors = authorCommentLinks.map(u => `<a href="${wrap(u)}">link</a>`).join(' ');
   const otherCommentHtml = otherComments
     .map(
       ({ slug, links }) =>
         `<a href="https://www.linkedin.com/in/${slug}?trk=public_post_comment_actor-image">${slug}</a>` +
         `<a href="https://www.linkedin.com/in/${slug}?trk=public_post_comment_actor-name">${slug}</a>` +
-        links.map(u => `<a href="${u}">link</a>`).join(' '),
+        links.map(u => `<a href="${wrap(u)}">link</a>`).join(' '),
     )
     .join('\n');
 
@@ -107,12 +113,27 @@ describe('extractOutboundUrls — LinkedIn author attribution', () => {
   });
 
   it('resolves linkedin.com/redir/redirect wrappers in post body (regression: annievella case)', () => {
-    // Real LinkedIn HTML wraps post body links in /redir/redirect?url=... — these
-    // were previously excluded because the wrapper host is linkedin.com.
-    const encoded = encodeURIComponent('https://www.thoughtworks.com/insights/blog/supervisory-engineering');
+    // Fixture now wraps all postBodyLinks in /redir/redirect automatically — this test
+    // verifies the full round-trip: fixture wraps → extractOutboundUrls resolves → real URL returned.
     const html = linkedInHtml({
       authorSlug: 'annievella',
-      postBodyLinks: [`https://www.linkedin.com/redir/redirect?url=${encoded}&amp;trk=public_post-text`],
+      postBodyLinks: ['https://www.thoughtworks.com/insights/blog/supervisory-engineering'],
+    });
+    expect(extractOutboundUrls(html, 'annievella')).toEqual([
+      'https://www.thoughtworks.com/insights/blog/supervisory-engineering',
+    ]);
+  });
+
+  it('direct URL beats lnkd.in shortlink when both appear as redirect wrappers (regression: lnkd.in ordering)', () => {
+    // Real LinkedIn posts put a lnkd.in shortlink in the post text and a direct article URL
+    // on the article card — both arrive as /redir/redirect wrappers in document order.
+    // lnkd.in is excluded; the direct URL must be the result regardless of ordering.
+    const html = linkedInHtml({
+      authorSlug: 'annievella',
+      postBodyLinks: [
+        'https://lnkd.in/ehwsibkB',
+        'https://www.thoughtworks.com/insights/blog/supervisory-engineering',
+      ],
     });
     expect(extractOutboundUrls(html, 'annievella')).toEqual([
       'https://www.thoughtworks.com/insights/blog/supervisory-engineering',

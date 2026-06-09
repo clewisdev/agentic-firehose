@@ -25,6 +25,12 @@ Wrangler uses esbuild to bundle, which strips types without running `tsc`. This 
 
 This has already caused a production outage: a variable declared inside a `try` block was referenced after the `catch`, esbuild deployed it without complaint, and V8 threw `ReferenceError` on every capture for two days (issue #1).
 
+## Worker commits go directly to `main` — debug files are not on your feature branch
+
+The Worker writes all captures, skipped files, and `sources/debug/` HTML directly to `main` via the GitHub API. These commits do **not** land on any feature branch you are working on.
+
+When investigating a debug file from a feature branch, use `git show origin/main:path/to/file` rather than the `Read` tool (which reads the working tree). Run `git fetch origin main` first if the file may not exist in your local remote-tracking refs yet.
+
 ## Why
 
 The `message.raw` stream-is-single-use gotcha was written into `worker/src/email.ts` in the first draft and only caught after loading the skill reactively. The routing.md Gotchas section lists it explicitly. Loading the skill first costs one tool call; missing it costs a buggy first draft and an extra fix cycle.
