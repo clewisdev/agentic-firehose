@@ -30,7 +30,8 @@ export async function fetchUrl(url: string): Promise<{ content: string; outbound
 
     let outboundUrls: string[] = [];
     if (contentType.includes('text/html')) {
-      outboundUrls = extractOutboundUrls(text);
+      const authorSlug = extractLinkedInAuthorSlug(url);
+      outboundUrls = extractOutboundUrls(text, authorSlug);
       text = stripHtml(text);
     }
 
@@ -44,21 +45,63 @@ export async function fetchUrl(url: string): Promise<{ content: string; outbound
   }
 }
 
-export function extractOutboundUrls(html: string): string[] {
-  const seen = new Set<string>();
-  const results: string[] = [];
-  for (const [, url] of html.matchAll(/href="(https?:\/\/[^"]+)"/gi)) {
-    if (seen.has(url)) continue;
-    seen.add(url);
-    try {
-      const host = new URL(url).hostname;
-      if (!EXCLUDED_HOSTS.some(ex => host === ex || host.endsWith('.' + ex))) {
-        results.push(url);
-      }
-    } catch {
-      // skip malformed URLs
+// Extract the post author's slug from a LinkedIn posts URL.
+// linkedin.com/posts/{authorSlug}_{rest} → authorSlug (lowercased)
+export function extractLinkedInAuthorSlug(url: string): string | undefined {
+  return url.match(/linkedin\.com\/posts\/([^_]+)_/)?.[1]?.toLowerCase();
+}
+
+// Extract outbound URLs from HTML, optionally filtered to sections owned by authorSlug.
+//
+// LinkedIn's HTML marks section boundaries with profile hrefs that carry a trk parameter:
+//   trk=public_post_feed-actor-*    → post body (owned by the post author)
+//   trk=public_post_comment_actor-* → a comment (owned by the named commenter)
+//
+// We track the "current section owner" as we scan left-to-right. When authorSlug is
+// provided, only URLs whose section owner matches the author are returned — this
+// excludes links from other users' comments. Falls back to all outbound URLs when
+// no authorSlug is given (non-LinkedIn pages, or /feed/update/ URLs with no slug).
+export function extractOutboundUrls(html: string, authorSlug?: string): string[] {
+  // Collect section-boundary markers (profile links with _actor in trk)
+  const sectionHeaders: Array<{ slug: string; pos: number }> = [];
+  if (authorSlug) {
+    for (const match of html.matchAll(
+      /href="https?:\/\/[a-z.]*linkedin\.com\/in\/([^?"#/]+)[^"]*[_-]actor[^"]*"/gi,
+    )) {
+      sectionHeaders.push({ slug: match[1].toLowerCase(), pos: match.index! });
     }
   }
+
+  const seen = new Set<string>();
+  const results: string[] = [];
+
+  for (const match of html.matchAll(/href="(https?:\/\/[^"]+)"/gi)) {
+    const url = match[1];
+    const pos = match.index!;
+    if (seen.has(url)) continue;
+
+    try {
+      const host = new URL(url).hostname;
+      if (EXCLUDED_HOSTS.some(ex => host === ex || host.endsWith('.' + ex))) continue;
+    } catch {
+      continue;
+    }
+
+    if (authorSlug) {
+      // Find the last section header before this URL's position
+      let ownerSlug: string | undefined;
+      for (const header of sectionHeaders) {
+        if (header.pos < pos) ownerSlug = header.slug;
+        else break;
+      }
+      // Only include if the URL belongs to the author's section
+      if (ownerSlug !== authorSlug) continue;
+    }
+
+    seen.add(url);
+    results.push(url);
+  }
+
   return results;
 }
 
