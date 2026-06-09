@@ -122,26 +122,26 @@ describe('extractOutboundUrls — LinkedIn author attribution', () => {
   it('returns both post body and author comment links when both exist', () => {
     const html = linkedInHtml({
       authorSlug: 'alindnbrg',
-      postBodyLinks: ['https://lnkd.in/eThieA56'],
+      postBodyLinks: ['https://github.com/author/post-link'],
       authorCommentLinks: ['https://github.com/author/repo'],
     });
     const urls = extractOutboundUrls(html, 'alindnbrg');
-    expect(urls).toContain('https://lnkd.in/eThieA56');
+    expect(urls).toContain('https://github.com/author/post-link');
     expect(urls).toContain('https://github.com/author/repo');
     expect(urls).toHaveLength(2);
   });
 });
 
 describe('extractOutboundUrls — no author (non-LinkedIn pages)', () => {
-  it('extracts lnkd.in shortlinks in document order', () => {
+  it('excludes lnkd.in shortlinks (resolved via redirect wrapper instead)', () => {
+    // lnkd.in is now in EXCLUDED_HOSTS: shortlinks are always wrapped in /redir/redirect
+    // in real LinkedIn HTML, which resolves to the real article URL. Direct lnkd.in hrefs
+    // need a JS-redirect hop that Workers cannot follow.
     const html = `
       <a href="https://lnkd.in/eThieA56">MAI-Code article</a>
       <a href="https://lnkd.in/eQpii9qn">Frontend Lost Decade</a>
     `;
-    expect(extractOutboundUrls(html)).toEqual([
-      'https://lnkd.in/eThieA56',
-      'https://lnkd.in/eQpii9qn',
-    ]);
+    expect(extractOutboundUrls(html)).toEqual([]);
   });
 
   it('extracts direct external links', () => {
@@ -150,9 +150,10 @@ describe('extractOutboundUrls — no author (non-LinkedIn pages)', () => {
     ]);
   });
 
-  it('excludes linkedin.com, licdn.com, and social hosts', () => {
+  it('excludes linkedin.com, lnkd.in, licdn.com, and social hosts', () => {
     const html = `
       <a href="https://www.linkedin.com/in/someuser">profile</a>
+      <a href="https://lnkd.in/eThieA56">shortlink</a>
       <a href="https://static.licdn.com/aero-v1/sc/h/icon">icon</a>
       <a href="https://twitter.com/foo">tweet</a>
       <a href="https://x.com/foo">x post</a>

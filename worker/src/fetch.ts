@@ -3,9 +3,12 @@
 const MAX_CHARS = 8_000;
 
 // Hosts excluded from outbound URL extraction — navigation, social, or platform chrome.
-// lnkd.in is intentionally NOT excluded: it's LinkedIn's shortener for external article links.
+// lnkd.in IS excluded: it's LinkedIn's URL shortener. Since we now resolve /redir/redirect
+// wrappers, lnkd.in shortlinks arrive as resolved destinations but still need a JS-redirect
+// hop that Workers can't follow. The real article URL is always present via the article-card
+// redirect wrapper and is preferred.
 // licdn.com is LinkedIn's CDN for images/static assets — must be excluded alongside linkedin.com.
-const EXCLUDED_HOSTS = ['linkedin.com', 'licdn.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com'];
+const EXCLUDED_HOSTS = ['linkedin.com', 'lnkd.in', 'licdn.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com'];
 
 export async function fetchUrl(url: string): Promise<{ content: string; outboundUrls: string[]; rawHtml?: string; error?: string }> {
   try {
