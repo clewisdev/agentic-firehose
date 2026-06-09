@@ -4,7 +4,8 @@ const MAX_CHARS = 8_000;
 
 // Hosts excluded from outbound URL extraction — navigation, social, or platform chrome.
 // lnkd.in is intentionally NOT excluded: it's LinkedIn's shortener for external article links.
-const EXCLUDED_HOSTS = ['linkedin.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com'];
+// licdn.com is LinkedIn's CDN for images/static assets — must be excluded alongside linkedin.com.
+const EXCLUDED_HOSTS = ['linkedin.com', 'licdn.com', 'twitter.com', 'x.com', 'facebook.com', 'instagram.com'];
 
 export async function fetchUrl(url: string): Promise<{ content: string; outboundUrls: string[]; error?: string }> {
   try {
@@ -21,6 +22,10 @@ export async function fetchUrl(url: string): Promise<{ content: string; outbound
     }
 
     const contentType = response.headers.get('content-type') ?? '';
+    if (!contentType.includes('text/') && !contentType.includes('application/json') && contentType !== '') {
+      return { content: '', outboundUrls: [], error: `Non-text content-type: ${contentType}` };
+    }
+
     let text = await response.text();
 
     let outboundUrls: string[] = [];
