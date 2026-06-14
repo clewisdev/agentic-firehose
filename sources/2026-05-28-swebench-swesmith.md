@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: docs
 topics: [evals]
 tags: [swebench, swesmith, benchmark, coding-agent, evaluation, training-data]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

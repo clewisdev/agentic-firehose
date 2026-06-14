@@ -5,7 +5,8 @@ authors: [Himanshu Sanwal]
 captured: 2026-05-30
 source_type: post
 topics: [harnesses]
-tags: [claude-code, harness, guardrails, drift-detection, multi-agent, workflow]
+tags: [claude-code, harness, guardrails, drift-detection, multi-agent, workflow, low-signal]
+signal_level: low
 status: summarized
 confidence: low
 freshness_until: 2026-Q3

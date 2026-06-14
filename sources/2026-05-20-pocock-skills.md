@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: repo
 topics: [prompting, harnesses]
 tags: [claude-code, skills, slash-commands, tdd, debugging, alignment, ddd, shared-language, prds, triage, composability, mattpocock, agent-failure-modes, context-md]
+signal_level: high
 status: summarized
 confidence: medium-high
 freshness_until: 2026-Q4

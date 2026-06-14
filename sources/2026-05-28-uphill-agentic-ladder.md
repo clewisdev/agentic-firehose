@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: talk
 topics: [harnesses, memory]
 tags: [agentic-ladder, workflow-vs-agent, cag, rag, memory-patterns, cost, orchestration, uphill]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2027-Q1

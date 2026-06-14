@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [memory, tool-use]
 tags: [knowledge-graph, rag, vector-db, tree-sitter, claude-code-skill, mcp]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

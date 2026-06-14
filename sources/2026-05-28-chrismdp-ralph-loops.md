@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: blog
 topics: [harnesses, ralph-loops]
 tags: [ralph-loop, iteration, orchestration, autonomous-agents, loop]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: evergreen

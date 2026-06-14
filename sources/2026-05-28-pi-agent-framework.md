@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [harnesses]
 tags: [coding-agent, agent-framework, typescript, multi-provider, pi-code, terminal-agent]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

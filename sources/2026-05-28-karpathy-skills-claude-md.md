@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [harnesses, prompting]
 tags: [claude-md, karpathy, principles, coding-guidelines, viral]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: evergreen

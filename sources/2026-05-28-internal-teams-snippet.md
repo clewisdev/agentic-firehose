@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: post
 topics: [harnesses, cost-management]
 tags: [captain-hindsight, caveman, model-routing, token-efficiency, skills, multi-model]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: 2026-Q4

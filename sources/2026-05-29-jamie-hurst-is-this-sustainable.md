@@ -6,6 +6,7 @@ captured: 2026-05-29
 source_type: blog
 topics: [dx-culture, harnesses, evals]
 tags: [senior-engineering, agent-experience, developer-experience, sustainability, skills-redistribution, alignment-cost, measurement]
+signal_level: medium
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

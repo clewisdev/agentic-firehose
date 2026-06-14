@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: post
 topics: [harnesses, prompting]
 tags: [dev-environment, self-discovery, agents-md, claude-md, autonomous-debugging, dev-info, context-engineering, files-as-config]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: evergreen

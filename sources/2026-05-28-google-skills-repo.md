@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [harnesses, tool-use]
 tags: [google, agent-skills, gemini, cloud-services, skill-registry, gcp]
+signal_level: high
 status: summarized
 confidence: medium
 freshness_until: 2026-Q4

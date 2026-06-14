@@ -6,6 +6,7 @@ captured: 2026-05-29
 source_type: docs
 topics: [harnesses]
 tags: [claude-code, session-management, context, handoff]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: unknown
