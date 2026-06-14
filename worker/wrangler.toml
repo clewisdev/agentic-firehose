@@ -9,7 +9,7 @@ enabled = true
 
 [vars]
 GITHUB_OWNER = "clewisdev"
-GITHUB_REPO = "agents-kb"
+GITHUB_REPO = "agentic-firehose"
 GITHUB_DEFAULT_BRANCH = "main"
 # Comma-separated list of email addresses allowed to trigger captures.
 # Update this when your sending address changes.
@@ -19,5 +19,5 @@ ALLOWED_SENDERS = "chrislewis1@gmail.com,chris.lewis@regnology.net"
 #   wrangler secret put ANTHROPIC_API_KEY
 #   wrangler secret put GITHUB_TOKEN
 #
-# GITHUB_TOKEN needs: Contents (read + write) on clewisdev/agents-kb
+# GITHUB_TOKEN needs: Contents (read + write) on clewisdev/agentic-firehose
 # Minimum scopes — use a fine-grained PAT, not a classic token.
