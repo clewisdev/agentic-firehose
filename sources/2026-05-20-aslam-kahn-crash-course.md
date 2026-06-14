@@ -3,7 +3,7 @@ title: "Claude Code crash course — '36 beginner tips' post"
 url: https://www.linkedin.com/posts/hamna-aslam-kahn_my-engineering-team-has-used-claude-code-share-7460653786039115776-Q_s6
 authors: [Hamna Aslam Kahn]
 captured: 2026-05-20
-source_type: thread
+source_type: post
 topics: [harnesses]
 tags: [claude-code, adoption, learning-path, low-signal, content-marketing, junior-engineer-framing]
 status: summarized

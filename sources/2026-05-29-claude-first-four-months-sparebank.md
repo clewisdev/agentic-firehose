@@ -3,7 +3,7 @@ title: "After four months of Claude-first we decided to code more by hand"
 url: https://www.linkedin.com/posts/asgaut-mjolne_after-four-months-of-claude-first-we-decided-ugcPost-7466023945259921408-Zkwi/
 authors: ["Asgaut Mjølne Söderbom"]
 captured: 2026-05-29
-source_type: thread
+source_type: post
 topics: [harnesses]
 tags: [adoption, legacy-code, brownfield, workflow, practitioner-experience]
 status: summarized

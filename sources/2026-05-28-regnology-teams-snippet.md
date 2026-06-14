@@ -3,7 +3,7 @@ title: "Regnology Teams Conversation: captain-hindsight, caveman, model routing"
 url: internal-teams-snippet
 authors: [Various Regnology colleagues]
 captured: 2026-05-28
-source_type: thread
+source_type: post
 topics: [harnesses, cost-management]
 tags: [captain-hindsight, caveman, model-routing, token-efficiency, skills, multi-model]
 status: summarized

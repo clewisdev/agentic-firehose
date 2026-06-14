@@ -3,7 +3,7 @@ title: "Supervisory engineering: Orchestrating software's 'middle loop'"
 url: https://www.linkedin.com/posts/annievella_the-supervisory-engineering-work-that-i-share-7469842820674105345-adcD/
 authors: [Annie Vella]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [ai-impact, software-engineering, work-structure]
 tags: [supervision, orchestration, research]
 signal_level: medium

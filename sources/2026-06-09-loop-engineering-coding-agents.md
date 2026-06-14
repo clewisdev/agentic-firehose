@@ -3,7 +3,7 @@ title: "Loop Engineering: The Coding-Agent Pattern in Codex and Claude Code"
 url: https://www.linkedin.com/posts/alindnbrg_agentharness-codingagents-aiinfra-share-7470106122071289856-RW9t/
 authors: [André Lindenberg, Addy Osmani]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [coding-agents, agentic-patterns, orchestration]
 tags: [loop-engineering, worktrees, skill-chaining, state-management, verification]
 signal_level: medium

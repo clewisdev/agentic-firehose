@@ -3,7 +3,7 @@ title: "5 takeaways from Kun (ex-Meta L8) on agentic engineering systems"
 url: https://www.linkedin.com/posts/petergyang_my-5-biggest-takeaways-from-kun-ex-meta-share-7469753812900069378-aWVd/
 authors: [Peter Yang, Kun (ex-Meta L8 engineer)]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [workflow, planning, validation, parallel-execution, code-review]
 tags: [lavish, treehouse, no-mistakes, agent-coordination, planning]
 signal_level: medium

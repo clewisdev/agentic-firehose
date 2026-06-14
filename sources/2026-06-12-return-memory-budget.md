@@ -3,7 +3,7 @@ title: "The Return of the Memory Budget"
 url: "https://www.linkedin.com/posts/nairsachin90_softwareengineering-finops-genai-ugcPost-7467179621759909888-aQjH/"
 authors: [Sachin Nair]
 captured: 2026-06-12
-source_type: thread
+source_type: post
 topics: [cost-control, token-efficiency, context-engineering, agentic-development]
 tags: [github-copilot, claude, agents, finops, developer-tools]
 signal_level: medium

@@ -3,7 +3,7 @@ title: "Kelsey Hightower: DSL Technician to Distinguished Engineer — Freedom T
 url: https://www.linkedin.com/posts/gergelyorosz_kelsey-hightower-has-one-of-the-most-inspiring-ugcPost-7468004947981217792-y7-L/
 authors: [Gergely Orosz, Kelsey Hightower]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [career-trajectories, compensation, ai-adoption, startups]
 tags: [kubernetes, google, microsoft, compensation-negotiation, founder-advice]
 signal_level: medium

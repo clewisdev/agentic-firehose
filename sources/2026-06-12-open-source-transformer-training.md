@@ -3,7 +3,7 @@ title: "Open-source transformer training pipeline: data to chat UI"
 url: https://www.linkedin.com/posts/charlywargnier_this-guy-literally-open-sourced-every-share-7470063206628114432
 authors: [Charly Wargnier, Fareed Khan]
 captured: 2026-06-12
-source_type: thread
+source_type: post
 topics: [training, transformers, data-pipeline, instruction-tuning]
 tags: [pytorch, attention, checkpointing, peft, trl, colab, gpu]
 signal_level: low

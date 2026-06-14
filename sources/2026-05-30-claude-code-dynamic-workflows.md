@@ -3,7 +3,7 @@ title: "Anthropic Drops Dynamic Workflows for Claude Code"
 url: https://www.linkedin.com/posts/charlywargnier_anthropic-just-dropped-a-massive-update-share-7466411444796911617-zuhH/
 authors: [Charly Wargnier]
 captured: 2026-05-30
-source_type: thread
+source_type: post
 topics: [harnesses, cost-management]
 tags: [claude-code, multi-agent, parallelism, dynamic-workflows, orchestration]
 status: summarized

@@ -3,7 +3,7 @@ title: "How to build software in 2026? An engineering manifesto for AI-generated
 url: https://www.linkedin.com/posts/larsjankowfsky_this-one-is-for-the-nerds-i-need-help-johann-peter-ugcPost-7471051056454598656-ho9u/
 authors: [Lars Jankowfsky]
 captured: 2025-06-12
-source_type: thread
+source_type: post
 topics: [code-generation, quality-gates, human-review, agentic-software-engineering]
 tags: [ai-code, review-gates, deterministic-gates, risk-stratification]
 signal_level: medium

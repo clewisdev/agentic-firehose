@@ -3,7 +3,7 @@ title: "Omnigent: Open-sourcing a meta-harness for AI agents"
 url: https://www.linkedin.com/posts/mateizaharia_really-excited-to-open-source-a-new-project-share-7471594034885459968-eV76/
 authors: [Matei Zaharia]
 captured: 2025-06-14
-source_type: thread
+source_type: post
 topics: [orchestration, multi-agent, governance, sandboxing]
 tags: [omnigent, databricks, claude, codex, policies, collaboration]
 signal_level: medium
