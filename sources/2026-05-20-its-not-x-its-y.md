@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: blog
 topics: [prompting]
 tags: [writing-style, anti-patterns, voice, style-guides, llm-tells, system-prompt, project-files]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: 2026-Q4

@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: post
 topics: [harnesses]
 tags: [claude-code, adoption, learning-path, low-signal, content-marketing, junior-engineer-framing]
+signal_level: low
 status: summarized
 confidence: low
 freshness_until: 2026-Q3

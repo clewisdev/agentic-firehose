@@ -6,6 +6,7 @@ captured: 2026-05-30
 source_type: blog
 topics: [evals, memory, prompting, harnesses]
 tags: [rag, embeddings, guardrails, fine-tuning, evals, llm-as-judge, query-rewriting, reranking, hybrid-retrieval]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2027-Q1

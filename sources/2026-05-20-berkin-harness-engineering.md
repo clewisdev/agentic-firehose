@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: blog
 topics: [harnesses, evals]
 tags: [enterprise, governance, vocabulary, definitions, routing, observability, build-vs-buy, cost, agentics, control-plane]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: 2026-Q4

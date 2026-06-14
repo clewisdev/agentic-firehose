@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: docs
 topics: [cost-management, harnesses]
 tags: [prompt-caching, token-efficiency, api, cache-control, ttl, worker]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2027-Q1

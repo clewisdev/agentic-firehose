@@ -6,6 +6,7 @@ captured: 2026-05-30
 source_type: blog
 topics: [harnesses, evals, tool-use]
 tags: [static-analysis, linting, mutation-testing, modularity, dependency-rules, sensors, self-correction, coupling, eslint, stryker, dependency-cruiser]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2027-Q2

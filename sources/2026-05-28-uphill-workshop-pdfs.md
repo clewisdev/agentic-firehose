@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: talk
 topics: [harnesses, memory, cost-management, evals]
 tags: [uphill, workshop, conference]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

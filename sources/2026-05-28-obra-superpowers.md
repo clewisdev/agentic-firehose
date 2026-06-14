@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [harnesses]
 tags: [methodology, subagent, tdd, human-in-the-loop, workflow, claude-plugin]
+signal_level: high
 status: summarized
 confidence: medium
 freshness_until: 2026-Q4

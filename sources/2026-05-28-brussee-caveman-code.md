@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [harnesses, cost-management]
 tags: [token-efficiency, caveman, coding-agent, pi-framework, benchmark, output-caps]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

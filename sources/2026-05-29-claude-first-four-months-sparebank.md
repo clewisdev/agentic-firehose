@@ -6,6 +6,7 @@ captured: 2026-05-29
 source_type: post
 topics: [harnesses]
 tags: [adoption, legacy-code, brownfield, workflow, practitioner-experience]
+signal_level: high
 status: summarized
 confidence: medium
 freshness_until: 2027-Q1

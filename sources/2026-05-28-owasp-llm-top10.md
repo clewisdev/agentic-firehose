@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: docs
 topics: [harnesses]
 tags: [security, owasp, prompt-injection, excessive-agency, supply-chain, reference]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2027-Q1
