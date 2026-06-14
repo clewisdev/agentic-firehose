@@ -4,7 +4,7 @@ url: https://www.sanity.io/blog/we-dont-write-code-anymore
 authors: [Vincent Quigley]
 captured: 2025-06-13
 source_type: blog
-topics: [ai-in-development, team-workflow, code-review, agent-patterns]
+topics: [ai-productivity, team-dynamics, code-review, agent-architecture]
 tags: [management, workflow-change, intent-description, review-process]
 signal_level: high
 status: raw

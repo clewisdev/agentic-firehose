@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/himanshu-sanwal-7a5b04197_understandanything
 authors: [Himanshu Sanwal]
 captured: 2025-06-14
 source_type: post
-topics: [codebase-understanding, knowledge-graphs, onboarding, ai-agents]
+topics: [code-generation, memory, team-dynamics, agent-architecture]
 tags: [claude-code, codex, cursor, copilot, gemini-cli, multi-language]
 signal_level: medium
 status: raw

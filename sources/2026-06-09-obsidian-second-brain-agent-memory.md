@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/hoang-van-hao_andrej-karpathy-gave-us-the-ll
 authors: [Hao Hoang, Eugeniu Ghelbur]
 captured: 2026-06-09
 source_type: post
-topics: [memory, tool-use, second-brain, knowledge-management]
+topics: [memory, tool-use]
 tags: [obsidian, claude, agent-architecture, bi-temporal-tracking]
 signal_level: medium
 status: raw

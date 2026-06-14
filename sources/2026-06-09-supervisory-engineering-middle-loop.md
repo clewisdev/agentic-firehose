@@ -4,7 +4,7 @@ url: https://www.thoughtworks.com/insights/blog/agile-engineering-practices/supe
 authors: [Richard Gall]
 captured: 2026-06-09
 source_type: blog
-topics: [agents, code-generation, review-patterns, architecture, human-in-the-loop]
+topics: [agent-architecture, code-generation, code-review, system-design, ai-productivity]
 tags: [ai-agents, llm, middle-loop, supervisory-engineering, code-review, multi-agent-systems]
 signal_level: medium
 status: raw

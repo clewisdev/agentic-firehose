@@ -4,7 +4,7 @@ url: https://plandek.com/blog/the-transition-to-agentic-software-delivery
 authors: [Charlie Ponsonby]
 captured: 2026-06-14
 source_type: blog
-topics: [governance, agent-evaluation, code-quality, organizational-knowledge]
+topics: [enterprise-deployment, evals, code-generation, memory]
 tags: [harness-engineering, context-engineering, ai-sdlc, compliance, risk-management]
 signal_level: medium
 status: raw

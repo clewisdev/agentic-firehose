@@ -4,7 +4,7 @@ url: https://www.linkedin.com/feed/update/urn:li:activity:7469489973583605760/
 authors: [Addy Osmani]
 captured: 2026-06-08
 source_type: post
-topics: [llm-architecture, transformer-mechanics, attention, knowledge-representation]
+topics: [agent-architecture, model-internals, memory]
 tags: [tokenization, embeddings, attention-mechanism, ffn, moe, kv-cache, rotary-position-embeddings]
 signal_level: medium
 status: raw

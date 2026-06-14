@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/addyosmani_ai-programming-softwareengineerin
 authors: [Addy Osmani]
 captured: 2025-06-11
 source_type: post
-topics: [agent-engineering, code-generation, workflow-design, verification]
+topics: [agent-architecture, code-generation, agentic-workflows, code-review]
 tags: [claude, cursor, codex, testing, deployment, anti-rationalization]
 signal_level: high
 status: raw

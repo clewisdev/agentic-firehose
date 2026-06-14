@@ -4,7 +4,7 @@ url: https://claude.com/plugins/ralph-loop
 authors: [Anthropic]
 captured: 2026-05-28
 source_type: docs
-topics: [harnesses, ralph-loops]
+topics: [harnesses, agentic-workflows]
 tags: [ralph-loop, iteration, stop-hook, claude-plugin, autonomous-agents]
 signal_level: high
 status: summarized
@@ -59,4 +59,4 @@ This means the loop maintains **persistent side effects** (file writes, git comm
 
 - `sources/2026-05-28-chrismdp-ralph-loops.md` — the pattern itself
 - `sources/2026-05-20-claude-mem.md` — also uses stop hook (SessionEnd) for memory observation
-- `topics/ralph-loops/index.md`
+- `topics/agentic-workflows/ralph-loops.md`

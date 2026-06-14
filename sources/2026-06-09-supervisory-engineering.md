@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/annievella_the-supervisory-engineering-work-
 authors: [Annie Vella]
 captured: 2026-06-09
 source_type: post
-topics: [ai-impact, software-engineering, work-structure]
+topics: [ai-productivity, spec-driven-development, team-dynamics]
 tags: [supervision, orchestration, research]
 signal_level: medium
 status: raw

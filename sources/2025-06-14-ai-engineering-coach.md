@@ -4,7 +4,7 @@ url: https://github.com/microsoft/AI-Engineering-Coach
 authors: [Microsoft]
 captured: 2025-06-14
 source_type: repo
-topics: [tool-use, prompt-engineering, reflection, developer-experience]
+topics: [tool-use, prompting, ai-productivity]
 tags: [vscode, extension, session-analysis, anti-patterns, skill-discovery]
 signal_level: medium
 status: raw

@@ -4,7 +4,7 @@ url: https://fandf.co/49RpvNS
 authors: [Faros Research]
 captured: 2026-06-12
 source_type: report
-topics: [agent-adoption, code-quality, incident-response, developer-productivity, technical-debt]
+topics: [enterprise-deployment, code-generation, ai-productivity, technical-debt]
 tags: [telemetry, metrics, throughput, bugs, refactoring, workflow, senior-eng]
 signal_level: high
 status: raw

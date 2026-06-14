@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/alindnbrg_agentharness-codingagents-aiinfra-
 authors: [André Lindenberg, Addy Osmani]
 captured: 2026-06-09
 source_type: post
-topics: [coding-agents, agentic-patterns, orchestration]
+topics: [agentic-workflows, agent-architecture, agent-orchestration]
 tags: [loop-engineering, worktrees, skill-chaining, state-management, verification]
 signal_level: medium
 status: raw

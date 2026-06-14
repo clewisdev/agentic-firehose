@@ -4,7 +4,7 @@ url: http://claude-co.work
 authors: [Ruben Hassid]
 captured: 2026-06-09
 source_type: blog
-topics: [tool-use, claude, workflow-optimization, context-management]
+topics: [tool-use, model-internals, agentic-workflows, context-engineering]
 tags: [claude, cowork, desktop-app, folder-structure, prompt-engineering]
 signal_level: medium
 status: raw

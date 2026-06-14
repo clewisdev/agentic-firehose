@@ -4,7 +4,7 @@ url: https://github.com/luongnv89/asm
 authors: [luongnv89]
 captured: 2026-06-08
 source_type: repo
-topics: [tool-use, skill-management, agent-infrastructure]
+topics: [tool-use, harnesses]
 tags: [claude, codex, cursor, windsurf, cline, skill-registry, cli, tui]
 signal_level: medium
 status: raw

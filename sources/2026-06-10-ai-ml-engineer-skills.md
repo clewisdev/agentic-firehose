@@ -4,7 +4,7 @@ url: https://www.linkedin.com/feed/update/urn:li:activity:7470355049311866880/
 authors: [Mayank A.]
 captured: 2026-06-10
 source_type: post
-topics: [production-systems, reliability-engineering, observability, cost-optimization, retrieval-augmented-generation, inference-optimization]
+topics: [system-design, safety, cost-management, retrieval]
 tags: [kv-cache, quantization, structured-output, function-calling, rag, evals, llmops, multi-tenancy]
 signal_level: medium
 status: raw

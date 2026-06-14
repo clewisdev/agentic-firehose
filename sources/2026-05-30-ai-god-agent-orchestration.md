@@ -4,7 +4,7 @@ url: https://www.chrismdp.com/i-dont-want-an-ai-god/
 authors: [Chris Parsons]
 captured: 2026-05-30
 source_type: blog
-topics: [agent-orchestration, workflow-automation, tool-use, task-delegation]
+topics: [agent-orchestration, agentic-workflows, tool-use]
 tags: [gtd, ralph, claude, n8n, memory, reversibility, reflection]
 signal_level: high
 status: summarized

@@ -4,7 +4,7 @@ url: https://jxnl.co/writing/2026/05/10/codex-maxxing/
 authors: [Jason Liu]
 captured: 2026-05-31
 source_type: blog
-topics: [agent-interfaces, long-context-work, memory-systems, agentic-workflows, tool-use]
+topics: [agent-architecture, context-engineering, memory, agentic-workflows, tool-use]
 tags: [codex, voice-input, durable-threads, steering, obsidian, memory-management, computer-use]
 signal_level: high
 status: summarized

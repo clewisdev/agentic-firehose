@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/martin-fowler-com_will-there-be-source-code-
 authors: [Martin Fowler, Unmesh Joshi]
 captured: 2026-06-09
 source_type: post
-topics: [code-generation, llm-integration, conceptual-models, cognitive-debt]
+topics: [code-generation, agent-architecture, engineering-judgment]
 tags: [ai-code-gen, source-code, semantics, specifications]
 signal_level: medium
 status: raw

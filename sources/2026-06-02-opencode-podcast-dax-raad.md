@@ -4,7 +4,7 @@ url: https://newsletter.pragmaticengineer.com/p/opencode
 authors: [Gergely Orosz, Dax Raad]
 captured: 2026-06-02
 source_type: podcast
-topics: [ai-coding-tools, engineering-judgment, product-strategy, tech-debt, team-dynamics]
+topics: [ai-productivity, engineering-judgment, product-strategy, technical-debt, team-dynamics]
 tags: [opencode, claude, anthropic, openai, product-positioning]
 signal_level: medium
 status: summarized

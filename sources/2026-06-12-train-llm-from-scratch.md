@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/ved-vekhande_train-your-own-llm-from-scratch
 authors: [Ved Vekhande]
 captured: 2026-06-12
 source_type: post
-topics: [transformer-architecture, training-fundamentals, implementation]
+topics: [model-internals, spec-driven-development]
 tags: [pytorch, attention, tokenization, sft, ppo, dpo]
 signal_level: low
 status: raw

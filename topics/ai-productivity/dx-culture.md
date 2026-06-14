@@ -2,7 +2,7 @@
 title: "DX and Culture"
 written: 2026-05-29
 updated: 2026-05-29
-topics: [dx-culture]
+topics: [ai-productivity]
 tags: [developer-experience, agent-experience, sustainability, skills-redistribution, measurement, alignment-cost]
 ---
 

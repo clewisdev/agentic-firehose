@@ -4,7 +4,7 @@ url: https://martinfowler.com/fragments/2026-06-02.html
 authors: [Martin Fowler, citing Greg Wilson, Benedict Evans, Stephen O'Grady, Jason Koebler, Pavel Voronin]
 captured: 2026-06-09
 source_type: blog
-topics: [measurement, ai-tools, model-capability, hallucination, security, technical-debt, ai-slop]
+topics: [evals, tool-use, cost-management, safety, technical-debt, code-generation]
 tags: [productivity, benchmarks, open-models, closed-models, firefox, mozilla, code-quality]
 signal_level: medium
 status: raw

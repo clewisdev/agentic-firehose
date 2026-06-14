@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/mateizaharia_really-excited-to-open-source-a
 authors: [Matei Zaharia]
 captured: 2025-06-14
 source_type: post
-topics: [orchestration, multi-agent, governance, sandboxing]
+topics: [agent-orchestration, enterprise-deployment, safety]
 tags: [omnigent, databricks, claude, codex, policies, collaboration]
 signal_level: medium
 status: raw

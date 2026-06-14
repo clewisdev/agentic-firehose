@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/charlywargnier_andrej-karpathy-predicted-the
 authors: [Charly Wargnier]
 captured: 2025-06-13
 source_type: post
-topics: [knowledge-representation, agent-autonomy, context-management]
+topics: [memory, agentic-workflows, context-engineering]
 tags: [okf, google, karpathy, knowledge-base, agent-reliability, maintenance]
 signal_level: medium
 status: raw

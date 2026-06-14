@@ -4,7 +4,7 @@ url: https://openai.com/index/harness-engineering/
 authors: [Ryan Lopopolo]
 captured: 2026-06-13
 source_type: blog
-topics: [agent-engineering, code-generation, developer-tools, system-design, prompt-engineering]
+topics: [agent-architecture, code-generation, tool-use, system-design, prompting]
 tags: [codex, gpt-5, automation, ci-cd, observability, context-management]
 signal_level: high
 status: raw

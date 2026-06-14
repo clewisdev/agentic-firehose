@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/alexcinovoj_langchain-just-open-sourced-a-re
 authors: [Alex Cinovoj]
 captured: 2026-06-08
 source_type: post
-topics: [coding-agents, agent-architecture, tool-use, planning, context-management]
+topics: [agentic-workflows, agent-architecture, tool-use, spec-driven-development, context-engineering]
 tags: [langchain, deepagents, open-source, planning, file-operations, shell-execution, sub-agents]
 signal_level: medium
 status: raw

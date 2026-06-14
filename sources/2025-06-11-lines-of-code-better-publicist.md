@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/annievella_another-awesome-piece-by-david-cu
 authors: [David Curlewis, Annie Vella]
 captured: 2025-06-11
 source_type: post
-topics: [measurement, ai-productivity, metrics, outcomes]
+topics: [evals, ai-productivity]
 tags: [ai-coding, metrics, leadership, pdsa]
 signal_level: medium
 status: raw

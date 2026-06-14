@@ -4,7 +4,7 @@ url: https://medium.com/design-bootcamp/i-plugged-my-second-brain-into-ai-and-en
 authors: [Mike Jones]
 captured: 2026-06-11
 source_type: blog
-topics: [knowledge-management, ai-augmentation, personal-systems, workflow-design]
+topics: [memory, ai-productivity, personalization, agentic-workflows]
 tags: [obsidian, ai-skills, personal-knowledge-base, friction, learning-loops]
 signal_level: medium
 status: raw

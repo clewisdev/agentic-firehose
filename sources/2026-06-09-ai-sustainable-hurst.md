@@ -4,7 +4,7 @@ url: https://jamiehurst.co.uk/2026-05-24_ai-sustainable
 authors: [Jamie Hurst]
 captured: 2026-06-09
 source_type: blog
-topics: [ai-adoption, org-dynamics, senior-engineering, sdlc-change]
+topics: [enterprise-deployment, team-dynamics, engineering-judgment, spec-driven-development]
 tags: [productivity, mentorship, alignment, burnout, gen-ai]
 signal_level: high
 status: raw

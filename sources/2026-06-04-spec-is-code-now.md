@@ -4,7 +4,7 @@ url: https://www.linkedin.com/pulse/spec-code-now-peter-frey-6d4ef
 authors: [Peter Frey]
 captured: 2026-06-04
 source_type: post
-topics: [spec-driven-development, ai-agents, architecture, code-generation]
+topics: [spec-driven-development, agent-architecture, system-design, code-generation]
 tags: [sdd, spec-first, agent-guardrails, api-contracts, collaboration]
 signal_level: medium
 status: summarized
