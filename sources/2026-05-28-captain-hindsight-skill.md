@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [cost-management, harnesses]
 tags: [captain-hindsight, retro, token-efficiency, skills, friction, process-improvement]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: evergreen

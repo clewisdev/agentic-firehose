@@ -48,8 +48,13 @@ trailing spaces. Two distinct root causes, two fixes:
   `post`. Normalises in place (does not throw — source_type is organisational, not routing).
 - **Prevention (CRLF):** `.gitattributes` now `*.md text eol=lf`.
 
-### 1b. Backfill `signal_level` (36 files)
-- Pre-date-field older captures. Needs judgment, not a script — agent pass reading each source against `AGENTS.md` signal definitions, proposing high/medium/low for owner approval.
+### 1b. Backfill `signal_level` — DONE 2026-06-14
+- Scored all 36 pre-date-field captures against `AGENTS.md` signal defs and inserted
+  `signal_level` (schema position: after `tags`, before `status`). After owner review,
+  `andre-micolon-dev-info` and `cag-vs-vanilla-prompting` moved high→medium. Result: 24 high,
+  10 medium, 2 low. Also added the `low-signal` tag to `claude-code-harness-linkedin`.
+- Full corpus now: high 39, medium 53, low 4 (0 missing).
+- No prevention needed: `signal_level` is already guarded in the Worker (`validSignals` throws).
 
 ### 1c. Topic taxonomy consolidation (the big one)
 - Canonical topic set anchored to the existing 44 `topics/` dirs (they have curated `index.md`).

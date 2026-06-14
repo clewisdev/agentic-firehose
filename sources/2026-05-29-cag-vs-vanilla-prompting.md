@@ -6,6 +6,7 @@ captured: 2026-05-29
 source_type: blog
 topics: [prompting, harnesses, cost-management, evals]
 tags: [cag, files-as-config, context-engineering, context-rot, vanilla-prompting, agents-md, metr, lost-in-the-middle, rules-as-nudges, hybrid-context]
+signal_level: medium
 status: summarized
 confidence: high
 freshness_until: 2027-Q1

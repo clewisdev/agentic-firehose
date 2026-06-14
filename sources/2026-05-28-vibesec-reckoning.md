@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: blog
 topics: [harnesses]
 tags: [security, vibe-coding, governance, harness-engineering, automated-gates]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: 2026-Q4

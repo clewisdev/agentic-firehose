@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [harnesses, cost-management]
 tags: [skills, claude-code, productivity, handoff, grill-me]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: 2026-Q4

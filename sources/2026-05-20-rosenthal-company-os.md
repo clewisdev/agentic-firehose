@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: post
 topics: [harnesses, prompting]
 tags: [claude-code, repo-structure, ai-native-services, skills, hooks, approvals, mcp, gtm, organizational-cognition, information-architecture, files-as-config, non-engineering]
+signal_level: high
 status: summarized
 confidence: medium-high
 freshness_until: 2026-Q4

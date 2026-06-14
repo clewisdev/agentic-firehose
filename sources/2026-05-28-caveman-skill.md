@@ -6,6 +6,7 @@ captured: 2026-05-28
 source_type: repo
 topics: [cost-management]
 tags: [skills, token-compression, caveman, output-caps]
+signal_level: high
 status: summarized
 confidence: high
 freshness_until: evergreen

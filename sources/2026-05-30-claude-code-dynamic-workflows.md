@@ -6,6 +6,7 @@ captured: 2026-05-30
 source_type: post
 topics: [harnesses, cost-management]
 tags: [claude-code, multi-agent, parallelism, dynamic-workflows, orchestration]
+signal_level: medium
 status: summarized
 confidence: medium
 freshness_until: 2026-Q3

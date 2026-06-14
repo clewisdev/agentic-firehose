@@ -6,6 +6,7 @@ captured: 2026-05-20
 source_type: repo
 topics: [memory, harnesses, tool-use]
 tags: [hooks, mcp, retrieval, compression, vector-search, claude-code, chroma, postgres, redis, bullmq]
+signal_level: high
 status: summarized
 confidence: medium
 freshness_until: 2026-Q3
