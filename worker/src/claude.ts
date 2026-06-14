@@ -208,7 +208,7 @@ function parseCaptureResult(raw: string): CaptureResult {
 // Rewrites the `source_type:` frontmatter line to its canonical value. Maps
 // known aliases; leaves (and warns about) anything novel so it surfaces in
 // logs without losing the capture.
-function normaliseSourceType(content: string): string {
+export function normaliseSourceType(content: string): string {
   return content.replace(
     /^(source_type:[ \t]*)(.+?)[ \t]*$/m,
     (_full, key: string, raw: string) => {
