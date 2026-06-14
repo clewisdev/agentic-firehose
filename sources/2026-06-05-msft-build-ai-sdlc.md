@@ -3,7 +3,7 @@ title: "MSFT Build Day 2 Dispatch: The King is Dead. Long Live the King! Or, AI 
 url: https://www.linkedin.com/posts/responsibleai_msft-build-day-2-dispatch-the-king-is-dead-ugcPost-7468101612973002753-Nots/
 authors: [Edward Achtner]
 captured: 2026-06-05
-source_type: thread
+source_type: post
 topics: [ai-sdlc, agent-architecture, testing-evals, enterprise-deployment]
 tags: [ci-cd, clean-code, tooling, governance]
 signal_level: medium

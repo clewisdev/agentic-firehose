@@ -3,7 +3,7 @@ title: "Obsidian-Second-Brain: Agentic Memory via Vault Mutation"
 url: https://www.linkedin.com/posts/hoang-van-hao_andrej-karpathy-gave-us-the-llm-wiki-drop-share-7467181898679857152-auBO/
 authors: [Hao Hoang, Eugeniu Ghelbur]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [memory, tool-use, second-brain, knowledge-management]
 tags: [obsidian, claude, agent-architecture, bi-temporal-tracking]
 signal_level: medium

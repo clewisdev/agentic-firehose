@@ -3,7 +3,7 @@ title: "AI sprinkled on top of a broken software lifecycle is a band-aid on canc
 url: https://www.linkedin.com/posts/petarivanovv9_ai-sprinkled-on-top-of-a-broken-software-share-7462879286937649152-Ixjl/
 authors: [Petar Ivanov]
 captured: 2026-05-31
-source_type: thread
+source_type: post
 topics: [ai-assisted-engineering, code-review, engineering-judgment, system-design]
 tags: [hanselman, agentic-review, context-engineering, qodo]
 signal_level: medium

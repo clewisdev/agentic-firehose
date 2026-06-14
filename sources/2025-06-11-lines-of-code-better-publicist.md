@@ -3,7 +3,7 @@ title: "Lines of Code Got a Better Publicist"
 url: https://www.linkedin.com/posts/annievella_another-awesome-piece-by-david-curlewis-share-7470721525105729536
 authors: [David Curlewis, Annie Vella]
 captured: 2025-06-11
-source_type: thread
+source_type: post
 topics: [measurement, ai-productivity, metrics, outcomes]
 tags: [ai-coding, metrics, leadership, pdsa]
 signal_level: medium

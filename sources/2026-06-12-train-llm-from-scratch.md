@@ -3,7 +3,7 @@ title: "Train your own LLM from scratch"
 url: https://www.linkedin.com/posts/ved-vekhande_train-your-own-llm-from-scratch-this-github-share-7471050898115514369-VduW/
 authors: [Ved Vekhande]
 captured: 2026-06-12
-source_type: thread
+source_type: post
 topics: [transformer-architecture, training-fundamentals, implementation]
 tags: [pytorch, attention, tokenization, sft, ppo, dpo]
 signal_level: low

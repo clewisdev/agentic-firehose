@@ -3,7 +3,7 @@ title: "You're still prompt engineering like it's 2024: The three eras of AI"
 url: https://www.linkedin.com/posts/charlie-hills_youre-still-prompt-engineering-like-its-share-7468240151362740224-l8FH/
 authors: [Charlie Hills]
 captured: 2026-06-05
-source_type: thread
+source_type: post
 topics: [context-engineering, harness-engineering, system-design, memory, personalization]
 tags: [claude, workflow, architecture]
 signal_level: medium

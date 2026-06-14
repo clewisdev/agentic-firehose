@@ -3,7 +3,7 @@ title: "claude-code-harness: Plan → Work → Review → Sync → Release"
 url: https://www.linkedin.com/posts/himanshu-sanwal-7a5b04197_claudecodeharness-claudecode-ai-share-7466168040028676096-lX0o/
 authors: [Himanshu Sanwal]
 captured: 2026-05-30
-source_type: thread
+source_type: post
 topics: [harnesses]
 tags: [claude-code, harness, guardrails, drift-detection, multi-agent, workflow]
 status: summarized

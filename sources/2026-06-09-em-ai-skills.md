@@ -3,7 +3,7 @@ title: "Useful AI skills for Engineering Leaders"
 url: https://www.linkedin.com/posts/catehuston_useful-ai-skills-for-engineering-leaders-share-7470089287666139136-pnBV/
 authors: [Cate Huston]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [engineering-leadership, workflow-automation, team-effectiveness]
 tags: [process-automation, reporting, observability]
 signal_level: medium

@@ -3,7 +3,7 @@ title: "Understand Anything: Interactive Knowledge Graph for Large Codebases"
 url: https://www.linkedin.com/posts/himanshu-sanwal-7a5b04197_understandanything-claudecode-ai-share-7462532647240695810-Bt1o/
 authors: [Himanshu Sanwal]
 captured: 2025-06-14
-source_type: thread
+source_type: post
 topics: [codebase-understanding, knowledge-graphs, onboarding, ai-agents]
 tags: [claude-code, codex, cursor, copilot, gemini-cli, multi-language]
 signal_level: medium
