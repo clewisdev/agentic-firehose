@@ -3,7 +3,7 @@ title: "an internal enterprise team Teams Conversation: captain-hindsight, cavem
 url: internal-teams-snippet
 authors: [Various an internal enterprise team colleagues]
 captured: 2026-05-28
-source_type: thread
+source_type: post
 topics: [harnesses, cost-management]
 tags: [captain-hindsight, caveman, model-routing, token-efficiency, skills, multi-model]
 status: summarized

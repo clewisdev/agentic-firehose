@@ -3,7 +3,7 @@ title: "Vectorless RAG: PageIndex approach for long-form documents"
 url: https://www.linkedin.com/posts/basiakubicka_the-entire-rag-industry-is-about-to-get-cooked-share-7464735565519745028-FsIZ/
 authors: [Basia Kubicka]
 captured: 2026-06-05
-source_type: thread
+source_type: post
 topics: [rag, retrieval, document-indexing]
 tags: [pageindex, vectorless, tree-search, financial-documents, embeddings]
 signal_level: medium

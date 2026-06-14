@@ -3,7 +3,7 @@ title: "Claude Code's creator on moving beyond prompting to loops and agentic wo
 url: https://www.linkedin.com/posts/divyanshis-saasleadgen_claude-codes-creator-said-something-that-ugcPost-7471156617858703361
 authors: [Boris Dayma, Divyanshi Sharma]
 captured: 2026-06-12
-source_type: thread
+source_type: post
 topics: [agent-architecture, tool-use, abstraction-layers, agentic-coding]
 tags: [claude-code, loops, workflows, anthropic, agent-patterns]
 signal_level: medium

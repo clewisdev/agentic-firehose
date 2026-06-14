@@ -3,7 +3,7 @@ title: "Loop engineering: replacing yourself as the person who prompts the agent
 url: https://www.linkedin.com/posts/addyosmani_ai-softwareengineering-programming-share-7469961887271776256-9_65
 authors: [Addy Osmani]
 captured: 2025-06-09
-source_type: thread
+source_type: post
 topics: [agent-design, automation, workflow, code-generation, memory]
 tags: [loops, agentic-engineering, coding-agents, multi-agent, verification]
 signal_level: medium

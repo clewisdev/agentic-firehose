@@ -3,7 +3,7 @@ title: "Agent Skills: Structured Workflows for Production-Grade AI Code Generati
 url: https://www.linkedin.com/posts/addyosmani_ai-programming-softwareengineering-share-7470710954410917888-GaVe/
 authors: [Addy Osmani]
 captured: 2025-06-11
-source_type: thread
+source_type: post
 topics: [agent-engineering, code-generation, workflow-design, verification]
 tags: [claude, cursor, codex, testing, deployment, anti-rationalization]
 signal_level: high

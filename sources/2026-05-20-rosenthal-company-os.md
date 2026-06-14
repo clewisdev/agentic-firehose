@@ -3,7 +3,7 @@ title: "20-person AI-native services company: the Claude Code Company OS repo st
 url: https://www.linkedin.com/posts/dan-m-rosenthal_were-a-20-person-ai-native-services-company-share-7459935567636525057-hXac
 authors: [Dan Rosenthal]
 captured: 2026-05-20
-source_type: thread
+source_type: post
 topics: [harnesses, prompting]
 tags: [claude-code, repo-structure, ai-native-services, skills, hooks, approvals, mcp, gtm, organizational-cognition, information-architecture, files-as-config, non-engineering]
 status: summarized

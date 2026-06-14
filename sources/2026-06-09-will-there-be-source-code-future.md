@@ -3,7 +3,7 @@ title: "Will There Be Source Code in the Future?"
 url: https://www.linkedin.com/posts/martin-fowler-com_will-there-be-source-code-in-the-future-share-7459959150186295296-FXjw/
 authors: [Martin Fowler, Unmesh Joshi]
 captured: 2026-06-09
-source_type: thread
+source_type: post
 topics: [code-generation, llm-integration, conceptual-models, cognitive-debt]
 tags: [ai-code-gen, source-code, semantics, specifications]
 signal_level: medium

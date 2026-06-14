@@ -3,7 +3,7 @@ title: "last30days: Real-time research aggregator for pre-call context"
 url: https://www.linkedin.com/posts/alexcinovoj_the-tool-ive-been-running-before-every-client-share-7470603143886856192-ne8h/
 authors: [Alex Cinovoj]
 captured: 2025-06-12
-source_type: thread
+source_type: post
 topics: [research, context-gathering, agent-augmentation, real-time-data]
 tags: [last30days, claude-code, reddit, github, hacker-news, x, youtube, tiktok]
 signal_level: medium

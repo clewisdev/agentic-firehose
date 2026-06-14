@@ -3,7 +3,7 @@ title: "Open Knowledge Format (OKF): vendor-neutral standard for LLM context"
 url: https://www.linkedin.com/posts/charlywargnier_andrej-karpathy-predicted-the-power-of-share-7471513240691429376-PeAt/
 authors: [Charly Wargnier]
 captured: 2025-06-13
-source_type: thread
+source_type: post
 topics: [knowledge-representation, agent-autonomy, context-management]
 tags: [okf, google, karpathy, knowledge-base, agent-reliability, maintenance]
 signal_level: medium

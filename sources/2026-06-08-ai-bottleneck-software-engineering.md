@@ -3,7 +3,7 @@ title: "AI Accelerates Bottleneck in Software Engineering"
 url: https://www.linkedin.com/posts/fabricebernhard_is-ai-coding-on-average-173x-faster-or-13x-share-7467588538109284352
 authors: [Fabrice Bernhard]
 captured: 2026-06-08
-source_type: thread
+source_type: post
 topics: [ai-productivity, bottleneck-analysis, value-delivery, legacy-modernization]
 tags: [theory-of-constraints, lean, async-agents, release-frequency]
 signal_level: medium

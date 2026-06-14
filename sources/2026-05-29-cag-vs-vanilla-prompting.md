@@ -3,7 +3,7 @@ title: "Context Over Cleverness: CAG and Files-as-Config versus Vanilla Promptin
 url: file://temp/context-augmented-generation-vs-vanilla-prompting.md
 authors: [unknown]
 captured: 2026-05-29
-source_type: analysis
+source_type: blog
 topics: [prompting, harnesses, cost-management, evals]
 tags: [cag, files-as-config, context-engineering, context-rot, vanilla-prompting, agents-md, metr, lost-in-the-middle, rules-as-nudges, hybrid-context]
 status: summarized

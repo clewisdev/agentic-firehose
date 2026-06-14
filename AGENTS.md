@@ -201,7 +201,7 @@ title: "..."                              # source's own title
 url: https://...
 authors: [Name, ...]
 captured: 2026-05-20                      # date the owner shared it
-source_type: blog | paper | docs | video | thread | repo | talk | user_derived
+source_type: blog | post | repo | docs | paper | talk | video | podcast | report | user_derived
 topics: [tool-use, memory]                # which topic folders this maps to
 tags: [react, reflection, mcp]            # finer-grained
 status: raw | summarized

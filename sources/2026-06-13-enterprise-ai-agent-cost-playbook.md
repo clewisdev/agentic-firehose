@@ -3,7 +3,7 @@ title: "Enterprise AI Agent Cost Management Playbook"
 url: https://www.linkedin.com/posts/danielmeppiel_disable-access-to-top-models-for-all-your-activity-7470469764306509825-2bno
 authors: [Daniel Meppiel]
 captured: 2026-06-13
-source_type: thread
+source_type: post
 topics: [agent-deployment, cost-optimization, enterprise-operations, model-selection]
 tags: [gpt-5, cost-efficiency, monitoring, agent-workflows]
 signal_level: medium

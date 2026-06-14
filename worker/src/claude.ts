@@ -46,7 +46,7 @@ title: "..."
 url: https://...
 authors: [Name, ...]
 captured: YYYY-MM-DD
-source_type: blog | paper | docs | video | thread | repo | talk | user_derived
+source_type: blog | post | repo | docs | paper | talk | video | podcast | report | user_derived
 topics: [tool-use, memory]
 tags: [react, reflection, mcp]
 signal_level: high | medium | low
@@ -88,6 +88,22 @@ Output ONLY a single valid JSON object — no prose before or after:
   "signal_level": "high" | "medium" | "low" | "negative" | "unfetchable"
 }
 `.trim();
+
+// Canonical source_type vocabulary. Mirror any change into AGENTS.md and the
+// CAPTURE_SYSTEM schema above. Unlike signal_level (a routing-critical JSON
+// field that we reject on), source_type lives inside the markdown frontmatter
+// and is organisational only — so we normalise in place rather than throw,
+// preserving the capture. See plans/kb-dashboard.md (Phase 1a).
+const SOURCE_TYPE_CANONICAL = new Set([
+  'blog', 'post', 'repo', 'docs', 'paper',
+  'talk', 'video', 'podcast', 'report', 'user_derived',
+]);
+
+// Renamed/drifted values → canonical. `thread` renamed to `post`.
+const SOURCE_TYPE_ALIASES: Record<string, string> = {
+  thread: 'post',
+  analysis: 'blog',
+};
 
 interface AnthropicResponse {
   content: Array<{ type: string; text: string }>;
@@ -184,5 +200,24 @@ function parseCaptureResult(raw: string): CaptureResult {
     throw new Error(`Unknown signal_level: ${result.signal_level}`);
   }
 
+  result.content = normaliseSourceType(result.content);
+
   return result as CaptureResult;
+}
+
+// Rewrites the `source_type:` frontmatter line to its canonical value. Maps
+// known aliases; leaves (and warns about) anything novel so it surfaces in
+// logs without losing the capture.
+function normaliseSourceType(content: string): string {
+  return content.replace(
+    /^(source_type:[ \t]*)(.+?)[ \t]*$/m,
+    (_full, key: string, raw: string) => {
+      const canonical = SOURCE_TYPE_ALIASES[raw] ?? raw;
+      if (!SOURCE_TYPE_CANONICAL.has(canonical)) {
+        console.warn(`Unknown source_type "${raw}" — committing as-is; extend vocabulary or alias map`);
+        return `${key}${raw}`;
+      }
+      return `${key}${canonical}`;
+    },
+  );
 }

@@ -3,7 +3,7 @@ title: "AI-assisted (engineering) work tip — the dev:info pattern"
 url: https://www.linkedin.com/posts/benjaminandremicolon_%F0%9D%90%80%F0%9D%90%88-%F0%9D%90%9A%F0%9D%90%AC%F0%9D%90%AC%F0%9D%90%A2%F0%9D%90%AC%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%9D-%F0%9D%90%9E%F0%9D%90%A7%F0%9D%90%A0%F0%9D%90%A2%F0%9D%90%A7%F0%9D%90%9E%F0%9D%90%9E%F0%9D%90%AB%F0%9D%90%A2-share-7460252175957561345-e09Q
 authors: [Benjamin André-Micolon]
 captured: 2026-05-20
-source_type: thread
+source_type: post
 topics: [harnesses, prompting]
 tags: [dev-environment, self-discovery, agents-md, claude-md, autonomous-debugging, dev-info, context-engineering, files-as-config]
 status: summarized

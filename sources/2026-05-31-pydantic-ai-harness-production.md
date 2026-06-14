@@ -3,7 +3,7 @@ title: "Building Production-Grade AI Agents with Pydantic: The Harness Layer"
 url: https://www.linkedin.com/posts/pauliusztin_building-production-grade-ai-agents-with-share-7464586154894487553
 authors: [Paul Iusztin]
 captured: 2026-05-31
-source_type: thread
+source_type: post
 topics: [agent-architecture, orchestration, memory, safety, tool-use, evaluation]
 tags: [pydantic, mcp, production, harness, verification, guardrails]
 signal_level: medium
