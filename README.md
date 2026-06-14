@@ -1,8 +1,10 @@
-# agents-kb
+# agentic-firehose
 
-Personal knowledge base for **agentic engineering** — the design, building, and operation of LLM-based agents. Covers Claude Code, Claude API agents, harnesses, tool use, memory, evals, cost management, and related practice.
+> Why try to drink from the firehose when someone else's agent can?
 
-This is a working reference and thinking partner, not a public docs site. Optimised for future recall and decision-making.
+A knowledge base on **agentic engineering** — the design, building, and operation of LLM-based agents — that keeps pace with a field whose volume of noise is, frankly, wild. An automated capture agent drinks from the firehose: it triages the daily torrent of posts, threads, and papers; the signal gets consolidated into topics and synthesised. Updated most days. Covers Claude Code, Claude API agents, harnesses, tool use, memory, evals, cost management, and related practice.
+
+A working reference and thinking partner, not a public docs site. Optimised for future recall and decision-making.
 
 ---
 

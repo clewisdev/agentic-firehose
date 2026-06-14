@@ -8,7 +8,7 @@ const MODEL = 'claude-haiku-4-5-20251001';
 // Synthesis, cross-linking, topic indexes, and advice mode are intentionally absent —
 // those belong to the interactive Claude Code path, not this Worker.
 const CAPTURE_SYSTEM = `
-You are the automated capture agent for agents-kb, a personal knowledge base on agentic engineering.
+You are the automated capture agent for agentic-firehose, a knowledge base on agentic engineering.
 
 Your single job: triage the source and write one raw source file. Nothing else.
 Do NOT cross-link. Do NOT update topic indexes. Do NOT synthesise.

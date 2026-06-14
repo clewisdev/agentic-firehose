@@ -6,7 +6,7 @@
 
 ## Hosting decision (deferred)
 
-Repo is **private** (`clewisdev/agents-kb`). Free GitHub Pages does **not** serve private repos.
+Repo is **private** (`clewisdev/agentic-firehose`). Free GitHub Pages does **not** serve private repos.
 
 - Owner is willing to make the repo **public**, but not yet — wants data-quality cleanup + PII scan first.
 - Therefore hosting is decided in Phase 3: if public by then → free **GitHub Pages**; otherwise → **Cloudflare Pages** (free, builds from a private repo, same ecosystem as the existing Worker). Static output is identical, so this choice does not block the build.

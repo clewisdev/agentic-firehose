@@ -51,7 +51,7 @@ A Claude Code / cursor skill for operating a personal LLM-powered knowledge base
 1. **The raw/wiki split is the key structural insight.** Sources stay immutable; the compiled layer can be freely reorganized. This solves the "how do I update my understanding without losing the original context" problem.
 2. **Cascade update discipline matters.** The explicit post-ingest cascade scan prevents articles from drifting out of sync as the KB grows. This KB's `topics/` update pattern is roughly equivalent but less formalized.
 3. **Lint as a first-class operation** — not an afterthought. The deterministic/heuristic split is useful: auto-fix what's unambiguous, report what needs judgment. This KB has no equivalent; manual curation is the only quality check right now.
-4. **This skill is not a drop-in for this KB.** It targets `~/knowledge-base`, not agents-kb's `sources/topics/synthesis` structure. The compilation model (query → synthesize → write wiki article) is also different from this KB's sources → topics distillation flow. Worth studying for ideas, not installing.
+4. **This skill is not a drop-in for this KB.** It targets `~/knowledge-base`, not agentic-firehose's `sources/topics/synthesis` structure. The compilation model (query → synthesize → write wiki article) is also different from this KB's sources → topics distillation flow. Worth studying for ideas, not installing.
 5. **Archive pages as explicit snapshots** — the convention of never cascade-updating archive pages is worth adopting in this KB's synthesis notes: mark them with a `last-confirmed` date rather than silently updating them.
 
 ## Open questions
@@ -62,6 +62,6 @@ A Claude Code / cursor skill for operating a personal LLM-powered knowledge base
 
 ## Why not installed as an active command
 
-kbwiki targets a separate `~/knowledge-base` home-directory structure, not this project. Installing it under `.claude/commands/` would create a confusing overlap where two different KB systems (agents-kb and `~/knowledge-base`) could be addressed by slash commands in the same session. Preserved for reference; activate explicitly if a separate personal wiki is desired alongside agents-kb.
+kbwiki targets a separate `~/knowledge-base` home-directory structure, not this project. Installing it under `.claude/commands/` would create a confusing overlap where two different KB systems (agentic-firehose and `~/knowledge-base`) could be addressed by slash commands in the same session. Preserved for reference; activate explicitly if a separate personal wiki is desired alongside agentic-firehose.
 
 See also: `sources/2026-05-28-captain-hindsight-skill.md`, `topics/memory/index.md`, `topics/cost-management/index.md`
