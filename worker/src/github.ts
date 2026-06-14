@@ -15,7 +15,7 @@ async function request<T>(env: Env, method: string, path: string, body?: unknown
       Accept: 'application/vnd.github+json',
       'Content-Type': 'application/json',
       'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'agents-kb-capture/1.0',
+      'User-Agent': 'agentic-firehose-capture/1.0',
     },
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -79,7 +79,7 @@ export async function commitFile(
       message,
       content: encodeBase64(content),
       branch: env.GITHUB_DEFAULT_BRANCH,
-      committer: { name: 'agents-kb capture', email: 'capture@agents-kb.local' },
+      committer: { name: 'agentic-firehose capture', email: 'capture@agentic-firehose.local' },
     },
   );
 }

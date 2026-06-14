@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/responsibleai_msft-build-day-2-dispatch-the-
 authors: [Edward Achtner]
 captured: 2026-06-05
 source_type: post
-topics: [ai-sdlc, agent-architecture, testing-evals, enterprise-deployment]
+topics: [spec-driven-development, agent-architecture, evals, enterprise-deployment]
 tags: [ci-cd, clean-code, tooling, governance]
 signal_level: medium
 status: summarized

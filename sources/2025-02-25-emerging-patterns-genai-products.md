@@ -4,7 +4,7 @@ url: https://martinfowler.com/articles/gen-ai-patterns/
 authors: [Bharani Subramaniam, Martin Fowler]
 captured: 2025-02-25
 source_type: blog
-topics: [retrieval-augmented-generation, evals, fine-tuning, guardrails, embeddings]
+topics: [retrieval, evals, model-internals, safety]
 tags: [llm, production, hallucination, non-determinism, prompt-engineering]
 signal_level: medium
 status: raw

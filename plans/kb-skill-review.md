@@ -1,18 +1,18 @@
 ---
-title: "Review knowledge-base-wiki skill for lessons applicable to agents-kb"
+title: "Review knowledge-base-wiki skill for lessons applicable to agentic-firehose"
 status: planning
 created: 2026-06-01
 ---
 
-# Review knowledge-base-wiki skill for lessons applicable to agents-kb
+# Review knowledge-base-wiki skill for lessons applicable to agentic-firehose
 
 ## Goal
 
-The `knowledge-base-wiki` skill (in `skills/knowledge-base-wiki/SKILL.md`) was built for a general personal KB. agents-kb is a specialised variant. Compare the two designs and identify anything the skill does that agents-kb currently lacks or does worse.
+The `knowledge-base-wiki` skill (in `skills/knowledge-base-wiki/SKILL.md`) was built for a general personal KB. agentic-firehose is a specialised variant. Compare the two designs and identify anything the skill does that agentic-firehose currently lacks or does worse.
 
 ## Key structural differences
 
-| Concept | knowledge-base-wiki | agents-kb |
+| Concept | knowledge-base-wiki | agentic-firehose |
 |---|---|---|
 | Raw storage | `raw/` — immutable, never modified | `sources/` — captures are edited/updated |
 | Compiled layer | `wiki/` — agent has full ownership | `topics/` — distilled indexes |
@@ -26,23 +26,23 @@ The `knowledge-base-wiki` skill (in `skills/knowledge-base-wiki/SKILL.md`) was b
 ## Candidate lessons to investigate
 
 ### 1. Lint operation
-The skill defines deterministic checks (broken links, missing index entries, orphaned pages) that auto-fix, and heuristic checks (contradictions, outdated claims, orphans) that report only. agents-kb has no equivalent. A `/lint` skill or a step in `/synthesise` could cover this.
+The skill defines deterministic checks (broken links, missing index entries, orphaned pages) that auto-fix, and heuristic checks (contradictions, outdated claims, orphans) that report only. agentic-firehose has no equivalent. A `/lint` skill or a step in `/synthesise` could cover this.
 
 ### 2. Operation log
 An append-only `log.md` recording every ingest, synthesis, and archive event. Currently this information lives only in git commit messages — useful but not browsable within the KB itself.
 
 ### 3. Conflict annotation convention
-The skill requires explicit annotation when sources disagree, with attribution. agents-kb has no formal convention for this. Open threads in topic indexes serve a similar purpose but inconsistently.
+The skill requires explicit annotation when sources disagree, with attribution. agentic-firehose has no formal convention for this. Open threads in topic indexes serve a similar purpose but inconsistently.
 
 ### 4. Archive concept
 Saving a query answer as a first-class KB artifact (distinct from synthesis files, which are agent-initiated). Could be valuable for capturing owner-derived conclusions that aren't tied to a specific source.
 
 ### 5. Cascade update formalism
-The skill has a named step: after ingesting, scan for ripple effects in related articles. agents-kb leaves this to agent judgement. A checklist or explicit step in AGENTS.md could make it more consistent.
+The skill has a named step: after ingesting, scan for ripple effects in related articles. agentic-firehose leaves this to agent judgement. A checklist or explicit step in AGENTS.md could make it more consistent.
 
-## What agents-kb does better (don't regress)
+## What agentic-firehose does better (don't regress)
 
-- **Triage / signal-level classification** — the skill has no equivalent; agents-kb's triage criteria are more developed
+- **Triage / signal-level classification** — the skill has no equivalent; agentic-firehose's triage criteria are more developed
 - **Two-tier capture pipeline** — automated Worker + interactive /synthesise; the skill is purely interactive
 - **Frontmatter schemas** — richer metadata (signal level, tags, status) enabling automated processing
 

@@ -4,7 +4,7 @@ url: https://www.oneusefulthing.org/p/what-it-feels-like-to-work-with-mythos
 authors: [Ethan Mollick]
 captured: 2026-06-11
 source_type: blog
-topics: [agent-autonomy, tool-use, code-generation, research-automation, human-ai-collaboration]
+topics: [agentic-workflows, tool-use, code-generation, ai-productivity]
 tags: [claude-5-fable, mythos-class, agentic-workflow, multi-agent-orchestration, long-horizon-tasks]
 signal_level: high
 status: raw

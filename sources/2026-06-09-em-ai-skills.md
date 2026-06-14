@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/catehuston_useful-ai-skills-for-engineering-
 authors: [Cate Huston]
 captured: 2026-06-09
 source_type: post
-topics: [engineering-leadership, workflow-automation, team-effectiveness]
+topics: [team-dynamics, agentic-workflows]
 tags: [process-automation, reporting, observability]
 signal_level: medium
 status: raw

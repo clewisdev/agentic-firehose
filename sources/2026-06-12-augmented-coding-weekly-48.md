@@ -4,7 +4,7 @@ url: http://augmentedcoding.dev/issue-48/
 authors: [Colin Eberhardt]
 captured: 2026-06-12
 source_type: blog
-topics: [code-generation, ai-safety, team-dynamics, security]
+topics: [code-generation, safety, team-dynamics]
 tags: [claude, fable, anthropic, security, codebase-migration]
 signal_level: medium
 status: raw

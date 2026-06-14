@@ -4,7 +4,7 @@ url: https://bookoverflow.io/episodes/ep_tzlkl3u7zwhgycsibqcbrkmn
 authors: [Mark Richards, Neal Ford]
 captured: 2026-06-10
 source_type: podcast
-topics: [architecture, trade-offs, distributed-systems]
+topics: [system-design, engineering-judgment]
 tags: [neal-ford, mark-richards, fundamentals]
 signal_level: medium
 status: raw

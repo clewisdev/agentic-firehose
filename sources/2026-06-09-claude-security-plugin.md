@@ -4,7 +4,7 @@ url: https://cybersecuritynews.com/free-security-plugin-for-claude-code
 authors: [Guru Baran]
 captured: 2026-06-09
 source_type: blog
-topics: [tool-use, security, code-generation, left-shift-security]
+topics: [tool-use, safety, code-generation]
 tags: [claude, vulnerability-detection, static-analysis, code-review, agent-review]
 signal_level: high
 status: raw

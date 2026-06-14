@@ -1,14 +1,14 @@
 ---
-title: "agents-kb as a context drift case study"
+title: "agentic-firehose as a context drift case study"
 status: planning
 created: 2026-06-01
 ---
 
-# agents-kb as a context drift case study
+# agentic-firehose as a context drift case study
 
 ## The opportunity
 
-agents-kb is itself an agentic system with a dated git log, versioned instruction file (AGENTS.md), and observable output (the captures, indexes, and synthesis files). Most writing on context drift is theoretical or anecdotal. This KB is primary evidence — not a retelling of someone else's experience.
+agentic-firehose is itself an agentic system with a dated git log, versioned instruction file (AGENTS.md), and observable output (the captures, indexes, and synthesis files). Most writing on context drift is theoretical or anecdotal. This KB is primary evidence — not a retelling of someone else's experience.
 
 The `topics/meta/index.md` already contains initial observations (instruction accumulation, compaction-driven intra-session drift, norm-accumulation across sessions). The goal of this plan is to formalise those observations into a shareable write-up.
 

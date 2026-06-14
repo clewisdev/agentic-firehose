@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/petergyang_my-5-biggest-takeaways-from-kun-e
 authors: [Peter Yang, Kun (ex-Meta L8 engineer)]
 captured: 2026-06-09
 source_type: post
-topics: [workflow, planning, validation, parallel-execution, code-review]
+topics: [agentic-workflows, spec-driven-development, code-review, agent-orchestration]
 tags: [lavish, treehouse, no-mistakes, agent-coordination, planning]
 signal_level: medium
 status: raw

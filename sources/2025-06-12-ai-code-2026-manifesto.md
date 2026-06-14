@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/larsjankowfsky_this-one-is-for-the-nerds-i-n
 authors: [Lars Jankowfsky]
 captured: 2025-06-12
 source_type: post
-topics: [code-generation, quality-gates, human-review, agentic-software-engineering]
+topics: [code-generation, code-review, agentic-workflows]
 tags: [ai-code, review-gates, deterministic-gates, risk-stratification]
 signal_level: medium
 status: raw

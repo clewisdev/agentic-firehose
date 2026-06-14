@@ -4,7 +4,7 @@ url: https://www.aihero.dev/grill-with-docs
 authors: [Matt Pocock]
 captured: 2026-06-10
 source_type: blog
-topics: [prompt-engineering, domain-driven-design, context-building, collaborative-grilling]
+topics: [prompting, system-design, context-engineering, code-review]
 tags: [ubiquitous-language, context-md, adr, terminology, shared-understanding]
 signal_level: high
 status: raw

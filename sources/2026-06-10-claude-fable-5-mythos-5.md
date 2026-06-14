@@ -4,7 +4,7 @@ url: https://www.anthropic.com/news/claude-fable-5-mythos-5
 authors: [Anthropic]
 captured: 2026-06-10
 source_type: blog
-topics: [model-capabilities, tool-use, long-context, agentic-behavior, autonomous-agents]
+topics: [cost-management, tool-use, context-engineering, agentic-workflows]
 tags: [claude, vision, software-engineering, scientific-research, protein-design, genomics, memory, safeguards]
 signal_level: high
 status: raw

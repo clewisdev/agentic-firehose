@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/rahul-patil-a0944836_claude-fable-5-is-avail
 authors: [Rahul Patil]
 captured: 2025-06-10
 source_type: post
-topics: [model-capability, safety-alignment, inference-routing, production-deployment]
+topics: [cost-management, safety, enterprise-deployment]
 tags: [claude, fable, anthropic, fallback-architecture, verification, benchmarks]
 signal_level: high
 status: raw

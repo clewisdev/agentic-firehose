@@ -4,7 +4,7 @@ url: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
 authors: [Anthropic]
 captured: 2025-06-09
 source_type: blog
-topics: [agent-orchestration, tool-use, code-generation, multi-agent]
+topics: [agent-orchestration, tool-use, code-generation]
 tags: [claude, parallel-agents, workflow, codebase-analysis]
 signal_level: high
 status: raw

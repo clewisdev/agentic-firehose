@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/danielmeppiel_disable-access-to-top-models-f
 authors: [Daniel Meppiel]
 captured: 2026-06-13
 source_type: post
-topics: [agent-deployment, cost-optimization, enterprise-operations, model-selection]
+topics: [harnesses, cost-management, enterprise-deployment]
 tags: [gpt-5, cost-efficiency, monitoring, agent-workflows]
 signal_level: medium
 status: raw

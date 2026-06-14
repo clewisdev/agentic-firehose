@@ -4,7 +4,7 @@ url: https://www.chrismdp.com/ralph-loops-aie-europe/
 authors: [Chris McDonagh]
 captured: 2026-05-28
 source_type: blog
-topics: [harnesses, ralph-loops]
+topics: [harnesses, agentic-workflows]
 tags: [ralph-loop, iteration, orchestration, autonomous-agents, loop]
 signal_level: high
 status: summarized
@@ -55,4 +55,4 @@ The article frames the pattern against the backdrop of AI raising throughput whi
 ## Related
 
 - `sources/2026-05-28-claude-ralph-loop-plugin.md` — official Anthropic implementation
-- `topics/ralph-loops/index.md`
+- `topics/agentic-workflows/ralph-loops.md`

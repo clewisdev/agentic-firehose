@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/alexcinovoj_the-tool-ive-been-running-before
 authors: [Alex Cinovoj]
 captured: 2025-06-12
 source_type: post
-topics: [research, context-gathering, agent-augmentation, real-time-data]
+topics: [agentic-workflows, context-engineering, tool-use]
 tags: [last30days, claude-code, reddit, github, hacker-news, x, youtube, tiktok]
 signal_level: medium
 status: raw

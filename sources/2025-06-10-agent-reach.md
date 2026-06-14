@@ -4,7 +4,7 @@ url: https://github.com/Panniantong/Agent-Reach
 authors: [Panniantong]
 captured: 2025-06-10
 source_type: repo
-topics: [tool-use, agent-scaffolding, web-access, cli-integration]
+topics: [tool-use, harnesses]
 tags: [twitter, reddit, youtube, github, bilibili, xiaohongshu, rss, web-scraping, mcp]
 signal_level: high
 status: raw

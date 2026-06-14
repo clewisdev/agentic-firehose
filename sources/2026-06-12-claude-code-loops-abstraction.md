@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/divyanshis-saasleadgen_claude-codes-creator-
 authors: [Boris Dayma, Divyanshi Sharma]
 captured: 2026-06-12
 source_type: post
-topics: [agent-architecture, tool-use, abstraction-layers, agentic-coding]
+topics: [agent-architecture, tool-use, agentic-workflows]
 tags: [claude-code, loops, workflows, anthropic, agent-patterns]
 signal_level: medium
 status: raw

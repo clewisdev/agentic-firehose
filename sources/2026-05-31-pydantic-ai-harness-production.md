@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/pauliusztin_building-production-grade-ai-age
 authors: [Paul Iusztin]
 captured: 2026-05-31
 source_type: post
-topics: [agent-architecture, orchestration, memory, safety, tool-use, evaluation]
+topics: [agent-architecture, agent-orchestration, memory, safety, tool-use, evals]
 tags: [pydantic, mcp, production, harness, verification, guardrails]
 signal_level: medium
 status: summarized

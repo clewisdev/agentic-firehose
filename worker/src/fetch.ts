@@ -14,7 +14,7 @@ export async function fetchUrl(url: string): Promise<{ content: string; outbound
   try {
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'agents-kb-capture/1.0 (+https://github.com/clewisdev/agents-kb)',
+        'User-Agent': 'agentic-firehose-capture/1.0 (+https://github.com/clewisdev/agentic-firehose)',
         Accept: 'text/html,text/plain,application/json,*/*',
       },
       redirect: 'follow',

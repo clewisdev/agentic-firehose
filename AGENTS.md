@@ -1,6 +1,6 @@
-# agents-kb
+# agentic-firehose
 
-Personal knowledge base for **agentic engineering** — the design, building, and operation of LLM-based agents (Claude Code, Claude API agents, harnesses, tool use, memory, evals, etc.).
+Knowledge base for **agentic engineering** — the design, building, and operation of LLM-based agents (Claude Code, Claude API agents, harnesses, tool use, memory, evals, etc.). The premise is in the name: the field's signal-to-noise ratio is brutal, so an automated agent drinks from the firehose — triaging the daily torrent — and what survives gets consolidated and synthesised. Tagline: *why try to drink from the firehose when someone else's agent can?*
 
 The owner uses this as a reference and thinking partner. Not a public docs site, not a tutorial. Optimize for the owner's future recall and decision-making.
 
@@ -15,9 +15,22 @@ templates/      Frontmatter templates for new source / synthesis entries.
 skills/         Preserved operational skills (SKILL.md + companion files). One subdirectory per skill.
 ```
 
-Initial topic folders: `tool-use/`, `memory/`, `evals/`, `harnesses/`, `prompting/`. Create new ones freely as the field shifts — don't force-fit a new entry into an existing folder. Wait until you have 2–3 entries before promoting a tag into its own folder.
+### Controlled topic vocabulary
 
-**When creating a new topic folder**: update the topic table in `README.md` in the same turn. Don't leave the README stale.
+`topics:` frontmatter is a **closed vocabulary of 24 canonical values** — one per `topics/` folder. Pick the 1–4 best fits; do not invent new values. Use free-form `tags:` for finer-grained descriptors that don't warrant a topic. This vocabulary was consolidated from ~179 drifted values in Phase 1c (see `plans/kb-dashboard.md`); keeping it closed is what makes the corpus browsable and the dashboard's topic facet meaningful.
+
+```
+harnesses              tool-use               agentic-workflows      agent-architecture
+code-generation        memory                 cost-management        evals
+ai-productivity        prompting              enterprise-deployment  context-engineering
+system-design          safety                 agent-orchestration    code-review
+team-dynamics          spec-driven-development engineering-judgment   model-internals
+product-strategy       technical-debt         retrieval              personalization
+```
+
+This list is mirrored in three places that **must change together**: the `CAPTURE_SYSTEM` vocab block and `TOPIC_CANONICAL`/`TOPIC_ALIASES` in `worker/src/claude.ts`, and `worker/scripts/normalise-topics.mjs`. The Worker's `normaliseTopics` guard maps known aliases to canonical and de-dupes on every capture.
+
+**Adding a topic** is a deliberate vocabulary change, not a per-capture act: add it to all three code locations, the table in `README.md`, and create the `topics/<name>/` folder — in the same change. `topics/meta/` is operational (author-reputation, KB meta-observations) and sits outside this content vocabulary.
 
 ## Session start
 
@@ -38,14 +51,14 @@ To restore after a fresh OS install or laptop rebuild, copy these from another m
 - `knowledge-base-wiki` — KB capture and synthesis workflow
 - `synthesise` — interactive cross-linking pass for status:raw sources
 
-## Named topic stubs
+## Routing notes for the controlled vocabulary
 
-Two topics are explicitly in scope even before sources exist:
+A few canonical topics absorb material that an older draft routed elsewhere:
 
-- **cost-management** — LLM API costs, rate limiting, token optimization, prompt caching, model selection economics. Route any material touching billing, quotas, token budgets, or efficiency patterns here. Create `topics/cost-management/` on the first source.
-- **ralph-loops** — a named agentic pattern from the UpHill workshop (2026-05-27). Create the folder on first source; don't force-fit into `harnesses/` until the pattern is understood.
-
-For these two: create the folder and `index.md` on the **first** source, not after 2–3.
+- **cost-management** — LLM API costs, rate limiting, token optimization, prompt caching, **and model-selection economics / inference routing**. Route any material touching billing, quotas, token budgets, or efficiency patterns here.
+- **model-internals** — transformer mechanics, attention, training/fine-tuning fundamentals. Distinct from `cost-management` (model *economics*) and `agent-architecture` (how agents are *built*).
+- **agentic-workflows** — absorbs `ralph-loops` and other named iteration patterns; the loop's specifics live in `topics/agentic-workflows/ralph-loops.md`.
+- **ai-productivity** — developer experience, DX/culture, adoption impact on individuals; team/org-level effects go to **team-dynamics**.
 
 ## Triage / discernment (before capture)
 

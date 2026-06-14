@@ -4,7 +4,7 @@ url: https://github.com/borghei/Claude-Skills/blob/main/project-management/disco
 authors: [borghei]
 captured: 2026-06-03
 source_type: repo
-topics: [risk-analysis, product-discovery, decision-making]
+topics: [enterprise-deployment, product-strategy, engineering-judgment]
 tags: [pre-mortem, prospective-hindsight, gary-klein, risk-categorization]
 signal_level: medium
 status: summarized

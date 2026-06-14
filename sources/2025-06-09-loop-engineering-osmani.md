@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/addyosmani_ai-softwareengineering-programmin
 authors: [Addy Osmani]
 captured: 2025-06-09
 source_type: post
-topics: [agent-design, automation, workflow, code-generation, memory]
+topics: [agent-architecture, agentic-workflows, code-generation, memory]
 tags: [loops, agentic-engineering, coding-agents, multi-agent, verification]
 signal_level: medium
 status: raw

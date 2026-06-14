@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/charlywargnier_this-guy-literally-open-sourc
 authors: [Charly Wargnier, Fareed Khan]
 captured: 2026-06-12
 source_type: post
-topics: [training, transformers, data-pipeline, instruction-tuning]
+topics: [model-internals]
 tags: [pytorch, attention, checkpointing, peft, trl, colab, gpu]
 signal_level: low
 status: raw

@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/charlie-hills_youre-still-prompt-engineering
 authors: [Charlie Hills]
 captured: 2026-06-05
 source_type: post
-topics: [context-engineering, harness-engineering, system-design, memory, personalization]
+topics: [context-engineering, harnesses, system-design, memory, personalization]
 tags: [claude, workflow, architecture]
 signal_level: medium
 status: summarized

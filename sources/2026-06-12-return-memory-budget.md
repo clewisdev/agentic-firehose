@@ -4,7 +4,7 @@ url: "https://www.linkedin.com/posts/nairsachin90_softwareengineering-finops-gen
 authors: [Sachin Nair]
 captured: 2026-06-12
 source_type: post
-topics: [cost-control, token-efficiency, context-engineering, agentic-development]
+topics: [cost-management, context-engineering, agentic-workflows]
 tags: [github-copilot, claude, agents, finops, developer-tools]
 signal_level: medium
 status: raw

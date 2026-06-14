@@ -4,7 +4,7 @@ url: https://jamiehurst.co.uk/2026-05-24_ai-sustainable
 authors: [Jamie Hurst]
 captured: 2026-05-29
 source_type: blog
-topics: [dx-culture, harnesses, evals]
+topics: [ai-productivity, harnesses, evals]
 tags: [senior-engineering, agent-experience, developer-experience, sustainability, skills-redistribution, alignment-cost, measurement]
 signal_level: medium
 status: summarized
@@ -88,6 +88,6 @@ The pattern isn't unique to him: "Senior engineers in AI-forward orgs are doing 
 ## Related
 
 - `sources/skipped/2026-05-29-bowley-hurst-sustainable.md` — the LinkedIn reshare that surfaced this; now fully captured
-- `topics/dx-culture/index.md`
+- `topics/ai-productivity/dx-culture.md`
 - `topics/harnesses/index.md` — agent experience framing is relevant to harness and platform design
 - `topics/evals/index.md` — measurement gap, DORA obsolescence

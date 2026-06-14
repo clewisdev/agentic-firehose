@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/fabricebernhard_is-ai-coding-on-average-173x
 authors: [Fabrice Bernhard]
 captured: 2026-06-08
 source_type: post
-topics: [ai-productivity, bottleneck-analysis, value-delivery, legacy-modernization]
+topics: [ai-productivity, technical-debt, product-strategy]
 tags: [theory-of-constraints, lean, async-agents, release-frequency]
 signal_level: medium
 status: raw

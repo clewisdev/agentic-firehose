@@ -4,7 +4,7 @@ url: http://SKILL.md
 authors: [Anthropic]
 captured: 2026-06-14
 source_type: docs
-topics: [tool-use, agent-design, capability-extension]
+topics: [tool-use, agent-architecture]
 tags: [skills, standardization, open-format, progressive-disclosure]
 signal_level: medium
 status: raw

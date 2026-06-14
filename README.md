@@ -1,8 +1,10 @@
-# agents-kb
+# agentic-firehose
 
-Personal knowledge base for **agentic engineering** — the design, building, and operation of LLM-based agents. Covers Claude Code, Claude API agents, harnesses, tool use, memory, evals, cost management, and related practice.
+> Why try to drink from the firehose when someone else's agent can?
 
-This is a working reference and thinking partner, not a public docs site. Optimised for future recall and decision-making.
+A knowledge base on **agentic engineering** — the design, building, and operation of LLM-based agents — that keeps pace with a field whose volume of noise is, frankly, wild. An automated capture agent drinks from the firehose: it triages the daily torrent of posts, threads, and papers; the signal gets consolidated into topics and synthesised. Updated most days. Covers Claude Code, Claude API agents, harnesses, tool use, memory, evals, cost management, and related practice.
+
+A working reference and thinking partner, not a public docs site. Optimised for future recall and decision-making.
 
 ---
 
@@ -20,17 +22,35 @@ worker/       Cloudflare Worker — email-triggered automated capture
 
 ### Topic folders
 
+`topics:` frontmatter is a closed vocabulary of **24 canonical topics** (one per folder), consolidated from ~179 drifted values in Phase 1c. See `AGENTS.md` → "Controlled topic vocabulary" for the rule. `topics/meta/` sits outside the content vocabulary (KB operations).
+
 | Folder | Covers |
 |---|---|
-| `topics/cost-management/` | API costs, prompt caching, token budgets, model selection |
-| `topics/dx-culture/` | Developer experience, engineering culture, human/org effects of AI adoption |
-| `topics/evals/` | Evaluation design for agent workflows |
-| `topics/harnesses/` | Agent harness patterns, orchestration, tool loops |
-| `topics/memory/` | Memory architectures, context management |
+| `topics/harnesses/` | Agent harness patterns, scaffolding, tool loops, agent infrastructure |
+| `topics/tool-use/` | Tool design, MCP, CLI/web integration, capability extension |
+| `topics/agentic-workflows/` | Workflow patterns, ralph-loops, automation, autonomous agents |
+| `topics/agent-architecture/` | Agent design, patterns, abstraction layers, agent interfaces |
+| `topics/code-generation/` | AI code generation, code quality, codebase understanding |
+| `topics/memory/` | Memory architectures, knowledge representation, second-brain systems |
+| `topics/cost-management/` | API costs, prompt caching, token budgets, model-selection economics |
+| `topics/evals/` | Evaluation design, measurement, metrics for agent workflows |
+| `topics/ai-productivity/` | Developer experience, DX/culture, individual adoption impact |
+| `topics/prompting/` | Prompt engineering, AGENTS.md / CLAUDE.md patterns |
+| `topics/enterprise-deployment/` | Governance, risk, production/enterprise rollout, adoption |
+| `topics/context-engineering/` | Context management, gathering, long-context work |
+| `topics/system-design/` | Architecture, distributed systems, platform engineering, observability |
+| `topics/safety/` | AI safety, alignment, guardrails, security, sandboxing |
+| `topics/agent-orchestration/` | Orchestration, multi-agent, task delegation, parallel execution |
+| `topics/code-review/` | Review patterns, verification, quality gates, human ownership |
+| `topics/team-dynamics/` | Team/org effects, leadership, onboarding, human-AI collaboration |
+| `topics/spec-driven-development/` | Planning, SDLC change, spec-first workflows |
+| `topics/engineering-judgment/` | Decision-making, trade-offs, conceptual models |
+| `topics/model-internals/` | Transformer mechanics, attention, training/fine-tuning fundamentals |
+| `topics/product-strategy/` | Product discovery, value delivery, careers, market |
+| `topics/technical-debt/` | Tech debt, legacy modernization, bottleneck analysis |
+| `topics/retrieval/` | RAG, embeddings, document indexing |
+| `topics/personalization/` | Personal systems, personalization |
 | `topics/meta/` | KB operations, self-observation, context drift, author reputation |
-| `topics/prompting/` | Prompt engineering, AGENTS.md / CLAUDE.md patterns, CAG vs RAG |
-| `topics/ralph-loops/` | Named agentic pattern from UpHill workshop |
-| `topics/tool-use/` | Tool design, MCP, tool loop patterns |
 
 ### Synthesis files
 

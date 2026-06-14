@@ -4,7 +4,7 @@ url: https://www.linkedin.com/posts/basiakubicka_the-entire-rag-industry-is-abou
 authors: [Basia Kubicka]
 captured: 2026-06-05
 source_type: post
-topics: [rag, retrieval, document-indexing]
+topics: [retrieval]
 tags: [pageindex, vectorless, tree-search, financial-documents, embeddings]
 signal_level: medium
 status: summarized

@@ -4,7 +4,7 @@ url: https://github.com/hensu-project/hensu
 authors: [hensu-project]
 captured: 2025-06-09
 source_type: repo
-topics: [workflow-orchestration, dsl, deployment, agent-frameworks]
+topics: [agent-orchestration, agent-architecture, enterprise-deployment, harnesses]
 tags: [kotlin, json, graalvm, gemini, langchain4j, terraform-analogy]
 signal_level: medium
 status: raw
