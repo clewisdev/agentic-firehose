@@ -2,6 +2,10 @@
 
 Patterns and principles for code review in the AI era — AI as evidence-provider (not decision authority), human ownership of merge risk, and the concrete failure modes AI review catches vs. misses.
 
+## Synthesis
+
+- [The Verification Bottleneck: When Generation Outran Review](../../synthesis/verification-bottleneck.md) (2026-06-15, draft) — synthesised across 11 sources: when code got cheap, assurance got scarce. Why human review doesn't scale with generation rate, and the three structural responses (verification gates on the agent, agent-as-reviewer, build-time governance).
+
 ## Sources
 
 - [AI sprinkled on top of a broken software lifecycle](../../sources/2026-05-31-ai-sprinkled-broken-software.md) — Feser workflow: Qodo catches concrete PR issues; AI can raise findings but human owns merge decision and risk acceptance; treat AI review as evidence, not authority.

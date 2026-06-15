@@ -5,6 +5,7 @@ Evaluation frameworks, benchmarks, and methodologies for assessing agent and LLM
 ## Synthesis
 
 - [Evaluating agents: what we know and where the gaps are](../../synthesis/eval-methodology.md) (2026-05-30, draft) — LLM-as-judge + human eval as the production combination; per-component evals localise regressions; sensors framework (computational vs inferential); mutation testing over coverage; the METR productivity measurement problem; gap on non-coding agent evals.
+- [The Verification Bottleneck: When Generation Outran Review](../../synthesis/verification-bottleneck.md) (2026-06-15, draft) — why assurance became the scarce resource once generation got cheap; verification gates, agent-as-reviewer, and build-time governance as the three structural responses. "Throughput measures what was shipped, not what survived."
 
 ## Sources
 

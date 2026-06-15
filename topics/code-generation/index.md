@@ -2,6 +2,10 @@
 
 Using AI to generate implementation from specifications — the abstraction ladder (code-first→spec-first), when generation is deterministic vs. requires agent creativity, and the boundary where generation breaks down.
 
+## Synthesis
+
+- [The Verification Bottleneck: When Generation Outran Review](../../synthesis/verification-bottleneck.md) (2026-06-15, draft) — synthesised across 11 sources: generation got cheap (Codex ~1M lines zero hand-written; Bun 750K lines in 11 days), but "throughput measures what was shipped, not what survived." The constraint moved downstream to verification and review.
+
 ## Sources
 
 - [The Spec Is the Code Now](../../sources/2026-06-04-spec-is-code-now.md) — "We stopped writing assembly by hand. We may stop writing most implementation by hand too." Spec-first as the infrastructure play that makes code generation viable at scale; guesswork disappears with contract clarity on inputs, types, error codes.
