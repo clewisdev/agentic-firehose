@@ -7,7 +7,7 @@ source_type: post
 topics: [harnesses, cost-management, enterprise-deployment]
 tags: [gpt-5, cost-efficiency, monitoring, agent-workflows]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

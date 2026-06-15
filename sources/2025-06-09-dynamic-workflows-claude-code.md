@@ -7,7 +7,7 @@ source_type: blog
 topics: [agent-orchestration, tool-use, code-generation]
 tags: [claude, parallel-agents, workflow, codebase-analysis]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2025-Q4
 ---

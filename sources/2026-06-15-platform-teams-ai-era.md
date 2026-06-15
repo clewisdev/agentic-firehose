@@ -4,10 +4,10 @@ url: https://curlewis.co.nz/posts/what-happens-to-platform-teams/
 authors: [David Curlewis]
 captured: 2026-06-15
 source_type: blog
-topics: [agent-architecture, enterprise-deployment, team-dynamics, system-design]
+topics: [product-strategy, enterprise-deployment, team-dynamics, system-design]
 tags: [platform-engineering, ai-velocity, inner-sourcing, shadow-it, api-design]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

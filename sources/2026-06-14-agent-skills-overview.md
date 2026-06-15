@@ -7,7 +7,7 @@ source_type: docs
 topics: [skills, tool-use, agent-architecture]
 tags: [skills, standardization, open-format, progressive-disclosure]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

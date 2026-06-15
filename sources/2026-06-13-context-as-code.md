@@ -4,10 +4,10 @@ url: https://www.oreilly.com/radar/context-as-code/
 authors: [Artur Huk]
 captured: 2026-06-13
 source_type: blog
-topics: [enterprise-deployment, code-generation, agentic-workflows, prompting, agent-architecture]
+topics: [enterprise-deployment, code-generation, agentic-workflows, context-engineering, technical-debt]
 tags: [llm, agents, context-windows, build-time, comprehension-debt]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

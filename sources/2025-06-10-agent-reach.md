@@ -7,7 +7,7 @@ source_type: repo
 topics: [tool-use, harnesses]
 tags: [twitter, reddit, youtube, github, bilibili, xiaohongshu, rss, web-scraping, mcp]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: unknown
 ---

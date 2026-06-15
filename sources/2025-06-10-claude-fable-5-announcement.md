@@ -7,7 +7,7 @@ source_type: post
 topics: [cost-management, safety, enterprise-deployment]
 tags: [claude, fable, anthropic, fallback-architecture, verification, benchmarks]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2025-Q3
 ---

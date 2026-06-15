@@ -4,10 +4,10 @@ url: https://fabro.sh
 authors: [Qlty Software Inc.]
 captured: 2026-06-12
 source_type: docs
-topics: [agent-orchestration, ai-productivity, code-generation]
+topics: [agent-orchestration, agentic-workflows, harnesses, code-generation]
 tags: [claude, verification, git-checkpointing, multi-model-routing, sandbox]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: unknown
 ---
