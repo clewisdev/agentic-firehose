@@ -7,7 +7,7 @@ source_type: post
 topics: [memory, tool-use]
 tags: [obsidian, claude, agent-architecture, bi-temporal-tracking]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q4
 ---

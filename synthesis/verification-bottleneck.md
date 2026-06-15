@@ -1,7 +1,7 @@
 ---
 title: "The Verification Bottleneck: When Generation Outran Review"
 written: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-15 (added supervisory-engineering-middle-loop)
 topics: [code-generation, code-review, evals]
 tags: [verification, review-capacity, comprehension-debt, assurance, throughput, agent-as-reviewer, verification-gates]
 sources:
@@ -16,6 +16,7 @@ sources:
   - sources/2026-06-12-fabro-workflow-orchestration.md
   - sources/2026-06-11-what-it-feels-like-to-work-with-mythos.md
   - sources/2026-06-09-claude-security-plugin.md
+  - sources/2026-06-09-supervisory-engineering-middle-loop.md
 status: draft
 ---
 
@@ -90,6 +91,28 @@ precisely:
   (`sources/2025-06-11-agent-skills-structured-workflows.md`) diagnoses the root cause:
   an agent "optimizes for appearing done over being done." Self-report is worthless as
   a verification signal precisely where you need it most.
+
+Thoughtworks' Richard Gall (`sources/2026-06-09-supervisory-engineering-middle-loop.md`)
+names the structural consequence directly: the traditional two-loop model (inner loop =
+local development; outer loop = CI/CD) is now incoherent because AI agents have
+**collapsed the inner loop almost entirely**. The bottleneck relocated, and Gall gives
+it a name: the **middle loop** — where human judgment meets machine execution.
+
+> "The bottleneck is no longer around how fast we can type or implement code, it's about
+> how fast we can verify."
+
+> "You used to slow down while writing code; now, you have to force yourself to slow down
+> while reading, questioning and auditing it."
+
+> "The surface area of engineering responsibility hasn't shrunk; it has expanded."
+
+The middle loop structures the verification challenge into three pillars: **directing**
+(codifying architectural constraints, API specs, and style guides *before* agents build),
+**evaluating** (deep system context to spot plausible nonsense — hallucinations, deprecated
+APIs, edge cases), and **correcting** (maintaining coherence across parallel agent
+workstreams). This is the most precise name the KB has for why "just review more" fails:
+the skill required is not faster reading but a different orientation — behavioral auditing
+rather than style checking, architectural coherence rather than line-level correctness.
 
 ## Part 4 — Three families of response
 

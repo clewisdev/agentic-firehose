@@ -7,7 +7,7 @@ source_type: podcast
 topics: [system-design, engineering-judgment]
 tags: [neal-ford, mark-richards, fundamentals]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

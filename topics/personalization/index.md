@@ -5,3 +5,4 @@ Adapting agent behavior to specific users, projects, or environments — one of 
 ## Sources
 
 - [Harness Engineering Eras](../../sources/2026-06-05-harness-engineering-eras.md) — personalization as an explicit harness component; "businesses that treat AI as a one-off tool will be outperformed by those that build workflows where memory, context, and actions compound over time."
+- [I plugged my second brain into AI and ended up doing more work](../../sources/2026-06-11-second-brain-ai-workflow.md) — encode personal work processes as AI 'skills' over a structured second brain so AI acts 'as I would' — taste captured in linked notes. 'Getting better means iterating on yourself.'

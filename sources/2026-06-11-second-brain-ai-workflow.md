@@ -7,7 +7,7 @@ source_type: blog
 topics: [memory, ai-productivity, personalization, agentic-workflows]
 tags: [obsidian, ai-skills, personal-knowledge-base, friction, learning-loops]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: evergreen
 ---

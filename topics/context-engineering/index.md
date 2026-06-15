@@ -9,6 +9,7 @@ The discipline of curating what goes into the model's context window — pulling
 - [Claude Fable 5 & Mythos 5 (Anthropic)](../../sources/2026-06-10-claude-fable-5-mythos-5.md) — persistent file-based memory gave a 3× performance delta (Slay the Spire) vs Opus 4.8, and million-token context sustains long-horizon planning. Evidence that external memory + long context, not bigger prompts, unlock multi-week autonomous work.
 - [Context & Harness Engineering - The Transition to Agentic Software Delivery](../../sources/2026-06-14-context-harness-engineering.md) — Context Engineering as 'the briefing you give a highly capable new employee' — curate architecture, standards, conventions into agent context. 'Tooling access is not a moat. Proprietary context and evaluation infrastructure is.'
 - [Context as Code: Build-time Governance in the Era of Infinite Syntax](../../sources/2026-06-13-context-as-code.md) — constraints belong in context, not prompts: encode API contracts, allowed patterns and threat models into the agent's working context so invalid code can't be generated in the first place. 'Context-as-code' is infrastructure, versioned like code.
+- [The Return of the Memory Budget](../../sources/2026-06-12-return-memory-budget.md) — context engineering reframed as cost control: token optimization, prompt efficiency and repo-scanning overhead become disciplines with direct ROI once the build phase itself is compute-expensive ('Context Window Snowball' mechanics).
 
 ## Synthesis
 

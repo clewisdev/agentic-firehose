@@ -7,7 +7,7 @@ source_type: blog
 topics: [agent-architecture, code-generation, code-review, system-design, ai-productivity]
 tags: [ai-agents, llm, middle-loop, supervisory-engineering, code-review, multi-agent-systems]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2027-Q2
 ---

@@ -18,6 +18,7 @@ Evaluation frameworks, benchmarks, and methodologies for assessing agent and LLM
 - [UpHill Workshop — Index](../../sources/2026-05-28-uphill-workshop-pdfs.md) — workshop index; evals content is distributed across component captures.
 - [SkillOpt: Self-Evolving Agent Skills](../../sources/2026-06-15-skillopt-executive-strategy.md) — validation-driven optimization as the eval mechanism: edits accepted only on strict held-out improvement; rejected-edit buffer guards against overfitting noisy rollout scores. Benchmarked on 52 (model × benchmark × harness) cells, winning or tying every cell against human/one-shot/TextGrad/GEPA baselines.
 - [Context & Harness Engineering - The Transition to Agentic Software Delivery](../../sources/2026-06-14-context-harness-engineering.md) — 'You cannot govern what you cannot measure' — without baselines and instrumentation, AI-generated security/tech debt surfaces as production incidents rather than being caught. DPI platforms positioned as the data backbone for evaluation.
+- [AI/ML Engineer Skills Beyond Prompt Engineering](../../sources/2026-06-10-ai-ml-engineer-skills.md) — production AI engineering centres on evaluation: retrieval metrics (recall/precision/grounding/attribution), golden sets, adversarial tests, LLM-as-judge, prompt regression testing, eval gates in PR pipelines. 'Retrieval quality is the moat — freshness/staleness/chunking matter more than prompt wording.'
 
 ## Open threads
 

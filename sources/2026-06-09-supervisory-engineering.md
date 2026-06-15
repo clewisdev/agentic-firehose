@@ -7,7 +7,7 @@ source_type: post
 topics: [ai-productivity, spec-driven-development, team-dynamics]
 tags: [supervision, orchestration, research]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

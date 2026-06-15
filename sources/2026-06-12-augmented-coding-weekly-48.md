@@ -7,7 +7,7 @@ source_type: blog
 topics: [code-generation, safety, team-dynamics]
 tags: [claude, fable, anthropic, security, codebase-migration]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

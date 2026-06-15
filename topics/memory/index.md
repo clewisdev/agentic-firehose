@@ -16,6 +16,8 @@ External observation logs, retrieval layers, and cross-session context for agent
 - [knowledge-base-wiki skill](../../sources/2026-05-28-kbwiki-skill.md) — Karpathy-inspired two-layer KB skill (raw/ + wiki/). Four operations: Ingest, Query, Archive, Lint. Targets `~/knowledge-base`, not agentic-firehose. Preserved in `skills/knowledge-base-wiki/` for reference; not installed as active command. Key idea: raw/wiki split keeps sources immutable while compiled layer evolves freely.
 - [Pydantic AI Harness — Production](../../sources/2026-05-31-pydantic-ai-harness-production.md) — memory as a composable harness module (session persistence); one of six capability matrix dimensions required for production agents.
 - [Harness Engineering Eras](../../sources/2026-06-05-harness-engineering-eras.md) — memory as one of five core harness components; "memory, context, and actions compound over time" for businesses that build workflows rather than one-off tool use.
+- [I plugged my second brain into AI and ended up doing more work](../../sources/2026-06-11-second-brain-ai-workflow.md) — a decade of tagged, linked Obsidian concept notes (Maps of Content) gives AI 'a version of my taste to draw on' — structured externalization is what enables AI leverage; unstructured notes limit it. Three layers: what I know / how I act / where I am.
+- [Obsidian-Second-Brain: Agentic Memory via Vault Mutation](../../sources/2026-06-09-obsidian-second-brain-agent-memory.md) — Obsidian vault as writable agent memory: mutation over append, bi-temporal tracking, scheduled reconciliation agents — pairs with second-brain-ai-workflow on PKM-as-agent-memory
 
 ## Synthesis
 

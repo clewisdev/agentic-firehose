@@ -7,7 +7,7 @@ source_type: post
 topics: [cost-management, context-engineering, agentic-workflows]
 tags: [github-copilot, claude, agents, finops, developer-tools]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

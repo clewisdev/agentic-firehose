@@ -21,6 +21,7 @@ Formed in the Phase 1c topic consolidation (`plans/kb-dashboard.md`) by folding 
 - [I plugged my second brain into AI](../../sources/2026-06-11-second-brain-ai-workflow.md)
 - [What it feels like to work with Mythos](../../sources/2026-06-11-what-it-feels-like-to-work-with-mythos.md)
 - [The AI Engineering Report 2026 — Ten Takeaways](../../sources/2026-06-12-ai-engineering-report-2026.md)
+- [Supervisory engineering: Orchestrating software's 'middle loop'](../../sources/2026-06-09-supervisory-engineering.md) — Vella's masters research on supervisory engineering validated by Thoughtworks — empirically-derived framing of the 'middle loop' as a new category of engineering work
 
 ## Open threads
 

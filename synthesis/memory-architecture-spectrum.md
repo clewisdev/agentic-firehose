@@ -1,7 +1,7 @@
 ---
 title: "The memory architecture spectrum: files, graphs, and vectors"
 written: 2026-05-30
-updated: 2026-06-07
+updated: 2026-06-15 (added obsidian-second-brain-agent-memory: append-vs-mutate as a fifth position)
 topics: [memory, harnesses]
 tags: [files-as-memory, knowledge-graph, rag, vector-db, working-memory, episodic-memory, profile-memory, ttl, retrieval-patterns]
 sources:
@@ -12,6 +12,7 @@ sources:
   - sources/2026-05-30-fowler-genai-patterns.md
   - sources/2026-05-31-codex-maxxing.md
   - sources/2026-06-05-vectorless-rag-pageindex.md
+  - sources/2026-06-09-obsidian-second-brain-agent-memory.md
 status: draft
 ---
 
@@ -85,6 +86,42 @@ The Fowler/Subramaniam pattern catalogue covers the full production RAG stack: e
 
 ## The decision framework
 
+### Position 5: Active reconciliation / vault mutation (obsidian-second-brain)
+
+**Philosophy**: capture stays append-only; a scheduled reconciliation agent mutates existing
+pages rather than creating new ones for every new source.
+
+The obsidian-second-brain pattern (`sources/2026-06-09-obsidian-second-brain-agent-memory.md`)
+inverts the append-only model used in Position 1 (files-as-memory) and in most RAG pipelines.
+Ingesting a new URL or PDF triggers an agent that updates 5–15 *existing* pages rather than
+adding a 16th summary. Contradiction detection (`/obsidian-reconcile`) sweeps for logical
+conflicts and resolves them. A `/obsidian-challenge` command retrieves your own prior positions
+and argues against the decision you're about to make.
+
+**Key mechanism: bi-temporal tracking.** The system records both *when a fact was true* and
+*when the vault learned it* — making mutations auditable. Without this, a bad reconcile pass is
+unrecoverable. The comments surfaced the precise failure mode: "one bad reconcile away from
+losing a note you needed." Bi-temporal tracking is the load-bearing assumption of the whole model.
+
+**When it wins**: personal knowledge accumulation over time, where the goal is a consistent
+synthesised view of the world rather than a retrievable archive of everything said. The
+accumulation model (append-only capture) creates "graveyards" — 1.6k GitHub stars in one week
+suggests this is widely felt. Mutation-with-reconciliation trades retrieval breadth for knowledge
+coherence.
+
+**Where it breaks**: the approval-gate question is open. If the agent can overwrite without a
+review step, one mistaken reconciliation corrupts the vault. Also: the capture layer must stay
+strictly append-only (too much friction to decide *in real time* which five pages to rewrite);
+the mutation layer runs async. This means there is a window where the vault contains both old
+and new claims — correctness is eventually consistent, not immediate.
+
+**Relation to other positions**: this is not a replacement for files-as-memory (Position 1) but
+a *maintenance layer* that acts on top of it. The Codex-maxxing corroboration in Position 1
+(diff review of vault writes) is the lightweight version of the same instinct — review what the
+agent chose to remember. Obsidian-second-brain makes this the primary operator, not an afterthought.
+
+## The spectrum decision table
+
 | Situation | Architecture |
 |-----------|-------------|
 | Bounded corpus, curated, human-editable, single user | Files-as-memory |
@@ -93,6 +130,7 @@ The Fowler/Subramaniam pattern catalogue covers the full production RAG stack: e
 | High-volume auto-capture, cross-session recall, multi-user | Hook-based + hybrid retrieval (claude-mem pattern) |
 | Structured professional docs (finance, legal, technical) with stable hierarchy | Vectorless RAG / tree-based indexing (PageIndex) |
 | Large volatile unstructured document corpus | Production RAG (with Hybrid Retriever + Reranker) |
+| Personal KB requiring long-term consistency over completeness | Active reconciliation / vault mutation (obsidian-second-brain) |
 
 These are not mutually exclusive. The KB uses files-as-memory for the curated layer and would use RAG if the corpus grew to thousands of sources. Graphify is for codebase structure, not document knowledge. Claude-mem is for automatic observation capture, not deliberate knowledge curation.
 
@@ -106,6 +144,6 @@ A memory system without explicit expiry or provenance is a liability as it ages.
 
 ## Frank summary
 
-Files win at small, curated, human-maintained. Vector RAG wins at large, volatile, unstructured. Knowledge graphs fill the structural middle ground for codebases. Hook-based capture wins at automatic observation logs.
+Files win at small, curated, human-maintained. Vector RAG wins at large, volatile, unstructured. Knowledge graphs fill the structural middle ground for codebases. Hook-based capture wins at automatic observation logs. Active reconciliation (obsidian-second-brain) is the maintenance answer for personal vaults that have grown beyond what append-only can keep coherent — but it requires bi-temporal tracking to be safe.
 
-The failure mode to watch: escalating to RAG because it feels more "production-grade" before the corpus justifies it. POHA is right that for a personal agent with bounded knowledge, curated files are genuinely competitive with embedding pipelines on signal-per-effort — and dramatically easier to audit, debug, and version. The complexity of claude-mem's v13 architecture is not evidence of superior design; it reflects what scale forces.
+The failure mode to watch: escalating to RAG because it feels more "production-grade" before the corpus justifies it. POHA is right that for a personal agent with bounded knowledge, curated files are genuinely competitive with embedding pipelines on signal-per-effort — and dramatically easier to audit, debug, and version. The complexity of claude-mem's v13 architecture is not evidence of superior design; it reflects what scale forces. Similarly, the reconciliation approach is not inherently better than POHA — it is the right evolution *if and only if* the vault has grown large enough that curators can't manually maintain consistency.
