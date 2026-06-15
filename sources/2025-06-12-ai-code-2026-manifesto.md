@@ -7,7 +7,7 @@ source_type: post
 topics: [code-generation, code-review, agentic-workflows]
 tags: [ai-code, review-gates, deterministic-gates, risk-stratification]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

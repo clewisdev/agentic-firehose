@@ -7,7 +7,7 @@ source_type: post
 topics: [agent-orchestration, enterprise-deployment, safety]
 tags: [omnigent, databricks, claude, codex, policies, collaboration]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: unknown
 ---

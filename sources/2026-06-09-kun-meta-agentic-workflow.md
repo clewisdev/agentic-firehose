@@ -7,7 +7,7 @@ source_type: post
 topics: [agentic-workflows, spec-driven-development, code-review, agent-orchestration]
 tags: [lavish, treehouse, no-mistakes, agent-coordination, planning]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

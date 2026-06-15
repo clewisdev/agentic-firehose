@@ -7,7 +7,7 @@ source_type: repo
 topics: [skills, tool-use, harnesses]
 tags: [claude, codex, cursor, windsurf, cline, skill-registry, cli, tui]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

@@ -7,7 +7,7 @@ source_type: post
 topics: [agentic-workflows, agent-architecture, tool-use, spec-driven-development, context-engineering]
 tags: [langchain, deepagents, open-source, planning, file-operations, shell-execution, sub-agents]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

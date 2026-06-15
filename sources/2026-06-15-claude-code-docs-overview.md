@@ -7,7 +7,7 @@ source_type: docs
 topics: [tool-use, agent-architecture, agentic-workflows, code-generation]
 tags: [claude-code, cli, vscode, ide-integration, mcp, git, agents]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q4
 ---

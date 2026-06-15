@@ -7,7 +7,7 @@ source_type: post
 topics: [agentic-workflows, agent-architecture, agent-orchestration]
 tags: [loop-engineering, worktrees, skill-chaining, state-management, verification]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

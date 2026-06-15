@@ -7,7 +7,7 @@ source_type: blog
 topics: [evals, tool-use, cost-management, safety, technical-debt, code-generation]
 tags: [productivity, benchmarks, open-models, closed-models, firefox, mozilla, code-quality]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

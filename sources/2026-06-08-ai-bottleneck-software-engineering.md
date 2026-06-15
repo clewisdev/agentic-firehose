@@ -7,7 +7,7 @@ source_type: post
 topics: [ai-productivity, technical-debt, product-strategy]
 tags: [theory-of-constraints, lean, async-agents, release-frequency]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2027-Q2
 ---

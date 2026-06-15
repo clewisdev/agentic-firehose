@@ -1,7 +1,7 @@
 ---
 title: "The Verification Bottleneck: When Generation Outran Review"
 written: 2026-06-15
-updated: 2026-06-15 (added supervisory-engineering-middle-loop)
+updated: 2026-06-15 (added supervisory-engineering-middle-loop, kun No-Mistakes 68% catch rate)
 topics: [code-generation, code-review, evals]
 tags: [verification, review-capacity, comprehension-debt, assurance, throughput, agent-as-reviewer, verification-gates]
 sources:
@@ -17,6 +17,7 @@ sources:
   - sources/2026-06-11-what-it-feels-like-to-work-with-mythos.md
   - sources/2026-06-09-claude-security-plugin.md
   - sources/2026-06-09-supervisory-engineering-middle-loop.md
+  - sources/2026-06-09-kun-meta-agentic-workflow.md
 status: draft
 ---
 
@@ -140,7 +141,11 @@ string matching misses. Dynamic workflows
 (`sources/2025-06-09-dynamic-workflows-claude-code.md`) generalise this into
 **adversarial verification**: independent agents attempt the problem from different
 angles, other agents try to *refute* the findings, and iteration continues until
-convergence. The Bun port ran *two reviewers per file*.
+convergence. The Bun port ran *two reviewers per file*. Kun's "No Mistakes" tool
+(`sources/2026-06-09-kun-meta-agentic-workflow.md`) provides a practitioner data point:
+fresh-agent review of 267 AI-written PRs across 15 repos caught **68% of mistakes that
+would have been missed in manual review** — the clearest published catch-rate figure in
+the KB for agent-as-reviewer.
 
 ### C. Move governance upstream (build-time, before generation)
 

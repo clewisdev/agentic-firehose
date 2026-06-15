@@ -7,7 +7,7 @@ source_type: post
 topics: [agent-architecture, agentic-workflows, code-generation, memory]
 tags: [loops, agentic-engineering, coding-agents, multi-agent, verification]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2025-Q3
 ---
