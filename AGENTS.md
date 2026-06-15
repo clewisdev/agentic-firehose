@@ -1,6 +1,6 @@
 # agentic-firehose
 
-Knowledge base for **agentic engineering** — the design, building, and operation of LLM-based agents (Claude Code, Claude API agents, harnesses, tool use, memory, evals, etc.). The premise is in the name: the field's signal-to-noise ratio is brutal, so an automated agent drinks from the firehose — triaging the daily torrent — and what survives gets consolidated and synthesised. Tagline: *why try to drink from the firehose when someone else's agent can?*
+Knowledge base for **agentic engineering** — the design, building, and operation of LLM-based agents (Claude Code, Claude API agents, harnesses, tool use, memory, evals, etc.). The premise is in the name: the field's signal-to-noise ratio is brutal, so an automated agent drinks from the firehose — triaging the daily torrent — and what survives gets consolidated and synthesised. Tagline: *why drink from the firehose when an agent can?*
 
 The owner uses this as a reference and thinking partner. Not a public docs site, not a tutorial. Optimize for the owner's future recall and decision-making.
 

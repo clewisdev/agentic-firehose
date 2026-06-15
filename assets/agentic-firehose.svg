@@ -1,0 +1,132 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>agentic-firehose</title>
+<desc>A firehose blasting a powerful jet of water that knocks a figure off balance on the right.</desc>
+<defs>
+  <style>
+    .bg { fill: #0d1117; }
+    .stream { fill: none; stroke-linecap: round; }
+    .stream-main { stroke: #3498db; stroke-width: 24; opacity: 0.9; }
+    .stream-mid  { stroke: #5dade2; stroke-width: 14; opacity: 0.75; }
+    .stream-light { stroke: #aed6f1; stroke-width: 5; opacity: 0.6; }
+    .stream-spray { stroke: #85c1e9; stroke-width: 2; opacity: 0.4; }
+    .noise-dot { fill: #e74c3c; opacity: 0.55; }
+    .glow-ring { fill: none; stroke: #5dade2; stroke-width: 1.5; opacity: 0.16; }
+    .splash { fill: #aed6f1; }
+    .splash-blue { fill: #5dade2; }
+    .figure { fill: none; stroke: #8a9ba8; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round; }
+    .figure-fill { fill: #8a9ba8; }
+    .title-text { font-family: monospace; font-size: 58px; font-weight: 700; fill: #ecf0f1; letter-spacing: -1px; }
+    .subtitle-text { font-family: monospace; font-size: 21px; fill: #7f8c8d; }
+  </style>
+</defs>
+
+<rect class="bg" width="1280" height="640"/>
+
+<!-- faint glow behind the blast -->
+<ellipse cx="600" cy="320" rx="540" ry="250" class="glow-ring"/>
+<ellipse cx="600" cy="320" rx="430" ry="180" class="glow-ring" opacity="0.08"/>
+
+<!-- ===== HOSE ===== thick red rubber tube curving up from bottom-left -->
+<path d="M-40 540 C 70 505, 140 460, 195 415 S 245 360, 255 333" fill="none" stroke="#7b241c" stroke-width="66" stroke-linecap="round"/>
+<path d="M-40 540 C 70 505, 140 460, 195 415 S 245 360, 255 333" fill="none" stroke="#c0392b" stroke-width="56" stroke-linecap="round"/>
+<path d="M-40 524 C 70 489, 140 444, 191 401 S 240 348, 250 322" fill="none" stroke="#e0584a" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+<!-- reinforcement rings on the hose -->
+<g stroke="#7b241c" stroke-width="5" opacity="0.6" fill="none" stroke-linecap="round">
+  <path d="M40 540 q 6 -34 34 -50"/>
+  <path d="M120 484 q 6 -30 30 -46"/>
+  <path d="M188 424 q 8 -26 30 -40"/>
+</g>
+
+<!-- ===== BRASS COUPLING ===== where hose meets nozzle (angled to match hose) -->
+<g transform="rotate(34, 258, 324)">
+  <rect x="240" y="296" width="26" height="56" rx="4" fill="#9c6b0f" stroke="#5e3f08" stroke-width="3"/>
+  <rect x="246" y="298" width="4" height="52" fill="#e6b34d" opacity="0.7"/>
+  <rect x="258" y="296" width="4" height="56" fill="#5e3f08" opacity="0.5"/>
+</g>
+
+<!-- ===== NOZZLE ===== long tapering brass playpipe, tip at (372,322) -->
+<polygon points="262,300 300,302 372,316 372,328 300,342 262,344" fill="#b9770e" stroke="#5e3f08" stroke-width="3"/>
+<polygon points="262,300 300,302 372,316 372,322 300,320 262,310" fill="#e6b34d" opacity="0.6"/>
+<!-- grip rings near the base -->
+<line x1="280" y1="301" x2="280" y2="343" stroke="#5e3f08" stroke-width="2.5" opacity="0.7"/>
+<line x1="292" y1="302" x2="292" y2="342" stroke="#5e3f08" stroke-width="2.5" opacity="0.7"/>
+<!-- tip bumper + bore -->
+<rect x="368" y="313" width="9" height="18" rx="2" fill="#8a5a0a" stroke="#5e3f08" stroke-width="1.5"/>
+<ellipse cx="373" cy="322" rx="3.5" ry="8.5" fill="#1a252f"/>
+
+<!-- ===== WATER JET ===== blasting from tip (376,322) into his mouth ~(850,322) -->
+<path class="stream stream-main" d="M376 322 C540 318, 700 322, 842 326"/>
+<path class="stream stream-mid"  d="M376 320 C540 308, 700 314, 842 323"/>
+<path class="stream stream-light" d="M376 317 C540 296, 700 306, 841 320"/>
+<path class="stream stream-light" d="M376 325 C540 334, 700 332, 843 329"/>
+
+<!-- spray fanning from the tip -->
+<path class="stream stream-spray" d="M380 320 C520 282, 660 274, 800 280"/>
+<path class="stream stream-spray" d="M380 322 C520 360, 660 372, 800 364"/>
+<path class="stream stream-spray" d="M382 319 C560 262, 680 256, 820 262"/>
+<path class="stream stream-spray" d="M382 324 C560 378, 680 386, 820 380"/>
+<path class="stream stream-spray" d="M378 320 C460 296, 540 290, 640 292" opacity="0.3"/>
+<path class="stream stream-spray" d="M378 323 C460 350, 540 360, 640 360" opacity="0.3"/>
+
+<!-- ===== CARTOON MAN ===== leaning in to drink, blown off balance ===== -->
+<!-- hair blown back (behind head) -->
+<path d="M892 296 C924 282, 956 286, 978 300 C952 296, 940 304, 922 308 C946 310, 962 318, 974 330 C948 322, 930 324, 910 320 Z" fill="#4a2f1a"/>
+<!-- far arm flung back, behind torso -->
+<path d="M906 356 L948 330 L984 316" fill="none" stroke="#e67e22" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="987" cy="314" r="11" fill="#f2c290" stroke="#cf9152" stroke-width="2"/>
+<!-- back leg, planted -->
+<path d="M938 408 L978 452 L1006 490" fill="none" stroke="#34495e" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="1016" cy="494" rx="20" ry="10" fill="#4a3526" transform="rotate(18,1016,494)"/>
+<!-- front leg, lifting off as he loses balance -->
+<path d="M926 412 L900 452 L882 470" fill="none" stroke="#3d566e" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="874" cy="472" rx="20" ry="10" fill="#4a3526" transform="rotate(-20,874,472)"/>
+<!-- torso (shirt) -->
+<path d="M884 350 L938 410" fill="none" stroke="#e67e22" stroke-width="52" stroke-linecap="round"/>
+<!-- collar -->
+<path d="M872 350 L888 364 L902 346" fill="none" stroke="#b9610f" stroke-width="4" stroke-linejoin="round"/>
+<!-- near arm dropped down -->
+<path d="M886 356 L862 368 L842 382" fill="none" stroke="#e67e22" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="840" cy="384" r="11" fill="#f2c290" stroke="#cf9152" stroke-width="2"/>
+<!-- neck -->
+<rect x="872" y="334" width="18" height="22" rx="6" fill="#f2c290" stroke="#cf9152" stroke-width="2"/>
+<!-- head (left-facing profile) -->
+<path d="M852 286 C855 276 872 270 884 272 C901 273 911 290 910 306 C909 322 904 333 894 340 C883 346 868 346 860 341 C854 338 852 332 853 326 C854 314 850 298 852 286 Z" fill="#f2c290" stroke="#cf9152" stroke-width="2.5"/>
+<!-- nose protruding toward the water -->
+<path d="M853 309 C843 311 836 317 841 322 C845 325 851 324 854 322" fill="#f2c290" stroke="#cf9152" stroke-width="2.5" stroke-linejoin="round"/>
+<!-- ear -->
+<circle cx="892" cy="314" r="7" fill="#f2c290" stroke="#cf9152" stroke-width="2"/>
+<!-- one eye, wide, fixed on the jet -->
+<ellipse cx="868" cy="301" rx="6" ry="8" fill="#ecf0f1" stroke="#cf9152" stroke-width="1"/>
+<circle cx="864" cy="303" r="3.2" fill="#2c3e50"/>
+<!-- eyebrow, raised -->
+<path d="M860 289 Q869 283 877 288" fill="none" stroke="#3f2817" stroke-width="3" stroke-linecap="round"/>
+<!-- open mouth catching the blast -->
+<ellipse cx="852" cy="330" rx="8" ry="10" fill="#7a2e2e"/>
+<ellipse cx="853" cy="334" rx="5" ry="4" fill="#c0625f"/>
+<!-- hair, swept up and back over the crown -->
+<path d="M850 290 C850 272 872 263 888 270 C906 266 920 280 914 300 C906 288 894 286 884 291 C874 281 860 282 850 290 Z" fill="#3f2817"/>
+
+<!-- ===== IMPACT SPLASH at his mouth ~(852,322) ===== -->
+<g>
+  <circle cx="844" cy="326" r="16" class="splash" opacity="0.45"/>
+  <circle cx="844" cy="326" r="9" class="splash-blue" opacity="0.7"/>
+  <path class="stream stream-light" d="M850 316 C836 272, 830 242, 824 210"/>
+  <path class="stream stream-light" d="M856 314 C852 264, 860 236, 872 208"/>
+  <path class="stream stream-light" d="M854 330 C842 372, 834 400, 820 432"/>
+  <path class="stream stream-light" d="M848 326 C822 358, 804 380, 782 404"/>
+  <path class="stream stream-spray" d="M858 328 C888 338, 916 344, 944 348"/>
+  <path class="stream stream-spray" d="M846 318 C812 290, 790 282, 768 280"/>
+  <circle cx="822" cy="214" r="5" class="splash"/>
+  <circle cx="852" cy="240" r="4" class="splash"/>
+  <circle cx="874" cy="196" r="4" class="splash"/>
+  <circle cx="816" cy="426" r="5" class="splash"/>
+  <circle cx="788" cy="400" r="4" class="splash"/>
+  <circle cx="938" cy="346" r="3.5" class="splash-blue"/>
+  <circle cx="770" cy="276" r="3.5" class="splash-blue"/>
+</g>
+
+<!-- ===== TITLE ===== -->
+<text x="80" y="110" class="title-text">agentic-firehose</text>
+<text x="80" y="150" class="subtitle-text">why drink from the firehose when an agent can?</text>
+<line x1="80" y1="168" x2="760" y2="168" stroke="#2e86c1" stroke-width="1" opacity="0.3"/>
+</svg>

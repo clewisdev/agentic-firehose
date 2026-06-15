@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="assets/agentic-firehose.svg" alt="agentic-firehose" width="100%">
+</p>
+
 # agentic-firehose
 
-> Why try to drink from the firehose when someone else's agent can?
+> Why drink from the firehose when an agent can?
 
 A knowledge base on **agentic engineering** — the design, building, and operation of LLM-based agents — that keeps pace with a field whose volume of noise is, frankly, wild. An automated capture agent drinks from the firehose: it triages the daily torrent of posts, threads, and papers; the signal gets consolidated into topics and synthesised. Updated most days. Covers Claude Code, Claude API agents, harnesses, tool use, memory, evals, cost management, and related practice.
 
