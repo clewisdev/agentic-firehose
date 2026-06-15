@@ -24,6 +24,10 @@ If no raw captures found: say so and stop.
 
 Show the count and file list. If >5 files, flag the batch size and ask whether to proceed in full or filter by topic first. Wait for confirmation before processing.
 
+For large backlogs (>~15 raw files), offer **fixed batches of N** (default 10) processed in priority order (high-signal + newest first). State of done-ness lives in the source frontmatter (`status: summarized`), so batches are resumable: after a batch, stop and report `N/M done`; a fresh `/synthesise` re-greps `status: raw` and continues. This lets the owner `/handoff` to a clean context between batches. Within a large batch, do **not** rewrite synthesis bodies inline (step 3c) — collect synthesis-update candidates and surface them for confirmation at the end of the batch, alongside the open-thread scan.
+
+Use `node worker/scripts/append-source-link.mjs <topic> <source-basename> "<hook>"` to append a `## Sources` bullet to a topic index (LF-safe, idempotent — skips if the source is already linked). This avoids re-reading large indexes for every cross-link; you still author the one-line hook.
+
 ### 3. Process each source (one at a time — finish each before starting the next)
 
 **a. Read the full source file.** Do not work from memory.
