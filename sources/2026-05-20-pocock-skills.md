@@ -4,7 +4,7 @@ url: https://github.com/mattpocock/skills
 authors: [Matt Pocock]
 captured: 2026-05-20
 source_type: repo
-topics: [prompting, harnesses]
+topics: [skills, prompting, harnesses]
 tags: [claude-code, skills, slash-commands, tdd, debugging, alignment, ddd, shared-language, prds, triage, composability, mattpocock, agent-failure-modes, context-md]
 signal_level: high
 status: summarized

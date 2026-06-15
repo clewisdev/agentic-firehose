@@ -4,7 +4,7 @@ url: internal-teams-snippet
 authors: [Various an internal enterprise team colleagues]
 captured: 2026-05-28
 source_type: post
-topics: [harnesses, cost-management]
+topics: [skills, harnesses, cost-management]
 tags: [captain-hindsight, caveman, model-routing, token-efficiency, skills, multi-model]
 signal_level: medium
 status: summarized

@@ -4,7 +4,7 @@ url: https://github.com/forrestchang/andrej-karpathy-skills
 authors: [forrestchang, based on Andrej Karpathy observations]
 captured: 2026-05-28
 source_type: repo
-topics: [harnesses, prompting]
+topics: [skills, harnesses, prompting]
 tags: [claude-md, karpathy, principles, coding-guidelines, viral]
 signal_level: medium
 status: summarized

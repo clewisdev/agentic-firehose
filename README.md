@@ -52,7 +52,7 @@ worker/       Cloudflare Worker — email-triggered automated capture
 | `topics/model-internals/` | Transformer mechanics, attention, training/fine-tuning fundamentals |
 | `topics/product-strategy/` | Product discovery, value delivery, careers, market |
 | `topics/technical-debt/` | Tech debt, legacy modernization, bottleneck analysis |
-| `topics/retrieval/` | RAG, embeddings, document indexing |
+| `topics/skills/` | Agent Skills format, skill libraries/managers, skill authoring & packaging |
 | `topics/personalization/` | Personal systems, personalization |
 | `topics/meta/` | KB operations, self-observation, context drift, author reputation |
 

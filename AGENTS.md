@@ -25,7 +25,7 @@ code-generation        memory                 cost-management        evals
 ai-productivity        prompting              enterprise-deployment  context-engineering
 system-design          safety                 agent-orchestration    code-review
 team-dynamics          spec-driven-development engineering-judgment   model-internals
-product-strategy       technical-debt         retrieval              personalization
+product-strategy       technical-debt         skills                 personalization
 ```
 
 This list is mirrored in three places that **must change together**: the `CAPTURE_SYSTEM` vocab block and `TOPIC_CANONICAL`/`TOPIC_ALIASES` in `worker/src/claude.ts`, and `worker/scripts/normalise-topics.mjs`. The Worker's `normaliseTopics` guard maps known aliases to canonical and de-dupes on every capture.

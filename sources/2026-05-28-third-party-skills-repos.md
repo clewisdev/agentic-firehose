@@ -4,7 +4,7 @@ url: "https://github.com/mattpocock/skills"
 authors: [mattpocock, Anthropic]
 captured: 2026-05-28
 source_type: repo
-topics: [harnesses, cost-management]
+topics: [skills, harnesses, cost-management]
 tags: [skills, claude-code, productivity, handoff, grill-me]
 signal_level: high
 status: summarized

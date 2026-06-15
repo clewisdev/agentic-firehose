@@ -4,7 +4,7 @@ url: "https://github.com/JuliusBrussee/caveman"
 authors: [JuliusBrussee]
 captured: 2026-05-28
 source_type: repo
-topics: [cost-management]
+topics: [skills, cost-management]
 tags: [skills, token-compression, caveman, output-caps]
 signal_level: high
 status: summarized

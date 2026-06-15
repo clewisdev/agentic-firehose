@@ -1,6 +1,12 @@
 # Memory
 
-External observation logs, retrieval layers, and cross-session context for agents. Distinct from in-context auto-compaction.
+External observation logs, retrieval layers, and cross-session context for agents. Distinct from in-context auto-compaction. Retrieval (RAG, embeddings, document indexing) was consolidated into this topic — see the topic notes below.
+
+## Topic notes
+
+- [Retrieval](retrieval.md) — finding relevant information to inject into context: vector similarity, tree/structural, hybrid, and the failure modes of each.
+- [RAG](rag.md) — retrieval-augmented generation architectures; vector vs. hybrid vs. structural, when each wins.
+- [Document indexing](document-indexing.md) — chunking, tree-based structure indexing, knowledge graphs; how document type drives the approach.
 
 ## Sources
 

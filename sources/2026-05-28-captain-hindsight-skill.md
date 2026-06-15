@@ -4,7 +4,7 @@ url: internal://skill-issue/skills/captain-hindsight
 authors: [an internal enterprise team / skill-issue contributors]
 captured: 2026-05-28
 source_type: repo
-topics: [cost-management, harnesses]
+topics: [skills, cost-management, harnesses]
 tags: [captain-hindsight, retro, token-efficiency, skills, friction, process-improvement]
 signal_level: high
 status: summarized

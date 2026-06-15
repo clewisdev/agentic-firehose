@@ -4,7 +4,7 @@ url: "local — skills/knowledge-base-wiki/SKILL.md"
 authors: [unknown]
 captured: 2026-05-28
 source_type: repo
-topics: [memory, harnesses]
+topics: [skills, memory, harnesses]
 tags: [skills, knowledge-base, wiki, ingest, karpathy]
 signal_level: high
 status: summarized

@@ -34,7 +34,7 @@ export const TOPIC_CANONICAL = new Set([
   'prompting', 'enterprise-deployment', 'context-engineering', 'system-design',
   'safety', 'agent-orchestration', 'code-review', 'team-dynamics',
   'spec-driven-development', 'engineering-judgment', 'model-internals',
-  'product-strategy', 'technical-debt', 'retrieval', 'personalization',
+  'product-strategy', 'technical-debt', 'skills', 'personalization',
 ]);
 
 // Drifted / synonymous values → canonical. Identity mappings are omitted (a
@@ -44,7 +44,11 @@ export const TOPIC_ALIASES = {
   'harness-engineering': 'harnesses', 'agent-scaffolding': 'harnesses',
   'agent-infrastructure': 'harnesses', 'agent-frameworks': 'harnesses',
   'agent-deployment': 'harnesses', 'packaging': 'harnesses',
-  'distribution': 'harnesses', 'skill-management': 'harnesses',
+  'distribution': 'harnesses',
+  // skills
+  'skill-management': 'skills', 'agent-skills': 'skills', 'claude-skills': 'skills',
+  'skill-libraries': 'skills', 'skill-marketplace': 'skills', 'skill-packaging': 'skills',
+  'skill-authoring': 'skills', 'agent-capabilities': 'skills',
   // tool-use
   'cli-integration': 'tool-use', 'web-access': 'tool-use',
   'real-time-data': 'tool-use', 'capability-extension': 'tool-use',
@@ -85,9 +89,9 @@ export const TOPIC_ALIASES = {
   'context-management': 'context-engineering', 'context-gathering': 'context-engineering',
   'context-building': 'context-engineering', 'long-context': 'context-engineering',
   'long-context-work': 'context-engineering',
-  // retrieval
-  'rag': 'retrieval', 'retrieval-augmented-generation': 'retrieval',
-  'embeddings': 'retrieval', 'document-indexing': 'retrieval',
+  // retrieval — retired topic, folded into memory
+  'retrieval': 'memory', 'rag': 'memory', 'retrieval-augmented-generation': 'memory',
+  'embeddings': 'memory', 'document-indexing': 'memory',
   // prompting
   'prompt-engineering': 'prompting', 'reflection': 'prompting',
   // evals

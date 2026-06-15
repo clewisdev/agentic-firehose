@@ -4,7 +4,7 @@ url: https://github.com/google/skills
 authors: [Google]
 captured: 2026-05-28
 source_type: repo
-topics: [harnesses, tool-use]
+topics: [skills, harnesses, tool-use]
 tags: [google, agent-skills, gemini, cloud-services, skill-registry, gcp]
 signal_level: high
 status: summarized

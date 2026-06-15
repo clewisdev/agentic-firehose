@@ -63,7 +63,7 @@ freshness_until: YYYY-QN | unknown | evergreen
 harnesses, tool-use, agentic-workflows, agent-architecture, code-generation, memory,
 cost-management, evals, ai-productivity, prompting, enterprise-deployment, context-engineering,
 system-design, safety, agent-orchestration, code-review, team-dynamics, spec-driven-development,
-engineering-judgment, model-internals, product-strategy, technical-debt, retrieval, personalization
+engineering-judgment, model-internals, product-strategy, technical-debt, skills, personalization
 
 Use \`tags\` (free-form) for finer-grained descriptors that don't fit a topic.
 
@@ -127,7 +127,7 @@ const TOPIC_CANONICAL = new Set([
   'prompting', 'enterprise-deployment', 'context-engineering', 'system-design',
   'safety', 'agent-orchestration', 'code-review', 'team-dynamics',
   'spec-driven-development', 'engineering-judgment', 'model-internals',
-  'product-strategy', 'technical-debt', 'retrieval', 'personalization',
+  'product-strategy', 'technical-debt', 'skills', 'personalization',
 ]);
 
 // Drifted / synonymous values → canonical. Identity mappings are omitted (a
@@ -138,7 +138,10 @@ const TOPIC_ALIASES: Record<string, string> = {
   'harness-engineering': 'harnesses', 'agent-scaffolding': 'harnesses',
   'agent-infrastructure': 'harnesses', 'agent-frameworks': 'harnesses',
   'agent-deployment': 'harnesses', 'packaging': 'harnesses',
-  'distribution': 'harnesses', 'skill-management': 'harnesses',
+  'distribution': 'harnesses',
+  'skill-management': 'skills', 'agent-skills': 'skills', 'claude-skills': 'skills',
+  'skill-libraries': 'skills', 'skill-marketplace': 'skills', 'skill-packaging': 'skills',
+  'skill-authoring': 'skills', 'agent-capabilities': 'skills',
   'cli-integration': 'tool-use', 'web-access': 'tool-use',
   'real-time-data': 'tool-use', 'capability-extension': 'tool-use',
   'agent-augmentation': 'tool-use', 'developer-tools': 'tool-use',
@@ -171,8 +174,8 @@ const TOPIC_ALIASES: Record<string, string> = {
   'context-management': 'context-engineering', 'context-gathering': 'context-engineering',
   'context-building': 'context-engineering', 'long-context': 'context-engineering',
   'long-context-work': 'context-engineering',
-  'rag': 'retrieval', 'retrieval-augmented-generation': 'retrieval',
-  'embeddings': 'retrieval', 'document-indexing': 'retrieval',
+  'retrieval': 'memory', 'rag': 'memory', 'retrieval-augmented-generation': 'memory',
+  'embeddings': 'memory', 'document-indexing': 'memory',
   'prompt-engineering': 'prompting', 'reflection': 'prompting',
   'evaluation': 'evals', 'measurement': 'evals', 'metrics': 'evals',
   'testing-evals': 'evals', 'agent-evaluation': 'evals', 'outcomes': 'evals',
