@@ -12,3 +12,7 @@ The shift from code-as-truth to spec-as-truth, driven by agent limitations with 
 ## Open threads
 
 - **Spec drift**: the same drift problem that plagued waterfall (stale specs after 6 months) applies here — what enforces spec→code consistency at runtime?
+
+## Synthesis
+
+- [The Spec as Primary Artifact: When Code Became a Build Output](../../synthesis/spec-as-primary-artifact.md) (2026-06-15, draft) — across four sources: how agents forced the hidden cost of vague specs into view; why governance must move upstream; the abstraction-ladder framing; and the open tensions (spec drift, cognitive-debt risk, cross-functional alignment).

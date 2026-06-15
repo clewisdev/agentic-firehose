@@ -14,3 +14,4 @@ The discipline of curating what goes into the model's context window — pulling
 ## Synthesis
 
 - [Harness Engineering: A 101](../../synthesis/harness-engineering-101.md) — context design is the first of Berkin's eight harness concerns; what the model sees at session start determines baseline behavior.
+- [The Spec as Primary Artifact: When Code Became a Build Output](../../synthesis/spec-as-primary-artifact.md) (2026-06-15, draft) — context-as-code as upstream governance: encoding constraints into the agent's working context so structurally invalid code is never generated.
