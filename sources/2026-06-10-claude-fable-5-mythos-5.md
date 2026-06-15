@@ -7,7 +7,7 @@ source_type: blog
 topics: [cost-management, tool-use, context-engineering, agentic-workflows]
 tags: [claude, vision, software-engineering, scientific-research, protein-design, genomics, memory, safeguards]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

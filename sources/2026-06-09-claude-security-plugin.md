@@ -7,7 +7,7 @@ source_type: blog
 topics: [tool-use, safety, code-generation]
 tags: [claude, vulnerability-detection, static-analysis, code-review, agent-review]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

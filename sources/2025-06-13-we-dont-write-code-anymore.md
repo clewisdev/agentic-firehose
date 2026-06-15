@@ -7,7 +7,7 @@ source_type: blog
 topics: [ai-productivity, team-dynamics, code-review, agent-architecture]
 tags: [management, workflow-change, intent-description, review-process]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2025-Q3
 ---

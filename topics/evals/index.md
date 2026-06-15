@@ -15,6 +15,7 @@ Evaluation frameworks, benchmarks, and methodologies for assessing agent and LLM
 - [Fowler/Subramaniam — Emerging Patterns in Building GenAI Products](../../sources/2026-05-30-fowler-genai-patterns.md) — evals as non-deterministic tests run in CI and on live systems. LLM-as-judge + human eval as the recommended combination; self-evaluation actively discouraged. Eval per component (guardrails, reranker, query rewriting) not just end-to-end — localises regressions. DeepEval code example.
 
 - [UpHill Workshop — Index](../../sources/2026-05-28-uphill-workshop-pdfs.md) — workshop index; evals content is distributed across component captures.
+- [SkillOpt: Self-Evolving Agent Skills](../../sources/2026-06-15-skillopt-executive-strategy.md) — validation-driven optimization as the eval mechanism: edits accepted only on strict held-out improvement; rejected-edit buffer guards against overfitting noisy rollout scores. Benchmarked on 52 (model × benchmark × harness) cells, winning or tying every cell against human/one-shot/TextGrad/GEPA baselines.
 
 ## Open threads
 

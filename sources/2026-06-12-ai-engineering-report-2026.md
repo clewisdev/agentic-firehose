@@ -7,7 +7,7 @@ source_type: report
 topics: [enterprise-deployment, code-generation, ai-productivity, technical-debt]
 tags: [telemetry, metrics, throughput, bugs, refactoring, workflow, senior-eng]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q4
 ---

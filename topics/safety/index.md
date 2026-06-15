@@ -5,6 +5,7 @@ Structural enforcement for agent behaviour — guardrails (approvals, budgets, s
 ## Sources
 
 - [Pydantic AI Harness — Production](../../sources/2026-05-31-pydantic-ai-harness-production.md) — guardrails as a composable harness module (approvals, budgets, secret masking); safety as one of six capability matrix dimensions for production agents.
+- [Claude Code security plugin (Anthropic)](../../sources/2026-06-09-claude-security-plugin.md) — defense-in-depth in three layers: per-edit deterministic pattern match (zero model cost — `eval`, `pickle.loads`, `dangerouslySetInnerHTML`), end-of-turn fresh-context Opus review of the full diff (logic bugs: authz bypass, IDOR, SSRF), and a deeper agentic commit-time review. Surfaces findings as instructions, does not block. −30–40% security PR comments.
 
 ## Synthesis
 

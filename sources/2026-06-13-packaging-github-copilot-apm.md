@@ -4,10 +4,10 @@ url: http://thomasthornton.cloud/packaging-github-copilot-agents-and-skills-with
 authors: [Thomas Thornton]
 captured: 2026-06-13
 source_type: blog
-topics: [tool-use, harnesses, system-design]
+topics: [skills, tool-use, harnesses, system-design]
 tags: [github-copilot, apm, agents, skills, mcp, versioning]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

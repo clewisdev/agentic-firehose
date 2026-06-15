@@ -7,7 +7,7 @@ source_type: blog
 topics: [agent-architecture, code-generation, tool-use, system-design, prompting]
 tags: [codex, gpt-5, automation, ci-cd, observability, context-management]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q4
 ---

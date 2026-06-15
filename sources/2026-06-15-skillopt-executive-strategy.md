@@ -4,10 +4,10 @@ url: https://arxiv.org/abs/2605.23904
 authors: [Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, Zisu Huang, Yan Li, Xuemei Gao, Qi Dai, Bei Liu, Kai Qiu, Yuqing Yang, Dongdong Chen, Xue Yang, Chong Luo]
 captured: 2026-06-15
 source_type: paper
-topics: [agent-architecture, prompting, evals]
+topics: [skills, agent-architecture, prompting, evals]
 tags: [skill-optimization, text-space-optimization, agent-training, rollout-feedback, validation-driven]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2027-Q2
 ---

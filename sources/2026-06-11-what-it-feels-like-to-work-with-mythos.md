@@ -7,7 +7,7 @@ source_type: blog
 topics: [agentic-workflows, tool-use, code-generation, ai-productivity]
 tags: [claude-5-fable, mythos-class, agentic-workflow, multi-agent-orchestration, long-horizon-tasks]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q3
 ---

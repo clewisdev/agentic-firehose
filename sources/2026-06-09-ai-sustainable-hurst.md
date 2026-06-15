@@ -7,7 +7,7 @@ source_type: blog
 topics: [enterprise-deployment, team-dynamics, engineering-judgment, spec-driven-development]
 tags: [productivity, mentorship, alignment, burnout, gen-ai]
 signal_level: high
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q4
 ---
