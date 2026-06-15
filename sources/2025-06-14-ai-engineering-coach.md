@@ -7,7 +7,7 @@ source_type: repo
 topics: [tool-use, prompting, ai-productivity]
 tags: [vscode, extension, session-analysis, anti-patterns, skill-discovery]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2025-Q4
 ---

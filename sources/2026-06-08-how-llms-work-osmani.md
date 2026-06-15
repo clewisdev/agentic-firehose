@@ -7,7 +7,7 @@ source_type: post
 topics: [agent-architecture, model-internals, memory]
 tags: [tokenization, embeddings, attention-mechanism, ffn, moe, kv-cache, rotary-position-embeddings]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: evergreen
 ---

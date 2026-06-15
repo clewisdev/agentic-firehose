@@ -7,7 +7,7 @@ source_type: blog
 topics: [tool-use, model-internals, agentic-workflows, context-engineering]
 tags: [claude, cowork, desktop-app, folder-structure, prompt-engineering]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---

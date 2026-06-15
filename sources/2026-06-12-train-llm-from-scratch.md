@@ -7,7 +7,7 @@ source_type: post
 topics: [model-internals, spec-driven-development]
 tags: [pytorch, attention, tokenization, sft, ppo, dpo]
 signal_level: low
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

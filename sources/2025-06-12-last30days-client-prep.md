@@ -7,7 +7,7 @@ source_type: post
 topics: [agentic-workflows, context-engineering, tool-use]
 tags: [last30days, claude-code, reddit, github, hacker-news, x, youtube, tiktok]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2025-Q3
 ---

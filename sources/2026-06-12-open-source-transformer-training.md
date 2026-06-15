@@ -7,7 +7,7 @@ source_type: post
 topics: [model-internals]
 tags: [pytorch, attention, checkpointing, peft, trl, colab, gpu]
 signal_level: low
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

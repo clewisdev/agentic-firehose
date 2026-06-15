@@ -7,7 +7,7 @@ source_type: blog
 topics: [memory, evals, model-internals, safety]
 tags: [llm, production, hallucination, non-determinism, prompt-engineering]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: 2026-Q2
 ---

@@ -10,6 +10,7 @@ Patterns for coordinating multiple agents or agent loops — task routing, deleg
 - [Loop Engineering: The Coding-Agent Pattern in Codex and Claude Code](../../sources/2026-06-09-loop-engineering-coding-agents.md) — Loop engineering as orchestration pattern: external state enables triage/implement/verify/resume; halting code review increases comprehension debt — automation doesn't delete human responsibility
 - [5 takeaways from Kun (ex-Meta L8) on agentic engineering systems](../../sources/2026-06-09-kun-meta-agentic-workflow.md) — Subagent delegation heuristic: exploratory/context-heavy work goes to subagents so the main agent stays focused; Treehouse manages reusable worktrees to prevent conflicts in parallel execution
 - [Omnigent: Open-sourcing a meta-harness for AI agents](../../sources/2025-06-14-omnigent-meta-harness.md) — Zaharia (Databricks): Omnigent meta-harness — uniform API above heterogeneous agent harnesses (Claude Code, Codex, Pi); swap harnesses/models mid-session; contextual policies tied to runtime state (spend threshold, untrusted package triggers); live collaborative UI
+- [Hensu: Infrastructure-as-Code for AI Agent Workflows](../../sources/2025-06-09-hensu-infrastructure-as-code.md) — Hensu: IaC for agent workflows — Kotlin DSL compiles to portable JSON artifacts; graph nodes, rubric scoring, conditional branching, parallel execution; deploy to CLI or server without environment drift
 
 ## Open threads
 

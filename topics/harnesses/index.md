@@ -51,6 +51,7 @@ Working distinction (Berkin): *agentics describes what an agent may do; harness 
 - [Fabro: Workflow Graphs for AI Agent Orchestration](../../sources/2026-06-12-fabro-workflow-orchestration.md) — verification is first-class — builds and tests are gates, not suggestions, with automatic fix loops. Every run commits to Git branches for deterministic replay/revert/audit; auto-retrospectives (cost, duration, files) close an optimization loop. Multi-model routing via CSS-like selector specificity (ID > class > shape > wildcard).
 - [AI/ML Engineer Skills Beyond Prompt Engineering](../../sources/2026-06-10-ai-ml-engineer-skills.md) — 'Learn harness engineering, not just prompt engineering; context engineering, not just long prompts.' Agent guardrails (loop/tool budgets, termination), model routing + graceful fallbacks, structured-output validation and repair loops — reliability is the real skill.
 - [agent-skill-manager (asm): Universal skill manager for AI coding agents](../../sources/2026-06-08-agent-skill-manager.md) — asm addresses skills-as-scattered-config: each agent maintains its own directory convention (~/.claude/skills/, ~/.codex/skills/, etc.), leading to duplicates and security risk; asm is the packaging-layer solution
+- [Hensu: Infrastructure-as-Code for AI Agent Workflows](../../sources/2025-06-09-hensu-infrastructure-as-code.md) — Hensu: IaC harness pattern — explicit graph semantics (nodes/transitions/state as first-class), rubric quality gates, single shared engine for dev/prod parity; beta (v0.1.0)
 
 ## Synthesis
 

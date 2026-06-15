@@ -7,7 +7,7 @@ source_type: post
 topics: [memory, agentic-workflows, context-engineering]
 tags: [okf, google, karpathy, knowledge-base, agent-reliability, maintenance]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2025-Q4
 ---

@@ -11,6 +11,7 @@ Structural enforcement for agent behaviour — guardrails (approvals, budgets, s
 - [AI/ML Engineer Skills Beyond Prompt Engineering](../../sources/2026-06-10-ai-ml-engineer-skills.md) — production correctness/safety: prompt-injection defense, data-leakage prevention, function-calling reliability with argument validation + idempotency, agent loop/tool budgets to stop runaway agents. 'You learn these by shipping something real, watching it fail, and fixing it under constraints.'
 - [Fragments: June 2 (AI metrics, open vs closed models, hallucinated citations, LLM-assisted security)](../../sources/2026-06-09-fowler-fragments-ai-metrics.md) — Ernst & Young hallucinated citations case: >50% of references fabricated; well-known firms publishing AI-generated slop 'poisons the well' for future researchers
 - [Omnigent: Open-sourcing a meta-harness for AI agents](../../sources/2025-06-14-omnigent-meta-harness.md) — Omnigent contextual policies: security-team sandbox isolation; runtime-state-aware permissions more expressive than static role-based access for cost and security control in agent systems
+- [Emerging Patterns in Building GenAI Products](../../sources/2025-02-25-emerging-patterns-genai-products.md) — Guardrails pattern: separate LLM calls to prevent malicious input or sanitize output; embedding-based or rule-based approaches; independently evaluable and layerable
 
 ## Synthesis
 

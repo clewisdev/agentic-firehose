@@ -7,7 +7,7 @@ source_type: post
 topics: [product-strategy, enterprise-deployment]
 tags: [kubernetes, google, microsoft, compensation-negotiation, founder-advice]
 signal_level: medium
-status: raw
+status: summarized
 confidence: high
 freshness_until: evergreen
 ---

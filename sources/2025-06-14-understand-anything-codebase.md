@@ -7,7 +7,7 @@ source_type: post
 topics: [code-generation, memory, team-dynamics, agent-architecture]
 tags: [claude-code, codex, cursor, copilot, gemini-cli, multi-language]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

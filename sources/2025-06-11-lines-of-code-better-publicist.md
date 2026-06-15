@@ -7,7 +7,7 @@ source_type: post
 topics: [evals, ai-productivity]
 tags: [ai-coding, metrics, leadership, pdsa]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2025-Q3
 ---

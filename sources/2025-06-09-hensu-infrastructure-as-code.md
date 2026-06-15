@@ -7,7 +7,7 @@ source_type: repo
 topics: [agent-orchestration, agent-architecture, enterprise-deployment, harnesses]
 tags: [kotlin, json, graalvm, gemini, langchain4j, terraform-analogy]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: unknown
 ---

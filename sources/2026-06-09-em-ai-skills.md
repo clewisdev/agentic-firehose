@@ -7,7 +7,7 @@ source_type: post
 topics: [team-dynamics, agentic-workflows]
 tags: [process-automation, reporting, observability]
 signal_level: medium
-status: raw
+status: summarized
 confidence: medium
 freshness_until: 2026-Q3
 ---
