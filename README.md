@@ -95,6 +95,19 @@ python3 docs/build.py
 
 ---
 
+## Agent configuration
+
+`.claude/` contains project-scoped configuration picked up automatically by compatible agents:
+
+| Path | Purpose |
+|------|---------|
+| `.claude/commands/synthesise.md` | Registers the synthesise skill as a slash command for Claude Code |
+| `.claude/rules/edit-from-file.md` | Instructs the agent to re-read a file before editing — prevents stale-memory edit failures |
+| `.claude/rules/cloudflare-workers.md` | Worker-specific rules: idempotency requirement, `tsc` check before deploy, email handler gotchas |
+| `.claude/rules/shell-environment.md` | WSL/Windows-specific: no `jq`, CRLF traps — delete or replace if you're on Linux/macOS |
+
+---
+
 ## Capturing URLs
 
 Send an email to your capture address with a URL anywhere in the body or subject. Optional subject tags:
