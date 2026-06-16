@@ -163,6 +163,9 @@ def main():
         if rec:
             records.append(rec)
 
+    # Build url_by_file early so synthesis and topic rendering both use it
+    url_by_file = {r["file"]: r.get("url") for r in records if r.get("url")}
+
     # ---- parse synthesis files ----
     SYNTH_LIST_FIELDS = {"topics", "tags", "sources"}
     syntheses = []
@@ -204,7 +207,7 @@ def main():
             body_md = raw[body_start + 4:].strip()
         else:
             body_md = ""
-        rec["html"] = md_to_html(body_md, {})
+        rec["html"] = md_to_html(body_md, url_by_file)
         syntheses.append(rec)
     syntheses.sort(key=lambda r: r.get("updated", r.get("written", "")), reverse=True)
 
@@ -290,7 +293,6 @@ def main():
 
     repos = sorted(repo_meta.values(), key=lambda r: -r["stars"])
 
-    url_by_file = {r["file"]: r.get("url") for r in records if r.get("url")}
     topic_docs = render_topics(url_by_file)
 
     topics = counter("topics", listy=True)

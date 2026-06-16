@@ -588,6 +588,23 @@ function openSynthOverlay(idx){
     `<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap">${chips}</div>` +
     (s.html || "") +
     (srcLinks ? `<h3>Sources (${src_count})</h3><ul class="feed">${srcLinks}</ul>` : "");
+
+  // Rewrite <code>sources/file.md</code> spans into external links where a URL is known
+  document.querySelectorAll("#synthOverlayBody code").forEach(el => {
+    const txt = el.textContent || "";
+    const m = txt.match(/sources\/([^)\s`]+\.md)/);
+    if(!m) return;
+    const rec = (D.sources||[]).find(r => r.file === m[1]);
+    if(!rec || !rec.url) return;
+    const a = document.createElement("a");
+    a.href = rec.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.className = "ext";
+    a.textContent = rec.title || m[1];
+    el.replaceWith(a);
+  });
+
   document.getElementById("synthOverlay").classList.add("open");
 }
 
