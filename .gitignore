@@ -7,6 +7,9 @@ Thumbs.db
 # Claude Code per-user / per-machine state — never commit
 .claude/settings.local.json
 
+# Session handoff notes — personal operational context, not for public repo
+handoff.md
+
 # Transient working area for one-off scripts and scratch
 temp/
 

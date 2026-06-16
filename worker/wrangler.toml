@@ -11,13 +11,11 @@ enabled = true
 GITHUB_OWNER = "clewisdev"
 GITHUB_REPO = "agentic-firehose"
 GITHUB_DEFAULT_BRANCH = "main"
-# Comma-separated list of email addresses allowed to trigger captures.
-# Update this when your sending address changes.
-ALLOWED_SENDERS = "REDACTED_EMAIL,REDACTED_EMAIL"
 
 # Secrets — set these once via wrangler CLI, never commit them:
 #   wrangler secret put ANTHROPIC_API_KEY
 #   wrangler secret put GITHUB_TOKEN
+#   wrangler secret put ALLOWED_SENDERS   (comma-separated email allowlist)
 #
 # GITHUB_TOKEN needs: Contents (read + write) on clewisdev/agentic-firehose
 # Minimum scopes — use a fine-grained PAT, not a classic token.
