@@ -205,13 +205,13 @@ Pattern: agent reads the issue → proposes a plan → writes the code → draft
 ## Open questions
 
 - The 30% token threshold: is this empirical from their team's experience, or theoretical? Does it differ by task type (architecture work degrades faster than boilerplate)?
-- "Automate what you repeat" → skills. But how do you know a pattern is ready to be encoded as a skill vs still evolving? The an internal enterprise team captain-hindsight pattern (post-session retrospective) is a mechanism for answering this, but it's not in this talk.
+- "Automate what you repeat" → skills. But how do you know a pattern is ready to be encoded as a skill vs still evolving? The captain-hindsight pattern (post-session retrospective) is a mechanism for answering this, but it's not in this talk.
 - The PR operator pattern: the guardrail (agent restates plan before changes) requires human review of the plan. What's the latency cost of this gate for a high-volume repo? At what volume does the guard become the bottleneck?
 
 ## Related
 
 - `sources/2026-05-28-uphill-agentic-ladder.md` — companion session 1 content: decision framework for prompting → CAG → RAG → workflow → agent
-- `sources/2026-05-28-internal-teams-snippet.md` — similar model-routing-by-task-type practice, from an internal enterprise team team
+- `sources/2026-05-28-internal-teams-snippet.md` — similar model-routing-by-task-type practice, from an internal enterprise team
 - `sources/2026-05-28-brussee-caveman-code.md` — fast model token efficiency (caveman approach)
 - `synthesis/harness-engineering-101.md` — "rules push, content pulls" is context design
 - `topics/harnesses/index.md`

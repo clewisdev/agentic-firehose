@@ -79,7 +79,7 @@ Claude-mem uses SessionStart to prime context — loading relevant prior memory 
 
 POHA's "acknowledgment loop" (self-mailto pattern) is a form of session finalization — writing a record of what happened to an external channel.
 
-Captain-hindsight from the an internal enterprise team snippet (sources/2026-05-28-internal-teams-snippet.md) is semantically a SessionEnd pattern: post-session retrospective that generates recommendations for improving future sessions.
+Captain-hindsight from the internal teams snippet (sources/2026-05-28-internal-teams-snippet.md) is semantically a SessionEnd pattern: post-session retrospective that generates recommendations for improving future sessions.
 
 **Why this is powerful:** The session boundary is where you do expensive setup once (SessionStart) and expensive cleanup once (SessionEnd), rather than paying for it on every tool call.
 

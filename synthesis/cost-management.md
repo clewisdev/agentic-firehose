@@ -126,7 +126,7 @@ Total cost of operation — not headline `$/M tokens` — is the unit of compari
 A frontier model that gets the answer on the first try often beats a cheap model
 that needs three rounds plus a human review pass.
 
-The an internal enterprise team multi-model routing practice (`sources/2026-05-28-internal-teams-snippet.md`)
+The multi-model routing practice (`sources/2026-05-28-internal-teams-snippet.md`)
 makes this concrete: Opus 4.7 for planning and design, cheaper models for
 implementation, GPT-5.5 for complex larger scopes. Task-type routing rather than
 blanket frontier-model access.
@@ -147,7 +147,7 @@ KB's capture workflow. They are structurally different operations:
 For the KB capture workflow: caveman wins if the primary cost is output verbosity
 (e.g., long synthesis writes); captain-hindsight wins if the primary cost is repeated
 setup or re-derivation of stable context. The empirical answer requires running both
-and comparing. The an internal enterprise team snippet suggests combining both is the practical choice.
+and comparing. The internal teams snippet suggests combining both is the practical choice.
 
 ## Open tensions
 

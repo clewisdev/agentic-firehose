@@ -48,7 +48,7 @@ who operate at the frontier have independently converged on the same folder stru
 - Rosenthal (`sources/2026-05-20-rosenthal-company-os.md`): `.claude/skills/` — one file per
   task, deliberately flat. Examples: TAM mapping, viral LinkedIn research, ICP matrices.
   The commenter Noam Nisand calls this "deceptively obvious but rarely done."
-- an internal enterprise team (`sources/2026-05-28-internal-teams-snippet.md`): "short, sharp SKILL.md files:
+- An internal enterprise team (`sources/2026-05-28-internal-teams-snippet.md`): "short, sharp SKILL.md files:
   easy to adopt, hard to outgrow."
 
 The framing that best explains *why* flat wins over nested: Vignesh W.'s comment on the
@@ -117,7 +117,7 @@ to actual package distribution infrastructure in roughly 18 months:
   unified CLI/TUI for installing, auditing, and publishing skills. 2,800+ skills
   browsable in the ASM Catalog. Security scanning before install (flags shell
   execution, credential exposure, obfuscation). Cross-provider duplicate detection.
-- **an internal enterprise team internal catalog** — `skill-issue` Bitbucket repo with 15 skills + rules,
+- **Internal enterprise catalog** — an internal `skill-issue` Bitbucket repo with 15 skills + rules,
   pinning third-party submodules (Pocock, Anthropic official). Internal distribution
   through team channels.
 - **Karpathy CLAUDE.md** (`sources/2026-05-28-karpathy-skills-claude-md.md`) — 160k
@@ -154,7 +154,7 @@ of the optimization runs themselves.
 
 The KB has two competing framings for what skills are:
 
-1. **Skills as packaged context** (Pocock, Rosenthal, an internal enterprise team): a markdown file the
+1. **Skills as packaged context** (Pocock, Rosenthal, internal enterprise teams): a markdown file the
    agent loads that gives it procedural knowledge for a specific task. The value is in
    the content.
 2. **Skills as capability distribution** (ASM, agent-skills-overview, SkillOpt): a

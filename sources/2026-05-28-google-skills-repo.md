@@ -35,7 +35,7 @@ The repository is explicitly open to community contributions — submitted via P
 
 Addy Osmani framed this as the solution to a specific problem: "dumping massive doc sites into an agent's context window leads to context bloat, model confusion, and high token costs." The skills pattern loads only the relevant reference slice.
 
-This is noteworthy as a vendor-side adoption of the skills pattern — previously skills were practitioner-created (Pocock, an internal enterprise team, etc.). Google publishing an official skills repo validates the pattern and creates a precedent for other vendors to follow.
+This is noteworthy as a vendor-side adoption of the skills pattern — previously skills were practitioner-created (Pocock, internal enterprise teams, etc.). Google publishing an official skills repo validates the pattern and creates a precedent for other vendors to follow.
 
 ## Takeaways
 

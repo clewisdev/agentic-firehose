@@ -94,7 +94,7 @@ Explicit gates where a human must review before the agent proceeds. The opposite
 
 ### 7. Cost controls
 
-Token budgets, per-tool output caps, rate-limit handling, model routing by task type. Brussee's caveman-code (sources/2026-05-28-brussee-caveman-code.md) implements per-tool output caps and ANSI stripping to cut 1.93x token cost. The an internal enterprise team model routing practice (Opus for planning, cheaper models for implementation) is cost-aware harness design.
+Token budgets, per-tool output caps, rate-limit handling, model routing by task type. Brussee's caveman-code (sources/2026-05-28-brussee-caveman-code.md) implements per-tool output caps and ANSI stripping to cut 1.93x token cost. An internal enterprise team's model routing practice (Opus for planning, cheaper models for implementation) is cost-aware harness design.
 
 **Why it matters:** Unbounded Consumption (OWASP #10) — an agent that runs indefinitely or processes enormous tool outputs without budgeting — produces cost surprises. For the cloud capture agent, each invocation is billed; the harness must set a ceiling.
 

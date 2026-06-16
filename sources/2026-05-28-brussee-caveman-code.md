@@ -70,6 +70,6 @@ Brussee also publishes a standalone `caveman` skill (distinct from caveman-code)
 ## Related
 
 - `sources/2026-05-28-pi-agent-framework.md` — underlying pi-code framework
-- `sources/2026-05-28-internal-teams-snippet.md` — caveman skill in an internal enterprise team shared library context
+- `sources/2026-05-28-internal-teams-snippet.md` — caveman skill in an internal enterprise team's shared library context
 - `topics/cost-management/index.md`
 - `topics/harnesses/index.md`

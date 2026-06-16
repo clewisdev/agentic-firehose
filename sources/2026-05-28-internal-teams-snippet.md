@@ -1,7 +1,7 @@
 ---
-title: "an internal enterprise team Teams Conversation: captain-hindsight, caveman, model routing"
+title: "Internal Teams Conversation: captain-hindsight, caveman, model routing"
 url: internal-teams-snippet
-authors: [Various an internal enterprise team colleagues]
+authors: [Various internal colleagues]
 captured: 2026-05-28
 source_type: post
 topics: [skills, harnesses, cost-management]
@@ -12,9 +12,9 @@ confidence: medium
 freshness_until: 2026-Q4
 ---
 
-# an internal enterprise team Teams Snippet: Skills and Model Routing Practices
+# Internal Teams Snippet: Skills and Model Routing Practices
 
-Internal Microsoft Teams conversation from a practitioner community (an internal enterprise team). Contains first-hand accounts of skill and model usage patterns in production. **Internal Bitbucket links are inaccessible** (`bitbucket.internal`) — content below is based on visible conversation text and a screenshot.
+Internal Microsoft Teams conversation from a practitioner community at an enterprise software company. Contains first-hand accounts of skill and model usage patterns in production. **Internal Bitbucket links are inaccessible** — content below is based on visible conversation text and a screenshot.
 
 ## Visible content and signal
 
@@ -28,7 +28,7 @@ The skill is a post-session optimization tool: after a Claude session completes,
 
 This is the inverse of the caveman approach: instead of compressing outputs (runtime), captain-hindsight optimizes the *process* (eliminating unnecessary steps before the next session runs).
 
-Referenced path: `bitbucket.internal/projects/ORANGE/repos/skill-issue/browse/skills/captain-hindsight` — inaccessible.
+Referenced path: internal Bitbucket — inaccessible.
 
 ### measure-twice-cut-once rule
 
@@ -37,7 +37,7 @@ Referenced as a companion to captain-hindsight and the `/grill-me` skill: a rule
 1. Use `/grill-me` to run Socratic design review (Opus 4.7 recommended for this)
 2. Apply `measure-twice-cut-once.mdc` rule to validate plan before coding starts
 
-Path: `bitbucket.internal/.../rules/measure-twice-cut-once.mdc` — inaccessible.
+Path: internal Bitbucket — inaccessible.
 
 ### Model routing practices (first-person account)
 
@@ -67,18 +67,18 @@ Both described as "short, sharp SKILL.md files: easy to adopt, hard to outgrow."
 ## Takeaways
 
 - **captain-hindsight is a novel pattern**: post-session retrospective that makes future sessions cheaper by improving tooling rather than compressing outputs. This is complementary to caveman (runtime compression) and file-read deduplication (session caching).
-- **Model routing by task type is a real production practice**, not a theoretical concern. The an internal enterprise team pattern (Opus for planning/UI, cheaper models for implementation/docs) is a concrete template to consider.
+- **Model routing by task type is a real production practice**, not a theoretical concern. The pattern here (Opus for planning/UI, cheaper models for implementation/docs) is a concrete template to consider.
 - **"Easy to adopt, hard to outgrow"** is the right framing for skills. A skill should be a force multiplier that doesn't become obsolete as the user's sophistication grows.
 - **The caveman skill guardrails design** is worth noting: brevity is not applied to security warnings, irreversible operations, or confusing multi-step sequences. This is how you apply cost optimization without compromising safety-critical communication.
 
 ## Open questions
 
-- Is captain-hindsight publicly available anywhere outside the an internal enterprise team Bitbucket? The concept is generalizable; the implementation might be.
-- How does the an internal enterprise team model routing hold up with model updates? GPT-5.5 as preferred for "complex bigger scopes" is a claim about relative model capability that ages quickly.
+- Is captain-hindsight publicly available anywhere outside this internal Bitbucket? The concept is generalizable; the implementation might be.
+- How does this model routing hold up with model updates? GPT-5.5 as preferred for "complex bigger scopes" is a claim about relative model capability that ages quickly.
 
-## The wider skill-issue catalog (now known)
+## The wider skill catalog (now known)
 
-The an internal enterprise team `skill-issue` Bitbucket repo contains 15 skills + 1 rule. Full list obtained via captainhindsight.zip (2026-05-28). Skills beyond those referenced in the Teams snippet:
+The internal `skill-issue` Bitbucket repo contains 15 skills + 1 rule. Full list obtained via captainhindsight.zip (2026-05-28). Skills beyond those referenced in the Teams snippet:
 
 `bitbucket-pr`, `drawio-diagram`, `iam-roles-ep-integration`, `jenkins-pipeline-debugging`, `jenkins-pr-logs-fetcher`, `jira-story-creator`, `jira-xray-test`, `karpathy-guidelines`, **`knowledge-base-wiki`**, `mermaid-diagrams`, `perfect-sd-tickets`, `skill-contributor`, `sonar-issues`
 

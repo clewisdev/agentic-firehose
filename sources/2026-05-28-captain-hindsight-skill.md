@@ -1,7 +1,7 @@
 ---
 title: "Captain Hindsight: Opt-in Implementation Retro Skill"
 url: internal://skill-issue/skills/captain-hindsight
-authors: [an internal enterprise team / skill-issue contributors]
+authors: [internal skill-issue contributors]
 captured: 2026-05-28
 source_type: repo
 topics: [skills, cost-management, harnesses]
@@ -14,7 +14,7 @@ freshness_until: evergreen
 
 # Captain Hindsight
 
-*Source: shared via captainhindsight.zip. Internal an internal enterprise team Bitbucket. Companion to the wider [`skill-issue`](https://bitbucket.internal/projects/ORANGE/repos/skill-issue) catalog.*
+*Source: shared via captainhindsight.zip. Internal Bitbucket. Companion to a wider internal `skill-issue` catalog.*
 
 An opt-in post-implementation retrospective skill. Goal: **turn observed friction into concrete tracked artefacts (rules, skills, scripts, docs, tests) that lower token cost or raise quality on the next run.** Only fires when the user explicitly invokes it.
 
@@ -119,7 +119,7 @@ The skill's output format (concrete file path + expected payoff) maps perfectly 
 
 ## Note on the wider skill-issue catalog
 
-The an internal enterprise team `skill-issue` repo contains 15 skills and 1 rule beyond captain-hindsight. Two are potentially relevant to this KB and flagged for follow-up:
+The internal `skill-issue` repo contains 15 skills and 1 rule beyond captain-hindsight. Two are potentially relevant to this KB and flagged for follow-up:
 
 - **`knowledge-base-wiki`** — "Build and maintain a personal LLM-powered knowledge base rooted at `~/knowledge-base`." Directly related to this project's architecture. See if it contains patterns applicable here.
 - **`measure-twice-cut-once`** (rule) — plan deliberately, use grill-me style questions, hand off implementation with model/skill guidance. Already captured conceptually; the `.mdc` rule file itself may have implementation detail worth capturing.
