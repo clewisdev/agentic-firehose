@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agentic-firehose · telemetry</title>
+<style>
+  :root {
+    --bg:#0d1117; --panel:#11161d; --panel2:#0b0f15; --line:#222b36;
+    --fg:#ecf0f1; --mut:#7f8c8d; --steel:#8a9ba8;
+    --flow:#3498db; --flow2:#5dade2; --flow-pale:#aed6f1;
+    --noise:#e74c3c; --brass:#e6b34d;
+    --mono:"SFMono-Regular",ui-monospace,"SF Mono","JetBrains Mono","Fira Code",Menlo,Consolas,monospace;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--mono);
+    font-size:13.5px; line-height:1.55; -webkit-font-smoothing:antialiased; }
+  body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 16% -8%, rgba(52,152,219,.11), transparent 62%),
+      radial-gradient(720px 420px at 92% 112%, rgba(230,126,34,.045), transparent 60%); }
+  body::after { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.5;
+    background-image:
+      linear-gradient(to right, rgba(138,155,168,.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(138,155,168,.035) 1px, transparent 1px);
+    background-size:46px 46px; }
+  a { color:var(--flow2); text-decoration:none; }
+  a:hover { color:var(--flow-pale); text-decoration:underline; text-underline-offset:3px; }
+  ::-webkit-scrollbar { width:8px; height:7px; }
+  ::-webkit-scrollbar-thumb { background:var(--line); border-radius:4px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+
+  /* ---------- header ---------- */
+  header { padding:22px 26px 0; max-width:1280px; margin:0 auto; }
+  .topbar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .mark { width:56px; height:34px; flex:0 0 auto; }
+  .wordmark { font-size:20px; font-weight:700; letter-spacing:-.5px; }
+  .wordmark .caret { color:var(--flow); animation:blink 1.3s steps(1) infinite; }
+  .tagline { color:var(--mut); font-size:12.5px; }
+  .live { margin-left:auto; display:flex; align-items:center; gap:8px; color:var(--mut);
+    font-size:11.5px; letter-spacing:.5px; }
+  .live .dot { width:8px; height:8px; border-radius:50%; background:var(--flow);
+    box-shadow:0 0 0 0 rgba(52,152,219,.6); animation:pulse 2.2s ease-out infinite; }
+  .rule { height:1px; margin:16px 0 0;
+    background:linear-gradient(90deg,transparent,var(--flow) 18%,var(--flow2) 50%,var(--flow) 82%,transparent);
+    background-size:220% 100%; animation:flowline 7s linear infinite; }
+
+  .wrap { max-width:1280px; margin:0 auto; padding:0 26px 80px; }
+
+  /* ---------- compact metrics readout ---------- */
+  .readout { display:flex; flex-wrap:wrap; align-items:center; gap:9px; color:var(--mut);
+    font-size:11.5px; letter-spacing:.4px; margin:14px 0 20px; }
+  .readout .m b { font-variant-numeric:tabular-nums; font-weight:700; margin-right:3px; }
+  .readout .sep { color:var(--line); }
+
+  /* ---------- layout: 2×2 grid, each row ~44vh ---------- */
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:16px; }
+  @media (max-width:880px){ .grid, .grid-3 { grid-template-columns:1fr; } }
+
+  /* left column stacks two panels; right column is one tall panel */
+  .col-left  { display:flex; flex-direction:column; gap:16px; }
+  .col-right { display:flex; flex-direction:column; gap:16px; }
+
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:5px;
+    padding:16px 18px; transition:border-color .18s, box-shadow .18s; }
+  /* fixed-height panels */
+  .panel-fixed { height:44vh; min-height:260px; display:flex; flex-direction:column; overflow:hidden; }
+  /* half-height for the two stacked left panels */
+  .panel-half  { height:calc(44vh - 8px); min-height:220px; display:flex; flex-direction:column; overflow:hidden; }
+  .panel-body  { flex:1; overflow:hidden; min-height:0; }
+
+  .panel h2 { margin:0 0 10px; font-size:11.5px; text-transform:uppercase; letter-spacing:1.4px;
+    color:var(--steel); display:flex; align-items:center; justify-content:space-between; font-weight:600; flex:0 0 auto; }
+  .panel h2 .lead { display:flex; align-items:center; gap:9px; }
+  .panel h2 .lead::before { content:""; width:7px; height:7px; background:var(--flow);
+    transform:rotate(45deg); flex:0 0 auto; }
+  .panel h2 .sub { color:var(--mut); text-transform:none; letter-spacing:0; font-weight:400; font-size:10.5px; }
+  .panel.filtered { border-color:var(--flow);
+    box-shadow:0 0 0 1px rgba(52,152,219,.3), 0 0 26px -8px rgba(52,152,219,.55); }
+  .clear { cursor:pointer; color:var(--flow2); text-transform:none; letter-spacing:0;
+    font-weight:400; display:none; }
+  .clear:hover { color:var(--flow-pale); }
+
+  /* ---------- TOPICS widget ---------- */
+  .tlist { display:grid; grid-template-columns:1fr 1fr; gap:1px 22px; overflow-y:auto; flex:1; min-height:0; }
+  @media (max-width:560px){ .tlist { grid-template-columns:1fr; } }
+  .trow { display:flex; align-items:center; gap:9px; padding:5px 7px; border-radius:3px;
+    cursor:pointer; transition:background .12s; }
+  .trow:hover { background:rgba(138,155,168,.07); }
+  .trow.active { background:rgba(52,152,219,.14); box-shadow:inset 2px 0 0 var(--flow); }
+  .trow .nm { flex:1; font-size:12.5px; color:var(--flow-pale); white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; }
+  .trow:hover .nm, .trow.active .nm { color:#fff; }
+  .trow .tmix { display:flex; width:42px; height:5px; border-radius:3px; overflow:hidden;
+    background:var(--panel2); border:1px solid rgba(138,155,168,.12); flex:0 0 auto; }
+  .trow .tmix i { display:block; height:100%; }
+  .trow .ct { flex:0 0 24px; text-align:right; font-size:11.5px; color:var(--brass);
+    font-weight:700; font-variant-numeric:tabular-nums; }
+
+  /* ---------- topics pager ---------- */
+  .tpager { display:flex; align-items:center; gap:8px; padding:6px 0 0; font-size:11.5px;
+    color:var(--mut); flex:0 0 auto; border-top:1px solid var(--line); margin-top:4px; }
+  .tpager button { background:var(--panel2); border:1px solid var(--line); color:var(--steel);
+    border-radius:3px; padding:2px 9px; font-size:11px; cursor:pointer; font-family:var(--mono);
+    transition:border-color .12s, color .12s; }
+  .tpager button:hover:not(:disabled) { border-color:var(--flow); color:var(--flow2); }
+  .tpager button:disabled { opacity:.3; cursor:default; }
+  .tpager .tpinfo { margin-left:auto; }
+
+  /* ---------- topic detail OVERLAY (covers full left column) ---------- */
+  .topic-overlay { position:absolute; inset:0; z-index:20; border-radius:5px;
+    background:var(--panel); border:1px solid var(--flow);
+    box-shadow:0 0 0 1px rgba(52,152,219,.3), 0 8px 32px -8px rgba(0,0,0,.7);
+    padding:16px 18px; display:none; flex-direction:column;
+    animation:rise .15s ease both; }
+  .topic-overlay.open { display:flex; }
+  .overlay-head { display:flex; align-items:baseline; gap:10px; margin-bottom:8px; flex:0 0 auto; flex-wrap:wrap; }
+  .overlay-head .doctitle { margin:0; font-size:16px; text-transform:none; letter-spacing:-.3px;
+    color:#fff; font-weight:700; flex:1; }
+  .overlay-head .docmeta { color:var(--brass); font-size:11px; letter-spacing:.3px; }
+  .overlay-close { cursor:pointer; color:var(--flow2); font-size:11.5px; white-space:nowrap;
+    background:none; border:none; font-family:var(--mono); padding:0; }
+  .overlay-close:hover { color:var(--flow-pale); }
+  .docbody { font-size:12.5px; line-height:1.6; color:#d6dbe0; overflow-y:auto; flex:1; min-height:0;
+    padding-right:8px; }
+  .docbody h3 { font-size:11px; text-transform:uppercase; letter-spacing:1.3px; color:var(--flow2);
+    margin:16px 0 6px; display:flex; align-items:center; gap:8px; }
+  .docbody h3::before { content:""; width:6px; height:6px; background:var(--flow2); transform:rotate(45deg); }
+  .docbody h4 { font-size:11.5px; color:var(--steel); margin:12px 0 4px; text-transform:uppercase; letter-spacing:.8px; }
+  .docbody ul:not(.feed) { margin:6px 0; padding-left:18px; list-style:none; }
+  .docbody ul:not(.feed) li { margin:5px 0; position:relative; }
+  .docbody ul:not(.feed) li::before { content:"▸"; color:var(--flow); position:absolute; left:-16px; }
+  .docbody p { margin:8px 0; }
+  .docbody code { background:var(--panel2); padding:1px 5px; border-radius:3px; font-size:11.5px;
+    color:var(--brass); border:1px solid var(--line); }
+  .docbody a.ext { color:var(--flow2); }
+  .docbody .kbref { color:var(--steel); border-bottom:1px dotted rgba(138,155,168,.5); cursor:help; }
+
+  /* ---------- bar lists ---------- */
+  .bar-row { display:flex; align-items:center; gap:10px; margin:4px 0; cursor:pointer;
+    padding:2px 4px; border-radius:3px; transition:background .12s; }
+  .bar-row:hover { background:rgba(138,155,168,.06); }
+  .bar-row .name { flex:0 0 150px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    font-size:12.5px; color:var(--fg); }
+  .bar-row .track { flex:1; background:var(--panel2); border-radius:3px; height:14px;
+    overflow:hidden; border:1px solid rgba(138,155,168,.08); }
+  .bar-row .fill { height:100%; border-radius:0 3px 3px 0;
+    background:linear-gradient(90deg,var(--flow),var(--flow2)); transition:width .5s cubic-bezier(.2,.7,.3,1); }
+  .bar-row .cnt { flex:0 0 34px; text-align:right; color:var(--mut);
+    font-variant-numeric:tabular-nums; font-size:12px; }
+  .bar-row.active .fill { background:linear-gradient(90deg,var(--brass),#f2cf6e); }
+  .bar-row.active .name { color:var(--brass); }
+
+  /* ---------- segmented gauges ---------- */
+  .seg { display:flex; height:24px; border-radius:4px; overflow:hidden; margin-bottom:9px;
+    border:1px solid var(--line); }
+  .seg div { display:flex; align-items:center; justify-content:center; font-size:11px;
+    color:#0a0d12; font-weight:700; cursor:pointer; transition:filter .12s; font-variant-numeric:tabular-nums; }
+  .seg div:hover { filter:brightness(1.12); }
+  .legend { display:flex; gap:15px; flex-wrap:wrap; color:var(--mut); font-size:11.5px; }
+  .legend span b { color:var(--fg); }
+  .dot2 { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+
+  /* ---------- feed / source items ---------- */
+  .feed-scroll { overflow-y:auto; padding-right:5px; flex:1; min-height:0; }
+  ul.feed { list-style:none; margin:0; padding:0; }
+  ul.feed li { padding:9px 0 9px 12px; border-bottom:1px solid var(--line); position:relative; }
+  ul.feed li::before { content:""; position:absolute; left:0; top:11px; bottom:11px; width:2px;
+    background:var(--flow); opacity:0; transition:opacity .14s; }
+  ul.feed li:hover::before { opacity:.8; }
+  ul.feed li:last-child { border:0; }
+  .feed .ttl a { color:var(--flow-pale); font-weight:500; }
+  .feed .ttl a:hover { color:#fff; }
+  .feed .meta { color:var(--mut); font-size:11.5px; margin-top:3px; display:flex;
+    gap:8px; flex-wrap:wrap; align-items:center; }
+  .badge { font-size:9.5px; padding:1px 6px; border-radius:3px; text-transform:uppercase;
+    letter-spacing:.6px; font-weight:700; }
+  .b-high{ background:var(--flow); color:#08121b; }
+  .b-medium{ background:var(--brass); color:#1c1606; }
+  .b-low{ background:var(--noise); color:#fff; }
+  .b-raw{ background:transparent; color:var(--steel); border:1px solid rgba(138,155,168,.4); }
+  .b-summarized{ background:transparent; color:var(--flow2); border:1px solid rgba(93,173,226,.5); }
+  .chip { background:var(--panel2); border:1px solid var(--line); border-radius:3px;
+    padding:0 6px; font-size:10.5px; color:var(--steel); }
+  .filterbar { font-size:12px; margin:0 0 8px; min-height:16px; color:var(--mut); flex:0 0 auto; }
+  .filterbar.on { color:var(--brass); }
+  .filterbar.on b { color:#fff; }
+
+  /* ---------- repo rows ---------- */
+  .repo-row { padding:7px 0; border-bottom:1px solid var(--line); }
+  .repo-row:last-child { border:0; }
+  .repo-name { font-size:12.5px; margin-bottom:3px; }
+  .repo-name a { color:var(--flow-pale); }
+  .repo-name a:hover { color:#fff; }
+  .repo-owner { color:var(--mut); }
+  .repo-meta { display:flex; gap:6px; align-items:center; margin-bottom:4px; flex-wrap:wrap; }
+  .repo-bar-wrap { display:flex; align-items:center; gap:8px; }
+  .repo-bar { flex:1; height:6px; background:var(--panel2); border-radius:3px;
+    overflow:hidden; border:1px solid rgba(138,155,168,.08); }
+  .repo-fill { height:100%; border-radius:3px;
+    background:linear-gradient(90deg,var(--flow),var(--flow2)); }
+  .repo-stars { flex:0 0 40px; text-align:right; font-size:11.5px; color:var(--brass);
+    font-weight:700; font-variant-numeric:tabular-nums; }
+
+  /* topic small hover popover (still used for hover preview) */
+  #tpop { position:fixed; z-index:60; display:none; width:284px; pointer-events:none;
+    background:linear-gradient(180deg,#141b24,var(--panel2)); border:1px solid var(--flow);
+    border-radius:6px; padding:12px 14px;
+    box-shadow:0 14px 38px -12px rgba(0,0,0,.75), 0 0 0 1px rgba(52,152,219,.18);
+    animation:rise .13s ease both; }
+  #tpop.show { display:block; }
+  #tpop .ph { font-size:13px; font-weight:700; color:#fff; letter-spacing:-.2px; margin-bottom:6px;
+    display:flex; align-items:center; gap:8px; }
+  #tpop .ph::before { content:""; width:7px; height:7px; background:var(--flow); transform:rotate(45deg); }
+  #tpop .ph .pn { margin-left:auto; font-size:11px; color:var(--brass); font-weight:700; }
+  #tpop .pb { font-size:11.5px; line-height:1.52; color:var(--steel); }
+  #tpop .pf { margin-top:8px; font-size:10px; color:var(--mut); letter-spacing:.4px; }
+
+  @keyframes rise { from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+  @keyframes blink { 50%{ opacity:0; } }
+  @keyframes flowline { to{ background-position:-220% 0; } }
+  @keyframes pulse { 0%{ box-shadow:0 0 0 0 rgba(52,152,219,.55); }
+    70%{ box-shadow:0 0 0 9px rgba(52,152,219,0); } 100%{ box-shadow:0 0 0 0 rgba(52,152,219,0); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; } html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 64 40" aria-hidden="true">
+      <polygon points="2,14 18,15 31,18 31,22 18,25 2,26" fill="#e6b34d"/>
+      <rect x="0" y="13" width="5" height="14" rx="2" fill="#c0392b"/>
+      <path d="M31 20 C44 18,54 19,63 20" stroke="#3498db" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M31 18 C44 12,54 13,61 14" stroke="#5dade2" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".75"/>
+      <path d="M31 22 C44 28,54 27,61 28" stroke="#aed6f1" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+      <circle cx="50" cy="8" r="1.7" fill="#e74c3c" opacity=".7"/>
+      <circle cx="58" cy="33" r="1.4" fill="#e74c3c" opacity=".5"/>
+    </svg>
+    <span class="wordmark">agentic-firehose<span class="caret">_</span></span>
+    <span class="tagline">why drink from the firehose when an agent can?</span>
+    <span class="live"><span class="dot"></span><span id="gen"></span></span>
+  </div>
+  <div class="rule"></div>
+</header>
+
+<div class="wrap">
+  <div class="readout" id="readout"></div>
+
+  <!-- 2-col layout: left col stacks Topics + Synthesis; right col is Recent Activity tall -->
+  <div class="grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-left" style="position:relative">
+
+      <!-- Topics panel -->
+      <div class="panel panel-half">
+        <h2><span class="lead">Topics</span><span class="sub" id="topicsub"></span></h2>
+        <div class="tlist panel-body" id="topiclist"></div>
+        <div class="tpager">
+          <button id="tprev" onclick="topicPage(-1)">◂ prev</button>
+          <button id="tnext" onclick="topicPage(1)">next ▸</button>
+          <span class="tpinfo" id="tpinfo"></span>
+        </div>
+      </div>
+
+      <!-- Synthesis panel -->
+      <div class="panel panel-half">
+        <h2><span class="lead">Synthesis</span><span class="sub" id="synthsub"></span></h2>
+        <p style="margin:0 0 10px;font-size:11.5px;color:var(--mut);line-height:1.5;flex:0 0 auto">
+          Agent-written essays drawing conclusions across multiple sources — where patterns, disagreements, and open questions are consolidated into a single view.
+        </p>
+        <div class="feed-scroll panel-body"><ul class="feed" id="synthfeed"></ul></div>
+      </div>
+
+      <!-- Topic detail overlay (covers full left column on click) -->
+      <div class="topic-overlay" id="topicOverlay">
+        <div class="overlay-head">
+          <h3 class="doctitle" id="overlayTitle"></h3>
+          <span class="docmeta" id="overlayMeta"></span>
+          <button class="overlay-close" onclick="clearTopicOverlay()">close ✕</button>
+        </div>
+        <div class="docbody" id="overlayBody"></div>
+      </div>
+
+      <!-- Synthesis detail overlay (reuses same styles, same column) -->
+      <div class="topic-overlay" id="synthOverlay">
+        <div class="overlay-head">
+          <h3 class="doctitle" id="synthOverlayTitle"></h3>
+          <span class="docmeta" id="synthOverlayMeta"></span>
+          <button class="overlay-close" onclick="closeSynthOverlay()">close ✕</button>
+        </div>
+        <div class="docbody" id="synthOverlayBody"></div>
+      </div>
+
+    </div><!-- /col-left -->
+
+    <!-- RIGHT COLUMN: Recent Activity (top) + Trending Repos (bottom) -->
+    <div class="col-right" style="gap:16px">
+      <div class="panel panel-half" id="recentPanel">
+        <h2><span class="lead">Recent activity</span>
+          <span class="clear" id="clearfeed" onclick="clearFilter()">clear filter ✕</span></h2>
+        <div class="filterbar" id="filterbar"></div>
+        <div class="feed-scroll panel-body"><ul class="feed" id="feed"></ul></div>
+      </div>
+      <div class="panel panel-half">
+        <h2><span class="lead">Trending repos</span><span class="sub" id="reposub"></span></h2>
+        <div class="feed-scroll panel-body"><div id="repolist"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- distributions row: 3 cols — combined status+signal | source type | top authors -->
+  <div class="grid-3">
+    <div class="panel">
+      <h2><span class="lead">Status &amp; signal</span></h2>
+      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--mut);margin-bottom:4px">Synthesis status</div>
+      <div class="seg" id="statusseg"></div>
+      <div class="legend" id="statuslegend"></div>
+      <div id="rawbacklog" style="margin-top:6px;font-size:11.5px;color:var(--mut)"></div>
+      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--mut);margin:12px 0 4px">Signal level</div>
+      <div class="seg" id="signalseg"></div>
+      <div class="legend" id="signallegend"></div>
+    </div>
+    <div class="panel">
+      <h2><span class="lead">Source type</span></h2>
+      <div id="stype"></div>
+    </div>
+    <div class="panel" style="overflow:hidden">
+      <h2><span class="lead">Top authors</span></h2>
+      <div id="authors" style="overflow:hidden"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="tpop"></div>
+
+<script>document.write('<scr'+'ipt src="data.js?v='+Date.now()+'"><\/scr'+'ipt>');</script>
+<script>
+const D = window.DATA;
+let filter = null;
+
+document.getElementById("gen").textContent = "feed · built " + D.generated;
+document.getElementById("topicsub").textContent = `${D.topics.length} · click to open`;
+
+// ---- readout ----
+const readout = [
+  ["sources", D.total, "--flow"],
+  ["summarized", D.status.summarized||0, "--flow2"],
+  ["syntheses", (D.syntheses||[]).length, "--brass"],
+  ["topics", D.topics.length, "--steel"],
+  ["authors", D.authors.length, "--steel"],
+  ["high-signal", D.signal.high||0, "--flow"],
+];
+document.getElementById("readout").innerHTML = readout.map(([l,n,c])=>
+  `<span class="m"><b style="color:var(${c})">${n}</b>${l}</span>`).join('<span class="sep">/</span>');
+
+// ---- per-topic meta ----
+function topicMeta(k){
+  const t = D.sources.filter(s => (s.topics||[]).includes(k));
+  const mix = {high:0, medium:0, low:0};
+  let latest = "";
+  t.forEach(s => { if(s.signal_level in mix) mix[s.signal_level]++;
+                   if((s.captured||"") > latest) latest = s.captured||""; });
+  return {count:t.length, mix, latest};
+}
+
+// ---- TOPICS pager ----
+const TOPICS_PER_PAGE = 12;
+let topicPageIdx = 0;
+
+function topicPage(delta){
+  const pages = Math.ceil(D.topics.length / TOPICS_PER_PAGE);
+  topicPageIdx = Math.max(0, Math.min(topicPageIdx + delta, pages - 1));
+  renderTopicList();
+}
+
+function renderTopicList(){
+  const pages = Math.ceil(D.topics.length / TOPICS_PER_PAGE);
+  const slice = D.topics.slice(topicPageIdx * TOPICS_PER_PAGE, (topicPageIdx + 1) * TOPICS_PER_PAGE);
+  document.getElementById("topiclist").innerHTML = slice.map(([k,n])=>{
+    const {mix} = topicMeta(k);
+    const tot = (mix.high+mix.medium+mix.low) || 1;
+    const seg = (c,v) => v ? `<i style="width:${100*v/tot}%;background:${c}"></i>` : "";
+    const active = filter && filter.type==="topics" && filter.value===k ? "active" : "";
+    return `<div class="trow ${active}" data-topic="${k}"
+        onclick="openTopicOverlay('${k.replace(/'/g,"\\'")}')">
+      <span class="nm">${k}</span>
+      <span class="tmix" title="${mix.high} high · ${mix.medium} medium · ${mix.low} low">
+        ${seg("var(--flow)",mix.high)}${seg("var(--brass)",mix.medium)}${seg("var(--noise)",mix.low)}</span>
+      <span class="ct">${n}</span></div>`;
+  }).join("");
+  document.getElementById("tprev").disabled = topicPageIdx === 0;
+  document.getElementById("tnext").disabled = topicPageIdx >= pages - 1;
+  document.getElementById("tpinfo").textContent =
+    `${topicPageIdx + 1} / ${pages}  (${D.topics.length} topics)`;
+}
+
+// ---- topic detail overlay ----
+function openTopicOverlay(k){
+  tpop.classList.remove("show"); // dismiss hover popover
+  document.getElementById("synthOverlay").classList.remove("open"); // close synth overlay if open
+  const doc = (D.topic_docs||{})[k] || {};
+  const tagged = D.sources.filter(s => (s.topics||[]).includes(k));
+  document.getElementById("overlayTitle").textContent = doc.title || k;
+  document.getElementById("overlayMeta").textContent =
+    `${tagged.length} source${tagged.length===1?"":"s"} · topics/${k}/`;
+
+  // Strip any existing Synthesis section from doc.html so we replace it with the interactive one
+  let docHtml = doc.html || "";
+  // Remove from <h3>Synthesis</h3> up to the next same-level heading or end
+  docHtml = docHtml.replace(/<h3>[^<]*[Ss]ynthes[^<]*<\/h3>[\s\S]*?(?=<h3>|<h2>|$)/, "");
+
+  // Build synthesis section with blurb + clickable rows
+  const synthLinks = (D.syntheses||[]).filter(s => (s.topics||[]).includes(k));
+  const synthSection = synthLinks.length ? `
+    <h3>Synthesis</h3>
+    <p style="font-size:11.5px;color:var(--mut);margin:0 0 8px;line-height:1.5">
+      Agent-written essays drawing conclusions across multiple sources — where patterns, disagreements, and open questions are consolidated into a single view.
+    </p>
+    <ul class="feed">${synthLinks.map(s => {
+      const idx = (D.syntheses||[]).indexOf(s);
+      const title = s.title || s.file.replace(/\.md$/,"");
+      const updated = s.updated ? s.updated.split(" ")[0] : (s.written||"");
+      const src_count = (s.sources||[]).length;
+      return `<li style="cursor:pointer" onclick="event.stopPropagation();openSynthOverlay(${idx})">
+        <div class="ttl"><span style="color:var(--flow-pale);font-weight:500">${title} →</span></div>
+        <div class="meta"><span>${updated}</span>
+          <span class="badge b-raw">${s.status||"draft"}</span>
+          <span style="color:var(--mut);font-size:11px">${src_count} sources</span>
+        </div></li>`;
+    }).join("")}</ul>` : "";
+
+  document.getElementById("overlayBody").innerHTML =
+    docHtml +
+    synthSection +
+    `<h3>All ${tagged.length} tagged source${tagged.length===1?"":"s"}</h3>
+     <ul class="feed">${tagged.map(sourceItem).join("")}</ul>`;
+
+  document.getElementById("topicOverlay").classList.add("open");
+  filter = {type:"topics", value:k};
+  renderFeed();
+  renderTopicList();
+  // Wire up any kbref spans pointing to synthesis files so they open the synth overlay
+  document.querySelectorAll("#overlayBody .kbref").forEach(el => {
+    const href = el.title.replace("internal KB note: ", "");
+    if(!href.includes("synthesis/")) return;
+    const fname = href.split("/").pop();
+    const idx = (D.syntheses||[]).findIndex(s => s.file === fname);
+    if(idx < 0) return;
+    el.style.cursor = "pointer";
+    el.style.color = "var(--flow2)";
+    el.style.borderBottom = "1px solid var(--flow2)";
+    el.onclick = e => { e.stopPropagation(); openSynthOverlay(idx); };
+  });
+}
+
+function clearTopicOverlay(){
+  document.getElementById("topicOverlay").classList.remove("open");
+  filter = null;
+  renderFeed();
+  renderTopicList();
+}
+
+// ---- segmented gauges ----
+function seg(elId, legId, entries, colorMap, ftype){
+  document.getElementById(elId).innerHTML = entries.map(([k,n])=>
+    `<div onclick="setFilter('${ftype}','${k}')" title="${k}: ${n}"
+      style="flex:${n};background:${colorMap[k]||'#888'}">${n}</div>`).join("");
+  document.getElementById(legId).innerHTML = entries.map(([k,n])=>
+    `<span><span class="dot2" style="background:${colorMap[k]||'#888'}"></span>${k} <b>${n}</b></span>`).join("");
+}
+seg("statusseg","statuslegend",
+   [["summarized",D.status.summarized||0],["raw",D.status.raw||0]],
+   {summarized:"var(--flow2)",raw:"var(--steel)"},"status");
+document.getElementById("rawbacklog").innerHTML =
+  `Source backlog: <b style="color:var(--flow2)">${D.status.raw||0}</b> raw · ` +
+  `<b style="color:var(--brass)">${(D.syntheses||[]).length}</b> synthesis files`;
+seg("signalseg","signallegend",
+   [["high",D.signal.high||0],["medium",D.signal.medium||0],["low",D.signal.low||0]],
+   {high:"var(--flow)",medium:"var(--brass)",low:"var(--noise)"},"signal");
+
+// ---- bar lists ----
+function barlist(elId, entries, ftype, max){
+  const top = entries.slice(0, max);
+  const maxN = Math.max(...top.map(([,n])=>n), 1);
+  document.getElementById(elId).innerHTML = top.map(([k,n])=>{
+    const active = filter && filter.type===ftype && filter.value===k ? "active":"";
+    return `<div class="bar-row ${active}" onclick="setFilter('${ftype}','${k.replace(/'/g,"\\'")}')">
+      <div class="name">${k}</div>
+      <div class="track"><div class="fill" style="width:${100*n/maxN}%"></div></div>
+      <div class="cnt">${n}</div></div>`;
+  }).join("");
+}
+function renderBars(){
+  barlist("authors", D.authors, "authors", 8);
+  barlist("stype", D.source_type, "source_type", 10);
+}
+
+// ---- source item renderer ----
+function badge(cls,txt){ return `<span class="badge b-${cls}">${txt}</span>`; }
+function sourceItem(s){
+  const href = s.url ? s.url : `../../sources/${s.file}`;
+  const ext = s.url ? '↗' : '';
+  return `<li>
+      <div class="ttl"><a href="${href}" target="_blank" rel="noopener">${s.title||s.file} ${ext}</a></div>
+      <div class="meta">
+        <span>${s.captured||"—"}</span>
+        <span class="chip">${s.source_type||"?"}</span>
+        ${badge(s.signal_level,s.signal_level||"?")}
+        ${badge(s.status,s.status||"?")}
+        ${(s.authors||[]).length? "· "+s.authors.slice(0,2).join(", ")+(s.authors.length>2?" +"+(s.authors.length-2):""):""}
+      </div>
+    </li>`;
+}
+
+// ---- feed ----
+function matches(s){
+  if(!filter) return true;
+  const v = s[filter.type];
+  return Array.isArray(v) ? v.includes(filter.value) : v===filter.value;
+}
+function renderFeed(){
+  const list = D.sources.filter(matches);
+  const show = filter ? list : list.slice(0, 25);
+  document.getElementById("feed").innerHTML =
+    show.map(sourceItem).join("") || "<li>No matches.</li>";
+  const fb = document.getElementById("filterbar");
+  document.getElementById("recentPanel").classList.toggle("filtered", !!filter);
+  document.getElementById("clearfeed").style.display = filter?"inline":"none";
+  fb.classList.toggle("on", !!filter);
+  fb.innerHTML = filter
+    ? `▸ filtered to <b>${list.length}</b> where ${filter.type} = <b>${filter.value}</b>`
+    : `Latest ${show.length} of ${D.total} captures.`;
+}
+
+// ---- synthesis feed ----
+function renderSynth(){
+  const synths = D.syntheses || [];
+  document.getElementById("synthsub").textContent = synths.length + " files · click to open";
+  document.getElementById("synthfeed").innerHTML = synths.map((s, i) => {
+    const title = s.title || s.file.replace(/\.md$/, "");
+    const updated = s.updated ? s.updated.split(" ")[0] : (s.written || "");
+    const status = s.status || "draft";
+    const topics = (s.topics||[]).slice(0,3).map(t=>`<span class="chip">${t}</span>`).join(" ");
+    const src_count = (s.sources||[]).length;
+    return `<li style="cursor:pointer" onclick="openSynthOverlay(${i})">
+      <div class="ttl"><span style="color:var(--flow-pale);font-weight:500">${title}</span></div>
+      <div class="meta">
+        <span>${updated}</span>
+        <span class="badge b-${status==="stable"?"summarized":"raw"}">${status}</span>
+        ${topics}
+        ${src_count ? `<span style="color:var(--mut);font-size:11px">${src_count} sources</span>` : ""}
+      </div>
+    </li>`;
+  }).join("") || "<li>No synthesis files found.</li>";
+}
+
+function openSynthOverlay(idx){
+  const s = (D.syntheses||[])[idx];
+  if(!s) return;
+  // Close topic overlay if open
+  document.getElementById("topicOverlay").classList.remove("open");
+  const title = s.title || s.file.replace(/\.md$/, "");
+  const updated = s.updated ? s.updated.split(" ")[0] : (s.written || "");
+  const src_count = (s.sources||[]).length;
+  document.getElementById("synthOverlayTitle").textContent = title;
+  document.getElementById("synthOverlayMeta").textContent =
+    `${src_count} source${src_count===1?"":"s"} · ${updated} · ${s.status||"draft"}`;
+  // Build body: topic chips + source list
+  const chips = (s.topics||[]).map(t=>`<span class="chip">${t}</span>`).join(" ");
+  const srcLinks = (s.sources||[]).map(sf => {
+    // Find matching source record
+    const rec = (D.sources||[]).find(r => sf.endsWith(r.file));
+    if(rec) return `<li>${sourceItem(rec)}</li>`;
+    const slug = sf.split("/").pop();
+    return `<li><div class="ttl"><span style="color:var(--steel)">${slug}</span></div></li>`;
+  }).join("");
+  document.getElementById("synthOverlayBody").innerHTML =
+    `<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap">${chips}</div>` +
+    (s.html || "") +
+    (srcLinks ? `<h3>Sources (${src_count})</h3><ul class="feed">${srcLinks}</ul>` : "");
+  document.getElementById("synthOverlay").classList.add("open");
+}
+
+function closeSynthOverlay(){
+  document.getElementById("synthOverlay").classList.remove("open");
+}
+
+// ---- hover popover (preview on hover, full overlay on click) ----
+const tpop = document.getElementById("tpop");
+const topiclistEl = document.getElementById("topiclist");
+topiclistEl.addEventListener("mouseover", e => {
+  const row = e.target.closest(".trow"); if(!row) return;
+  const k = row.dataset.topic, doc = (D.topic_docs||{})[k] || {};
+  const n = (D.topics.find(([t])=>t===k)||[,0])[1];
+  tpop.innerHTML =
+    `<div class="ph">${k}<span class="pn">${n} sources</span></div>
+     <div class="pb">${doc.intro || doc.blurb || "No description."}</div>
+     <div class="pf">click to open detail →</div>`;
+  tpop.classList.add("show");
+  const r = row.getBoundingClientRect(), pw = tpop.offsetWidth, ph = tpop.offsetHeight, m = 10;
+  let left = r.right + 12;
+  if(left + pw > window.innerWidth - m) left = r.left - pw - 12;
+  if(left < m) left = m;
+  let top = r.top + r.height/2 - ph/2;
+  top = Math.max(m, Math.min(top, window.innerHeight - ph - m));
+  tpop.style.left = left + "px";
+  tpop.style.top = top + "px";
+});
+topiclistEl.addEventListener("mouseout", e => {
+  const row = e.target.closest(".trow");
+  if(row && !row.contains(e.relatedTarget)) tpop.classList.remove("show");
+});
+
+function setFilter(type, value){
+  filter = (filter && filter.type===type && filter.value===value) ? null : {type, value};
+  renderFeed(); renderBars();
+}
+function clearFilter(){ filter=null; renderFeed(); renderBars(); }
+
+// ---- trending repos ----
+function renderRepos(){
+  const repos = (D.repos || []).filter(r => r.stars > 0);
+  document.getElementById("reposub").textContent = `${repos.length} repos · by stars`;
+  const maxStars = repos.length ? repos[0].stars : 1;
+  document.getElementById("repolist").innerHTML = repos.map(r => {
+    const pct = r.stars > 0 ? Math.round(100 * r.stars / maxStars) : 0;
+    const short = r.name.split("/")[1] || r.name;
+    const owner = r.name.split("/")[0] || "";
+    const starsLabel = r.stars >= 1000
+      ? (r.stars >= 1_000_000 ? (r.stars/1_000_000).toFixed(1)+"M" : Math.round(r.stars/1000)+"k")
+      : (r.stars > 0 ? r.stars.toString() : "—");
+    const chips = (r.topics||[]).slice(0,2).map(t=>`<span class="chip">${t}</span>`).join(" ");
+    const sig = r.signal_level ? `<span class="badge b-${r.signal_level}">${r.signal_level}</span>` : "";
+    return `<div class="repo-row">
+      <div class="repo-name">
+        <a href="${r.url}" target="_blank" rel="noopener">
+          <span class="repo-owner">${owner}/</span>${short} ↗
+        </a>
+      </div>
+      <div class="repo-meta">${chips} ${sig}</div>
+      <div class="repo-bar-wrap">
+        <div class="repo-bar"><div class="repo-fill" style="width:${pct}%"></div></div>
+        <span class="repo-stars">${starsLabel}★</span>
+      </div>
+    </div>`;
+  }).join("") || "<div style='color:var(--mut);font-size:12px;padding:8px'>No GitHub repos found.</div>";
+}
+
+function renderAll(){ renderBars(); renderTopicList(); renderFeed(); renderSynth(); renderRepos(); }
+renderAll();
+</script>
+</body>
+</html>
