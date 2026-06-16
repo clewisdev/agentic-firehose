@@ -15,3 +15,7 @@ Patterns for coordinating multiple agents or agent loops — task routing, deleg
 ## Open threads
 
 - **Delegation boundary design**: what criteria decide whether a decision stays with the human vs. goes to the agent? Reversibility is necessary but insufficient — strategy/positioning decisions can be reversible yet still shouldn't be delegated.
+
+## Synthesis
+
+- [Loops as the Unit of Work](../../synthesis/loops-as-unit-of-work.md) (2026-06-16, draft) — loop anatomy as the orchestration unit: five components, the Ralph loop pattern, the three-loop (inner/middle/outer) model from Thoughtworks; when single-agent iteration suffices vs. multi-agent orchestration.

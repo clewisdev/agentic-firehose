@@ -7,7 +7,7 @@ Working distinction (Berkin): *agentics describes what an agent may do; harness 
 ## Synthesis
 
 - [Harness Engineering: A 101](../../synthesis/harness-engineering-101.md) (2026-05-28, stable) — what harness engineering is, the eight concerns it covers, how it differs from prompting, and the failure modes it prevents. Start here for orientation.
-- [Claude Code Hook Surface](../../synthesis/hook-surface-patterns.md) (2026-05-28, draft) — the five lifecycle hooks, three use patterns (observation, iteration, governance), and what each enables architecturally.
+- [Claude Code Hook Surface](../../synthesis/hook-surface-patterns.md) (updated 2026-06-16) — the five lifecycle hooks, four use patterns (observation, iteration, governance, session init/finalize), and why hooks matter more than prompts for governance: Berkin's framing ("agentics = what it can do; harness = what it's allowed to do") with a mapping of harness components to hook implementations.
 - [Files-as-config for agents](../../synthesis/files-as-config-for-agents.md) (2026-05-20, updated 2026-05-28) — where the filesystem approach wins, where it breaks down, and the three-tier upgrade path (files → committed graph → DB stack).
 
 ## Topic notes

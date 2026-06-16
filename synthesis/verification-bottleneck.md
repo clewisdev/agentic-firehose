@@ -1,9 +1,9 @@
 ---
 title: "The Verification Bottleneck: When Generation Outran Review"
 written: 2026-06-15
-updated: 2026-06-15 (added supervisory-engineering-middle-loop, kun No-Mistakes 68% catch rate)
+updated: 2026-06-16 (added Naur cognitive-debt framing from will-there-be-source-code)
 topics: [code-generation, code-review, evals]
-tags: [verification, review-capacity, comprehension-debt, assurance, throughput, agent-as-reviewer, verification-gates]
+tags: [verification, review-capacity, comprehension-debt, assurance, throughput, agent-as-reviewer, verification-gates, cognitive-debt, theory-building]
 sources:
   - sources/2026-06-13-harness-engineering-codex.md
   - sources/2026-06-12-ai-engineering-report-2026.md
@@ -18,6 +18,7 @@ sources:
   - sources/2026-06-09-claude-security-plugin.md
   - sources/2026-06-09-supervisory-engineering-middle-loop.md
   - sources/2026-06-09-kun-meta-agentic-workflow.md
+  - sources/2026-06-09-will-there-be-source-code-future.md
 status: draft
 ---
 
@@ -92,6 +93,26 @@ precisely:
   (`sources/2025-06-11-agent-skills-structured-workflows.md`) diagnoses the root cause:
   an agent "optimizes for appearing done over being done." Self-report is worthless as
   a verification signal precisely where you need it most.
+
+The deepest structural account of *why* comprehension debt is not just a workflow
+problem comes from Naur's "Programming as Theory Building" (1985), surfaced by the
+Fowler/Joshi thread (`sources/2026-06-09-will-there-be-source-code-future.md`):
+**the act of writing code is itself the mechanism by which engineers build
+understanding**. Writing forces the synthesis. Removing the synthesis step — having
+code generated without the author traversing the reasoning — removes the very process
+that builds the "theory" of why the system is the way it is.
+
+> "The mechanical instructions got cheap, the theory of why a system is the way it
+> is didn't." — Juan José Fuchs
+
+This reframes the comprehension debt problem. It is not merely that review is slow
+relative to generation speed. It is that the *medium through which understanding was
+built* has been replaced by an artifact the engineer did not produce through active
+reasoning. The gap between generated code and understood code is not only a velocity
+gap — it is a cognitive gap. Comprehension debt therefore does not close when the
+engineer reads the generated code. It closes when the engineer rebuilds the reasoning
+that would have produced that code. That is the only pathway back to the "theory" in
+Naur's sense, and it is approximately as expensive as writing the code would have been.
 
 Thoughtworks' Richard Gall (`sources/2026-06-09-supervisory-engineering-middle-loop.md`)
 names the structural consequence directly: the traditional two-loop model (inner loop =

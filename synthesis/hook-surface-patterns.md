@@ -1,14 +1,15 @@
 ---
 title: "Claude Code Hook Surface: What It Is and How to Use It"
 written: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-16 (added Berkin governance framing: hooks as enforcement vs. prompt as request)
 topics: [harnesses]
-tags: [hooks, lifecycle, observability, governance, iteration, sessionstart, posttooluse, stop, sessionend]
+tags: [hooks, lifecycle, observability, governance, iteration, sessionstart, posttooluse, stop, sessionend, enforcement]
 sources:
   - sources/2026-05-20-claude-mem.md
   - sources/2026-05-20-rosenthal-company-os.md
   - sources/2026-05-28-claude-ralph-loop-plugin.md
   - sources/2026-05-20-poha.md
+  - sources/2026-05-20-berkin-harness-engineering.md
 status: draft
 ---
 
@@ -114,6 +115,38 @@ The hook surface is what makes Claude Code a platform rather than just a CLI. Wi
 - Measure and log agent behaviour for debugging and improvement
 
 The five hooks are a **harness extension API**. Everything the KB has captured about harness engineering — observability, iteration, governance, cost controls — has an implementation path through these hooks.
+
+## Why hooks matter more than prompts for governance
+
+Berkin (`sources/2026-05-20-berkin-harness-engineering.md`) provides the sharpest articulation
+of why this matters:
+
+> "Agentics describes what an AI system may be able to do. Harness engineering describes how
+> the enterprise decides what it is allowed to do."
+
+The hook surface is the *mechanism* that makes the second half of that sentence real. A prompt
+says "don't merge without approval." A governance hook *prevents the merge until approval is
+confirmed*, regardless of what the model was told. The enforcement is in the hook; the prompt
+is a request, not a constraint.
+
+Berkin enumerates the components of a complete harness — context design, orchestration, model
+routing, tool access, identity, permissions, guardrails, evaluation, observability, human
+approval points, resilience patterns, and cost controls — but he doesn't show the implementation
+layer. The hook surface is where most of those components are implemented in practice:
+
+| Berkin's harness component | Hook implementation |
+|---------------------------|---------------------|
+| Observability | PostToolUse → external log |
+| Human approval points | PostToolUse or Stop → role check |
+| Resilience (iteration) | Stop → ralph-loop re-trigger |
+| Cost controls | PostToolUse → per-tool output cap |
+| Memory/context injection | SessionStart → retrieve from store |
+| Session audit | SessionEnd → persist to store |
+
+The implication: if you are designing enterprise AI workflows and you are not using hooks,
+you are running with prompt-as-governance. That is what Berkin calls a "power-user harness"
+— informal, idiosyncratic, adequate for a single practitioner, inadequate for a team with
+compliance requirements.
 
 ## Open questions
 

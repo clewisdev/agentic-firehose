@@ -18,3 +18,7 @@ Agent Skills as a first-class unit of capability: the `SKILL.md` / progressive-d
 - [an internal enterprise team Teams snippet](../../sources/2026-05-28-internal-teams-snippet.md) — captain-hindsight + caveman skills in a real team setup, alongside model routing by task type.
 - [Andrej Karpathy Skills — CLAUDE.md Principles](../../sources/2026-05-28-karpathy-skills-claude-md.md) — four Karpathy principles packaged as an installable skill / `CLAUDE.md` (viral, 160k★). Treat as packaging, not research — an example of conventions distributed in skill form.
 - [Agent Skills: Structured Workflows for Production-Grade AI Code Generation](../../sources/2025-06-11-agent-skills-structured-workflows.md) — agent-skills repo (52K★, #1 trending): 7 slash commands (/spec /plan /build /test /review /code-simplify /ship) encoding engineering discipline. Two structural innovations: anti-rationalization tables block the excuse on entry; verification gates block false completion on exit.
+
+## Synthesis
+
+- [The Skills Ecosystem: From Flat Files to Distribution Infrastructure](../../synthesis/skills-ecosystem.md) (2026-06-16, draft) — across nine sources: structural convergence on flat-folder/one-file-per-task; Pocock's four failure modes; pre-execution alignment as the high-leverage pattern; the distribution layer (npm, ASM, Google, an internal enterprise team internal, viral); SkillOpt as the research layer; implications for this KB (CONTEXT.md gap, failure-mode tagging, SkillOpt for synthesise skill).

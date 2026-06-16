@@ -26,7 +26,7 @@ External observation logs, retrieval layers, and cross-session context for agent
 
 ## Synthesis
 
-- [The memory architecture spectrum: files, graphs, and vectors](../../synthesis/memory-architecture-spectrum.md) (2026-05-30, draft) — decision framework across all four positions: files-as-memory (POHA), knowledge graph (Graphify), hook-based capture (claude-mem), production RAG (Fowler). When each wins, where each breaks, and the TTL/staleness principle.
+- [The memory architecture spectrum: files, graphs, and vectors](../../synthesis/memory-architecture-spectrum.md) (updated 2026-06-16) — decision framework across five positions: files-as-memory (POHA), knowledge graph (Graphify), hook-based capture (claude-mem), production RAG (Fowler), active reconciliation (obsidian-second-brain). Now includes Jones's vicious/virtuous friction taxonomy for deciding what to automate vs. protect in a personal KB.
 - [Files-as-config for agents: when, why, and how](../../synthesis/files-as-config-for-agents.md) (2026-05-20, draft) — addresses the claude-mem vs POHA boundary directly: files-as-config wins until the corpus exceeds what index-guided reads can serve, or updates need transactional / multi-writer semantics. The heavier system should complement curated files, not replace them.
 
 - [UpHill Workshop — Index](../../sources/2026-05-28-uphill-workshop-pdfs.md) — workshop index; memory content is in the agentic ladder capture below.

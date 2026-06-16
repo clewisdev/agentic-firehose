@@ -41,3 +41,7 @@ LLM API costs, rate limiting, token optimization, prompt caching, and model sele
 - **Runtime compression vs process optimization.** Caveman compresses outputs at runtime; captain-hindsight reduces round-trips. A direct comparison — for this KB's capture workflow specifically, which yields better cost/correctness trade-offs — would be useful to run empirically.
 - **Per-tool output caps as a harness-level concern.** Brussee implements this in caveman-code. Applicability to the Cloudflare Worker (where WebFetch responses can be large): preprocess the fetched content before sending to the model rather than letting the model receive raw HTML output.
 - **TTL choice for the Worker.** Current recommendation is 5m default (low volume), switch to 1h for batch sessions. The threshold (>2 captures per hour) should be confirmed against actual Worker log data once live.
+
+## Synthesis
+
+- [Token Economics: When Architecture Became Finance Engineering](../../synthesis/cost-management.md) (2026-06-16, draft) — across eight sources: the subsidy cliff, why verbosity not reasoning is the primary cost driver (Brussee 1.93× benchmark), the five-layer cost stack (caching/session-structure/captain-hindsight/caveman/per-tool), enterprise governance (hardcoded model bindings, tiered access, ROI-first expansion), and the unresolved verification-cost loop.

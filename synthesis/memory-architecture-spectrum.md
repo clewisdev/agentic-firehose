@@ -1,7 +1,7 @@
 ---
 title: "The memory architecture spectrum: files, graphs, and vectors"
 written: 2026-05-30
-updated: 2026-06-15 (added obsidian-second-brain-agent-memory: append-vs-mutate as a fifth position)
+updated: 2026-06-16 (added second-brain-ai-workflow: friction taxonomy for PKM automation decisions)
 topics: [memory, harnesses]
 tags: [files-as-memory, knowledge-graph, rag, vector-db, working-memory, episodic-memory, profile-memory, ttl, retrieval-patterns]
 sources:
@@ -13,6 +13,7 @@ sources:
   - sources/2026-05-31-codex-maxxing.md
   - sources/2026-06-05-vectorless-rag-pageindex.md
   - sources/2026-06-09-obsidian-second-brain-agent-memory.md
+  - sources/2026-06-11-second-brain-ai-workflow.md
 status: draft
 ---
 
@@ -120,7 +121,42 @@ a *maintenance layer* that acts on top of it. The Codex-maxxing corroboration in
 (diff review of vault writes) is the lightweight version of the same instinct — review what the
 agent chose to remember. Obsidian-second-brain makes this the primary operator, not an afterthought.
 
-## The spectrum decision table
+## The friction taxonomy: what to automate vs. what to protect
+
+Jones (`sources/2026-06-11-second-brain-ai-workflow.md`) adds a decision criterion that none
+of the implementation-focused sources name: **the distinction between vicious and virtuous friction**.
+
+- **Vicious friction** — busywork that consumes time without producing learning. Parsing
+  handwritten notes, routing tasks to the right file, assembling status reports. Automate it.
+- **Virtuous friction** — the struggle that generates understanding. Making sense of a half-formed
+  idea, deciding how two concepts relate, choosing what matters. Protect it.
+
+> "Outsourcing vicious friction frees capacity, but outsourcing virtuous friction means losing
+> the struggle that makes you better."
+
+This reframes the whole memory architecture question. It is not "which system is most capable
+of capturing and retrieving knowledge?" It is "which system preserves human judgment where it
+matters and removes overhead where it doesn't?"
+
+The practical implication for architecture choice:
+
+- Files-as-memory (POHA, Position 1) forces some virtuous friction: curation decisions,
+  link choices, what to write vs. what to discard. This is a feature, not a limitation.
+- Active reconciliation (obsidian-second-brain, Position 5) automates the consistency
+  maintenance that is purely vicious friction — but must not automate the *thinking* that
+  produced the notes in the first place.
+- Hook-based capture (claude-mem, Position 2) automates observation logging — vicious
+  friction — but puts the burden of retrieval quality on the embedding layer. If the
+  agent starts making synthesis decisions from auto-captured observations, virtuous friction
+  is being outsourced silently.
+
+Jones also structures the AI-augmented PKM in three layers that map cleanly to the spectrum:
+1. **What you know** — the curated knowledge base (Position 1 / files-as-memory)
+2. **How you act** — skills encoding work processes (separate from memory architecture)
+3. **Where you are** — state aggregation from health/output/focus signals to close the OODA loop
+
+The third layer is the one no memory architecture addresses directly: knowing whether the
+system as a whole is working requires external signals beyond the KB itself.
 
 | Situation | Architecture |
 |-----------|-------------|

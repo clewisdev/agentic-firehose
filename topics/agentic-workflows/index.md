@@ -22,3 +22,7 @@ End-to-end patterns for agent-driven workflows — operating loops, multi-thread
 - [last30days: Real-time research aggregator for pre-call context](../../sources/2025-06-12-last30days-client-prep.md) — last30days: real-time community aggregator (Reddit/X/HN/GitHub/Polymarket) as pre-call context tool; agent-native (Claude Code, Cursor, 50+ hosts); 'training data is stale, community discussion is real-time'
 - [Open Knowledge Format (OKF): vendor-neutral standard for LLM context](../../sources/2025-06-13-open-knowledge-format-okf.md) — OKF autonomous maintenance: LLMs can update 15 cross-references in a single pass; but 'judging what is still true is hard, and that judgment does not disappear because the writer is tireless' — verification is unresolved
 - [Useful AI skills for Engineering Leaders](../../sources/2026-06-09-em-ai-skills.md) — EM workflow automation: uniform process enforcement (AI handles exceptions without human rigidity), synthesis briefings (overnight alerts/PRs/on-call → actionable go/no-go signal), structured PR data extraction
+
+## Synthesis
+
+- [Loops as the Unit of Work](../../synthesis/loops-as-unit-of-work.md) (2026-06-16, draft) — across six sources: why the practitioner abstraction shifted from prompt to loop; the five-component loop anatomy (automations/worktrees/skills/connectors/sub-agents); the three-loop model (inner/middle/outer); comprehension debt and cognitive surrender as the costs of unattended loops; design principles ranked by leverage.

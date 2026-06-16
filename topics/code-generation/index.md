@@ -4,7 +4,7 @@ Using AI to generate implementation from specifications — the abstraction ladd
 
 ## Synthesis
 
-- [The Verification Bottleneck: When Generation Outran Review](../../synthesis/verification-bottleneck.md) (2026-06-15, draft) — synthesised across 11 sources: generation got cheap (Codex ~1M lines zero hand-written; Bun 750K lines in 11 days), but "throughput measures what was shipped, not what survived." The constraint moved downstream to verification and review.
+- [The Verification Bottleneck: When Generation Outran Review](../../synthesis/verification-bottleneck.md) (updated 2026-06-16) — synthesised across 14 sources: generation got cheap (Codex ~1M lines zero hand-written; Bun 750K lines in 11 days), but "throughput measures what was shipped, not what survived." The constraint moved downstream to verification and review. Now includes Naur's theory-building framing: the act of writing code IS the mechanism that builds understanding — comprehension debt is not just a velocity gap.
 - [The Spec as Primary Artifact: When Code Became a Build Output](../../synthesis/spec-as-primary-artifact.md) (2026-06-15, draft) — code's two roles split (machine instructions vs. conceptual model); agents cheapened role #1, making role #2 the scarce resource; spec-first as the abstraction ladder's next rung.
 
 ## Sources
