@@ -26,7 +26,14 @@ Sending a URL to the capture address triggers the Worker: it fetches the page, l
 
 ---
 
-## Fork and run your own
+## Fork and run your own firehose drinker agent, for whatever topics you like
+
+### Prerequisites
+
+- **LLM API key** — the Worker uses Anthropic's API by default (Claude Haiku for captures). Any provider supported by the API layer works; swap the model in `worker/src/claude.ts`.
+- **Cloudflare Workers** — free tier is sufficient. You'll also need [Email Routing](https://developers.cloudflare.com/email-routing/) enabled on a domain you control.
+- **GitHub Pages** — for the dashboard. Free on public repos.
+- **A coding agent** *(optional)* — to run the synthesise skill, build out topic indexes, and evolve the KB. Any agent that supports the [Agent Skills](https://agentskills.io) standard works.
 
 ### 1. Clone and set up the repo
 
