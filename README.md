@@ -6,7 +6,7 @@
 
 > Why drink from the firehose when an agent can?
 
-A knowledge base on **agentic engineering** — the design, building, and operation of LLM-based agents. An automated capture agent triages incoming URLs, fetches content, and writes structured captures directly to this repo. Signal gets consolidated into topic notes and synthesised into cross-source essays. Covers Claude Code, harnesses, tool use, memory, evals, cost management, and related practice.
+A knowledge base on **agentic engineering** — the design, building, and operation of LLM-based agents. An automated capture agent triages incoming URLs, fetches content, and writes structured captures directly to this repo. Signal gets consolidated into topic notes and synthesised into cross-source essays. Covers coding agents, harnesses, tool use, memory, evals, cost management, and related practice.
 
 **[→ Live dashboard](https://clewisdev.github.io/agentic-firehose/)**
 
@@ -18,7 +18,7 @@ A knowledge base on **agentic engineering** — the design, building, and operat
 sources/      Raw captures — one file per URL, written by the Worker
 topics/       Distilled knowledge by theme (24 canonical topics)
 synthesis/    Cross-source essays: conclusions drawn across 3+ sources
-skills/       Claude Code skills used in this KB
+skills/       Agent Skills used in this KB
 worker/       Cloudflare Worker — email-triggered automated capture
 ```
 
