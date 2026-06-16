@@ -112,11 +112,11 @@ Every rejected or skipped item lands in `sources/skipped/` with a one-line reaso
 
 ## Synthesis
 
-Raw captures (`status: raw`) are cross-linked into topic indexes and synthesised using the `synthesise` skill:
+Raw captures (`status: raw`) are cross-linked into topic indexes and synthesised using the `synthesise` skill. The skill follows the [Agent Skills](https://agentskills.io) open standard, so any compatible agent can use it.
 
 ```bash
-claude   # open Claude Code in the repo root
-# then: /synthesise
+# open your agent of choice in the repo root, then invoke:
+/synthesise
 ```
 
 The skill finds all `status: raw` sources, cross-links them to the relevant topic indexes, checks whether any existing synthesis files need updating, and marks sources as `status: summarized`. It processes in batches of 10 and reports progress so sessions can be handed off cleanly.
@@ -149,6 +149,7 @@ cd worker && npx wrangler deploy
 cd worker
 npx wrangler secret put ANTHROPIC_API_KEY
 npx wrangler secret put GITHUB_TOKEN
+npx wrangler secret put ALLOWED_SENDERS
 ```
 
 No redeploy needed — secrets take effect immediately.
