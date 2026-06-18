@@ -10,6 +10,7 @@ signal_level: medium
 status: raw
 confidence: medium
 freshness_until: unknown
+stars: 39000
 ---
 
 ## Summary

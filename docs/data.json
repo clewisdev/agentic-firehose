@@ -1,7 +1,377 @@
 {
-  "generated": "2026-06-16T21:06:03",
-  "total": 99,
+  "generated": "2026-06-18T09:24:04",
+  "total": 112,
   "sources": [
+    {
+      "file": "2026-06-18-build-self-improving-claude-skills.md",
+      "title": "Full Tutorial: Build Self-Improving Claude Skills in 20 Min (Eval + Memory)",
+      "url": "https://creatoreconomy.so/p/full-tutorial-build-self-improving-claude-skills-in-20-min?trk=public_post_comment-text",
+      "authors": [
+        "Peter Yang"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "post",
+      "topics": [
+        "agent-architecture",
+        "memory",
+        "evals"
+      ],
+      "tags": [
+        "claude-skills",
+        "skill-editor",
+        "eval-loop",
+        "memory-files",
+        "self-improvement"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "2026-Q4"
+    },
+    {
+      "file": "2026-06-18-developers-defanging-ai.md",
+      "title": "Developers build the best tools for developers – and are now defanging the AI menace",
+      "url": "https://www.theregister.com/ai-and-ml/2026/06/17/developers-build-the-best-tools-for-developers-and-are-now-defanging-the-ai-menace/5255316",
+      "authors": [
+        "Mark Pesce"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "blog",
+      "topics": [
+        "agent-architecture",
+        "cost-management",
+        "engineering-judgment",
+        "team-dynamics"
+      ],
+      "tags": [
+        "token-cost",
+        "diffusion-models",
+        "feedback-loops",
+        "ci-cd",
+        "agents",
+        "developer-tooling"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "2027-Q2"
+    },
+    {
+      "file": "2026-06-18-last30days-skill.md",
+      "title": "last30days-skill: AI agent skill for cross-platform synthesis",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "authors": [
+        "mvanhorn"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "repo",
+      "topics": [
+        "tool-use",
+        "agent-architecture",
+        "agentic-workflows"
+      ],
+      "tags": [
+        "multi-source",
+        "information-synthesis",
+        "search",
+        "reddit",
+        "x",
+        "youtube",
+        "hacker-news",
+        "polymarket"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "unknown",
+      "stars": "39000"
+    },
+    {
+      "file": "2026-06-18-matt-van-horn-agentic-takeaways.md",
+      "title": "Matt Van Horn's Top 5 Takeaways for AI Builders",
+      "url": "https://www.linkedin.com/posts/petergyang_how-this-non-technical-founder-mastered-agentic-share-7472294363180556288-BjEg/",
+      "authors": [
+        "Peter Yang"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "post",
+      "topics": [
+        "agentic-workflows",
+        "tool-use",
+        "engineering-judgment"
+      ],
+      "tags": [
+        "printing-press",
+        "compound-engineering",
+        "last30days",
+        "github-stars",
+        "non-technical-founder"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "2026-Q3"
+    },
+    {
+      "file": "2026-06-18-scaling-laws-agent-harnesses.md",
+      "title": "Scaling Laws for Agent Harnesses via Effective Feedback Compute",
+      "url": "https://arxiv.org/abs/2605.29682",
+      "authors": [
+        "Xuanliang Zhang",
+        "Dingzirui Wang",
+        "Keyan Xu",
+        "Qingfu Zhu",
+        "Wanxiang Che"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "paper",
+      "topics": [
+        "harnesses",
+        "agent-architecture",
+        "evals",
+        "cost-management"
+      ],
+      "tags": [
+        "scaling-laws",
+        "feedback-quality",
+        "test-time-compute",
+        "tool-calling",
+        "verification"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-17-ai-engineering-from-scratch.md",
+      "title": "AI Engineering from Scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "authors": [
+        "Rohit G"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "repo",
+      "topics": [
+        "skills",
+        "code-generation",
+        "agentic-workflows",
+        "agent-architecture"
+      ],
+      "tags": [
+        "curriculum",
+        "foundations",
+        "multi-language",
+        "end-to-end",
+        "learning-resource"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "evergreen"
+    },
+    {
+      "file": "2026-06-17-alibaba-open-code-review.md",
+      "title": "Open Code Review: Alibaba's hybrid deterministic + LLM agent code review tool",
+      "url": "https://github.com/alibaba/open-code-review",
+      "authors": [
+        "Alibaba Group"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "repo",
+      "topics": [
+        "code-review",
+        "agent-architecture",
+        "tool-use",
+        "safety"
+      ],
+      "tags": [
+        "deterministic-pipelines",
+        "llm-agents",
+        "file-bundling",
+        "rule-matching",
+        "positioning",
+        "reflection"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-17-ebay-velocity-culture.md",
+      "title": "We doubled engineering productivity at eBay, but couldn't change culture",
+      "url": "https://leaddev.com/culture/we-doubled-engineering-productivity-at-ebay-but-couldnt-change-culture",
+      "authors": [
+        "Randy Shoup"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "talk",
+      "topics": [
+        "agentic-workflows",
+        "enterprise-deployment",
+        "team-dynamics",
+        "engineering-judgment"
+      ],
+      "tags": [
+        "devops",
+        "dora-metrics",
+        "organizational-transformation",
+        "culture-change",
+        "eBay",
+        "velocity"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "evergreen"
+    },
+    {
+      "file": "2026-06-17-fowler-fragments-june-16.md",
+      "title": "Fragments: June 16",
+      "url": "https://martinfowler.com/fragments/2026-06-16.html",
+      "authors": [
+        "Martin Fowler"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "blog",
+      "topics": [
+        "ai-productivity",
+        "engineering-judgment",
+        "system-design"
+      ],
+      "tags": [
+        "llm-workflow",
+        "context-management",
+        "domain-driven-design",
+        "technical-debt",
+        "team-dynamics"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-17-information-flow-control-secure-agents.md",
+      "title": "Information-flow control: Moving toward secure, autonomous agents",
+      "url": "https://commandline.microsoft.com/information-flow-control-moving-toward-secure-autonomous-agents/",
+      "authors": [
+        "Santiago Zanella-Béguelin",
+        "Shruti Tople",
+        "Mark Russinovich",
+        "Aashish Kolluri",
+        "Boris Köpf",
+        "Manuel Costa"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "blog",
+      "topics": [
+        "safety",
+        "agent-architecture",
+        "tool-use"
+      ],
+      "tags": [
+        "information-flow-control",
+        "prompt-injection",
+        "data-exfiltration",
+        "github-copilot",
+        "mcp",
+        "deterministic-security"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "2027-Q2"
+    },
+    {
+      "file": "2026-06-17-openclaw-personal-ai-assistant.md",
+      "title": "OpenClaw — Personal AI Assistant",
+      "url": "https://github.com/openclaw/openclaw",
+      "authors": [
+        "OpenClaw Contributors"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "repo",
+      "topics": [
+        "agent-architecture",
+        "agentic-workflows",
+        "tool-use"
+      ],
+      "tags": [
+        "multi-channel",
+        "messaging",
+        "local-first",
+        "mcp",
+        "node.js",
+        "open-source"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-17-prince-reliable-agentic-rag.md",
+      "title": "Building Reliable Agentic AI Systems: A Case Study in Pharmaceutical RAG",
+      "url": "https://martinfowler.com/articles/reliable-llm-bayer.html",
+      "authors": [
+        "Sarang Sanjay Kulkarni"
+      ],
+      "captured": "2026-06-17",
+      "source_type": "blog",
+      "topics": [
+        "agent-architecture",
+        "tool-use",
+        "context-engineering",
+        "harnesses",
+        "evals"
+      ],
+      "tags": [
+        "rag",
+        "multi-agent",
+        "drug-discovery",
+        "pharmaceutical",
+        "reflection-loop",
+        "text-to-sql",
+        "error-handling",
+        "observability"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "2027-Q2"
+    },
+    {
+      "file": "2026-06-16-new-sdlc-vibe-coding.md",
+      "title": "The New Software Development Lifecycle with Vibe Coding & Agentic Engineering",
+      "url": "https://www.linkedin.com/posts/addyosmani_the-new-software-development-lifecycle-with-ugcPost-7472391481375346688-98QL/",
+      "authors": [
+        "Addy Osmani",
+        "Shubham Saboo",
+        "Sokratis Kartakis"
+      ],
+      "captured": "2026-06-16",
+      "source_type": "post",
+      "topics": [
+        "agent-architecture",
+        "harnesses",
+        "agentic-workflows",
+        "engineering-judgment"
+      ],
+      "tags": [
+        "vibe-coding",
+        "specification",
+        "verification",
+        "human-judgment",
+        "sdlc",
+        "google-whitepaper"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
     {
       "file": "2026-06-15-claude-code-docs-overview.md",
       "title": "Claude Code Docs – Overview",
@@ -3067,6 +3437,20 @@
   ],
   "repos": [
     {
+      "name": "openclaw/openclaw",
+      "url": "https://github.com/openclaw/openclaw",
+      "stars": 379000,
+      "source_title": "OpenClaw — Personal AI Assistant",
+      "source_file": "2026-06-17-openclaw-personal-ai-assistant.md",
+      "topics": [
+        "agent-architecture",
+        "agentic-workflows",
+        "tool-use"
+      ],
+      "signal_level": "medium",
+      "captured": "2026-06-17"
+    },
+    {
       "name": "forrestchang/andrej-karpathy-skills",
       "url": "https://github.com/forrestchang/andrej-karpathy-skills",
       "stars": 160000,
@@ -3120,18 +3504,18 @@
       "captured": "2026-05-28"
     },
     {
-      "name": "thedotmack/claude-mem",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "stars": 5000,
-      "source_title": "claude-mem — Persistent Context Across Sessions for Every Agent",
-      "source_file": "2026-05-20-claude-mem.md",
+      "name": "mvanhorn/last30days-skill",
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "stars": 39000,
+      "source_title": "last30days-skill: AI agent skill for cross-platform synthesis",
+      "source_file": "2026-06-18-last30days-skill.md",
       "topics": [
-        "memory",
-        "harnesses",
-        "tool-use"
+        "tool-use",
+        "agent-architecture",
+        "agentic-workflows"
       ],
-      "signal_level": "high",
-      "captured": "2026-05-20"
+      "signal_level": "medium",
+      "captured": "2026-06-18"
     },
     {
       "name": "luongnv89/asm",
@@ -3162,6 +3546,21 @@
       "captured": "2026-05-20"
     },
     {
+      "name": "alibaba/open-code-review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "stars": 0,
+      "source_title": "Open Code Review: Alibaba's hybrid deterministic + LLM agent code review tool",
+      "source_file": "2026-06-17-alibaba-open-code-review.md",
+      "topics": [
+        "code-review",
+        "agent-architecture",
+        "tool-use",
+        "safety"
+      ],
+      "signal_level": "high",
+      "captured": "2026-06-17"
+    },
+    {
       "name": "borghei/Claude-Skills",
       "url": "https://github.com/borghei/Claude-Skills",
       "stars": 0,
@@ -3174,32 +3573,6 @@
       ],
       "signal_level": "medium",
       "captured": "2026-06-03"
-    },
-    {
-      "name": "juliusbrussee/caveman-code",
-      "url": "https://github.com/juliusbrussee/caveman-code",
-      "stars": 0,
-      "source_title": "Caveman-Code: Terminal Coding Agent with 1.93x Token Reduction",
-      "source_file": "2026-05-28-brussee-caveman-code.md",
-      "topics": [
-        "harnesses",
-        "cost-management"
-      ],
-      "signal_level": "high",
-      "captured": "2026-05-28"
-    },
-    {
-      "name": "JuliusBrussee/caveman",
-      "url": "https://github.com/JuliusBrussee/caveman",
-      "stars": 0,
-      "source_title": "Caveman — ultra-compressed communication skill",
-      "source_file": "2026-05-28-caveman-skill.md",
-      "topics": [
-        "skills",
-        "cost-management"
-      ],
-      "signal_level": "high",
-      "captured": "2026-05-28"
     },
     {
       "name": "google/skills",
@@ -3216,13 +3589,42 @@
       "captured": "2026-05-28"
     },
     {
-      "name": "obra/superpowers",
-      "url": "https://github.com/obra/superpowers",
+      "name": "hensu-project/hensu",
+      "url": "https://github.com/hensu-project/hensu",
       "stars": 0,
-      "source_title": "Superpowers: Structured Agentic Development Methodology",
-      "source_file": "2026-05-28-obra-superpowers.md",
+      "source_title": "Hensu: Infrastructure-as-Code for AI Agent Workflows",
+      "source_file": "2025-06-09-hensu-infrastructure-as-code.md",
       "topics": [
+        "agent-orchestration",
+        "agent-architecture",
+        "enterprise-deployment",
         "harnesses"
+      ],
+      "signal_level": "medium",
+      "captured": "2025-06-09"
+    },
+    {
+      "name": "JuliusBrussee/caveman",
+      "url": "https://github.com/JuliusBrussee/caveman",
+      "stars": 0,
+      "source_title": "Caveman — ultra-compressed communication skill",
+      "source_file": "2026-05-28-caveman-skill.md",
+      "topics": [
+        "skills",
+        "cost-management"
+      ],
+      "signal_level": "high",
+      "captured": "2026-05-28"
+    },
+    {
+      "name": "juliusbrussee/caveman-code",
+      "url": "https://github.com/juliusbrussee/caveman-code",
+      "stars": 0,
+      "source_title": "Caveman-Code: Terminal Coding Agent with 1.93x Token Reduction",
+      "source_file": "2026-05-28-brussee-caveman-code.md",
+      "topics": [
+        "harnesses",
+        "cost-management"
       ],
       "signal_level": "high",
       "captured": "2026-05-28"
@@ -3242,6 +3644,18 @@
       "captured": "2025-06-14"
     },
     {
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "stars": 0,
+      "source_title": "Superpowers: Structured Agentic Development Methodology",
+      "source_file": "2026-05-28-obra-superpowers.md",
+      "topics": [
+        "harnesses"
+      ],
+      "signal_level": "high",
+      "captured": "2026-05-28"
+    },
+    {
       "name": "Panniantong/Agent-Reach",
       "url": "https://github.com/Panniantong/Agent-Reach",
       "stars": 0,
@@ -3255,64 +3669,82 @@
       "captured": "2025-06-10"
     },
     {
-      "name": "hensu-project/hensu",
-      "url": "https://github.com/hensu-project/hensu",
+      "name": "rohitg00/ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
       "stars": 0,
-      "source_title": "Hensu: Infrastructure-as-Code for AI Agent Workflows",
-      "source_file": "2025-06-09-hensu-infrastructure-as-code.md",
+      "source_title": "AI Engineering from Scratch",
+      "source_file": "2026-06-17-ai-engineering-from-scratch.md",
       "topics": [
-        "agent-orchestration",
-        "agent-architecture",
-        "enterprise-deployment",
-        "harnesses"
+        "skills",
+        "code-generation",
+        "agentic-workflows",
+        "agent-architecture"
       ],
       "signal_level": "medium",
-      "captured": "2025-06-09"
+      "captured": "2026-06-17"
+    },
+    {
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "stars": 0,
+      "source_title": "claude-mem — Persistent Context Across Sessions for Every Agent",
+      "source_file": "2026-05-20-claude-mem.md",
+      "topics": [
+        "memory",
+        "harnesses",
+        "tool-use"
+      ],
+      "signal_level": "high",
+      "captured": "2026-05-20"
     }
   ],
   "topics": [
     [
       "harnesses",
-      41
+      44
     ],
     [
       "tool-use",
-      24
+      30
     ],
     [
       "agentic-workflows",
-      22
-    ],
-    [
-      "code-generation",
-      18
-    ],
-    [
-      "memory",
-      18
+      28
     ],
     [
       "agent-architecture",
-      17
+      27
+    ],
+    [
+      "code-generation",
+      19
+    ],
+    [
+      "memory",
+      19
     ],
     [
       "cost-management",
-      16
+      18
     ],
     [
       "evals",
-      15
+      18
     ],
     [
       "skills",
-      14
+      15
     ],
     [
       "ai-productivity",
-      12
+      13
     ],
     [
       "enterprise-deployment",
+      13
+    ],
+    [
+      "context-engineering",
       12
     ],
     [
@@ -3320,11 +3752,19 @@
       12
     ],
     [
-      "context-engineering",
+      "engineering-judgment",
       11
     ],
     [
       "system-design",
+      11
+    ],
+    [
+      "safety",
+      10
+    ],
+    [
+      "team-dynamics",
       10
     ],
     [
@@ -3332,24 +3772,12 @@
       8
     ],
     [
-      "safety",
-      8
-    ],
-    [
       "spec-driven-development",
       8
     ],
     [
-      "team-dynamics",
-      8
-    ],
-    [
       "code-review",
-      6
-    ],
-    [
-      "engineering-judgment",
-      6
+      7
     ],
     [
       "technical-debt",
@@ -3521,11 +3949,11 @@
     ],
     [
       "Addy Osmani",
-      4
+      5
     ],
     [
       "Martin Fowler",
-      4
+      5
     ],
     [
       "Paul Iusztin",
@@ -3537,6 +3965,10 @@
     ],
     [
       "Omar Solano",
+      3
+    ],
+    [
+      "Peter Yang",
       3
     ],
     [
@@ -3588,7 +4020,15 @@
       2
     ],
     [
+      "Aashish Kolluri",
+      1
+    ],
+    [
       "Alex Newman (@thedotmack)",
+      1
+    ],
+    [
+      "Alibaba Group",
       1
     ],
     [
@@ -3625,6 +4065,10 @@
     ],
     [
       "Boris Dayma",
+      1
+    ],
+    [
+      "Boris Köpf",
       1
     ],
     [
@@ -3673,6 +4117,10 @@
     ],
     [
       "Dax Raad",
+      1
+    ],
+    [
+      "Dingzirui Wang",
       1
     ],
     [
@@ -3752,6 +4200,10 @@
       1
     ],
     [
+      "Keyan Xu",
+      1
+    ],
+    [
       "Kun (ex-Meta L8 engineer)",
       1
     ],
@@ -3764,11 +4216,23 @@
       1
     ],
     [
+      "Manuel Costa",
+      1
+    ],
+    [
       "Mario Zechner",
       1
     ],
     [
+      "Mark Pesce",
+      1
+    ],
+    [
       "Mark Richards",
+      1
+    ],
+    [
+      "Mark Russinovich",
       1
     ],
     [
@@ -3800,6 +4264,10 @@
       1
     ],
     [
+      "OpenClaw Contributors",
+      1
+    ],
+    [
       "Panniantong",
       1
     ],
@@ -3816,10 +4284,6 @@
       1
     ],
     [
-      "Peter Yang",
-      1
-    ],
-    [
       "Princeton NLP / SWE-bench team",
       1
     ],
@@ -3832,6 +4296,10 @@
       1
     ],
     [
+      "Qingfu Zhu",
+      1
+    ],
+    [
       "Qlty Software Inc.",
       1
     ],
@@ -3840,7 +4308,15 @@
       1
     ],
     [
+      "Randy Shoup",
+      1
+    ],
+    [
       "Richard Gall",
+      1
+    ],
+    [
+      "Rohit G",
       1
     ],
     [
@@ -3853,6 +4329,26 @@
     ],
     [
       "Safi Shamsi",
+      1
+    ],
+    [
+      "Santiago Zanella-Béguelin",
+      1
+    ],
+    [
+      "Sarang Sanjay Kulkarni",
+      1
+    ],
+    [
+      "Shruti Tople",
+      1
+    ],
+    [
+      "Shubham Saboo",
+      1
+    ],
+    [
+      "Sokratis Kartakis",
       1
     ],
     [
@@ -3884,7 +4380,15 @@
       1
     ],
     [
+      "Wanxiang Che",
+      1
+    ],
+    [
       "Weiquan Huang",
+      1
+    ],
+    [
+      "Xuanliang Zhang",
       1
     ],
     [
@@ -3960,6 +4464,10 @@
       1
     ],
     [
+      "mvanhorn",
+      1
+    ],
+    [
       "obra (Jesse Vincent)",
       1
     ],
@@ -3969,25 +4477,26 @@
     ]
   ],
   "status": {
+    "raw": 13,
     "summarized": 99
   },
   "signal": {
-    "medium": 55,
-    "high": 40,
+    "high": 46,
+    "medium": 62,
     "low": 4
   },
   "source_type": [
     [
       "post",
-      38
+      41
     ],
     [
       "blog",
-      28
+      32
     ],
     [
       "repo",
-      18
+      22
     ],
     [
       "docs",
@@ -3995,15 +4504,15 @@
     ],
     [
       "talk",
-      3
+      4
+    ],
+    [
+      "paper",
+      2
     ],
     [
       "podcast",
       2
-    ],
-    [
-      "paper",
-      1
     ],
     [
       "report",

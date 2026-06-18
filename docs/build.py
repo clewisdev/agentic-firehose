@@ -227,23 +227,15 @@ def main():
     records.sort(key=lambda r: r.get("captured", ""), reverse=True)
 
     # ---- extract GitHub repos with star counts ----
-    # Star counts are extracted from the KB. Many are mentioned in LinkedIn posts (not in the
-    # repo source itself), so we maintain a curated override map keyed by owner/repo (case-insensitive).
-    # These are sourced directly from the KB captures and should be updated when sources are refreshed.
-    STAR_OVERRIDES = {
-        "forrestchang/andrej-karpathy-skills": 160_000,   # karpathy-skills-claude-md
-        "anthropics/skills":                   142_000,   # third-party-skills-repos / google-skills-repo
-        "mattpocock/skills":                    96_728,   # pocock-skills
-        "addyosmani/agent-skills":              52_000,   # agent-skills-structured-workflows
-        "earendil-works/pi":                    56_500,   # pi-agent-framework
-        "safishamsi/graphify":                  55_200,   # safishamsi-graphify
-        "thedotmack/claude-mem":                 5_000,   # claude-mem (no explicit count in KB, conservative)
-        "luongnv89/asm":                           450,   # agent-skill-manager
-        "jigripokri/poha":                          80,   # poha
-    }
+    # Strategy: scan every source body in the corpus for (github repo name, star count) pairs.
+    # Many repos have their star count mentioned in a LinkedIn/blog post rather than their own
+    # repo source file, so we must search the whole corpus, not just the repo's own capture.
 
     star_re = re.compile(
         r"([\d,]+\.?\d*[kK]?\+?)\s*(?:GitHub\s+)?stars?", re.IGNORECASE
+    )
+    github_name_re = re.compile(
+        r"github\.com/([a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+)", re.IGNORECASE
     )
 
     def parse_stars(raw):
@@ -257,6 +249,42 @@ def main():
         except (ValueError, OverflowError):
             return 0
 
+    # Pass 1: build corpus-wide map of repo name (lowercase) -> max stars seen
+    corpus_stars = {}  # lower(owner/repo) -> int
+    for rec in records:
+        src_path = os.path.join(SRC, rec["file"])
+        try:
+            body = open(src_path, encoding="utf-8").read()
+        except OSError:
+            continue
+        # Find all github repo names and all star counts in this file
+        repo_names = [m.group(1) for m in github_name_re.finditer(body)]
+        star_counts = [parse_stars(s) for s in star_re.findall(body)]
+        star_counts = [s for s in star_counts if s > 0]
+        if not repo_names or not star_counts:
+            continue
+        # If there's only one repo name in the file, associate all star counts with it
+        # If there are multiple, only associate counts that appear within 600 chars of the name
+        if len(set(r.lower() for r in repo_names)) == 1:
+            best = max(star_counts)
+            key = repo_names[0].lower()
+            if best > corpus_stars.get(key, 0):
+                corpus_stars[key] = best
+        else:
+            for m_repo in github_name_re.finditer(body):
+                name_key = m_repo.group(1).lower()
+                window_start = max(0, m_repo.start() - 600)
+                window_end = min(len(body), m_repo.end() + 600)
+                window = body[window_start:window_end]
+                nearby = [parse_stars(s) for s in star_re.findall(window) if parse_stars(s) > 0]
+                if nearby:
+                    best = max(nearby)
+                    if best > corpus_stars.get(name_key, 0):
+                        corpus_stars[name_key] = best
+
+    # Pass 2: build repo_meta from sources whose URL is a GitHub repo,
+    # then supplement missing star counts by searching corpus for the repo's short name
+    # (handles cases where star count appears in a different source file than the repo URL)
     repo_meta = {}
     for rec in records:
         url = rec.get("url", "")
@@ -268,22 +296,50 @@ def main():
             continue
         name = m.group(1)
         if name not in repo_meta:
-            # Try override (case-insensitive)
-            override_stars = next(
-                (v for k, v in STAR_OVERRIDES.items() if k.lower() == name.lower()), 0
-            )
-            # Also scan the source body for star counts
-            src_path = os.path.join(SRC, rec["file"])
-            try:
-                body = open(src_path, encoding="utf-8").read()
-            except OSError:
-                body = ""
-            body_stars = [parse_stars(s) for s in star_re.findall(body)]
-            body_max = max((s for s in body_stars if s > 0), default=0)
+            # Prefer explicit stars: frontmatter field > corpus scan > short-name fallback
+            stars = int(rec.get("stars", 0)) if rec.get("stars") else 0
+            if stars == 0:
+                stars = corpus_stars.get(name.lower(), 0)
+            # Fallback: search corpus for the repo's short name near a star count.
+            # Only for distinctive names (>6 chars, not generic words that appear everywhere).
+            if stars == 0:
+                short_name = name.split("/")[-1].lower()
+                generic = {"skills", "agents", "claude", "models", "review", "coding",
+                           "memory", "tools", "agent", "code", "repo", "app", "api"}
+                if len(short_name) > 6 and short_name not in generic:
+                    for rec2 in records:
+                        src_path2 = os.path.join(SRC, rec2["file"])
+                        try:
+                            body2 = open(src_path2, encoding="utf-8").read()
+                        except OSError:
+                            continue
+                        if short_name not in body2.lower():
+                            continue
+                        for idx in [m2.start() for m2 in re.finditer(re.escape(short_name), body2, re.IGNORECASE)]:
+                            window = body2[max(0, idx-200):idx+200]
+                            nearby = [parse_stars(s) for s in star_re.findall(window) if parse_stars(s) > 0]
+                            if not nearby:
+                                continue
+                            # Skip if another repo's URL appears in the window (count belongs to them)
+                            other_repos = [m3.group(1).lower() for m3 in github_name_re.finditer(window)
+                                           if m3.group(1).lower() != name.lower()]
+                            if other_repos:
+                                continue
+                            # Skip if neither the owner nor the repo name appears alongside the match
+                            owner = name.split("/")[0].lower()
+                            if owner not in window.lower() and short_name not in window.lower().replace(short_name, "", 1):
+                                pass  # short_name is guaranteed present; owner check is the signal
+                            # Require the source file's own URL to be this repo, or the owner to appear
+                            src_url = (rec2.get("url") or "").lower()
+                            if name.lower() not in src_url and owner not in window.lower():
+                                continue
+                            best = max(nearby)
+                            if best > stars:
+                                stars = best
             repo_meta[name] = {
                 "name": name,
                 "url": gh_url,
-                "stars": max(override_stars, body_max),
+                "stars": stars,
                 "source_title": rec.get("title", rec["file"]),
                 "source_file": rec["file"],
                 "topics": rec.get("topics", []),
@@ -291,7 +347,8 @@ def main():
                 "captured": rec.get("captured", ""),
             }
 
-    repos = sorted(repo_meta.values(), key=lambda r: -r["stars"])
+    # Sort by stars desc, then alphabetically for ties (deterministic ordering)
+    repos = sorted(repo_meta.values(), key=lambda r: (-r["stars"], r["name"].lower()))
 
     topic_docs = render_topics(url_by_file)
 
