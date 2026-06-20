@@ -1,7 +1,35 @@
 {
-  "generated": "2026-06-20T14:54:51",
-  "total": 124,
+  "generated": "2026-06-20T15:00:53",
+  "total": 125,
   "sources": [
+    {
+      "file": "2026-06-20-abtop-agent-monitor.md",
+      "title": "abtop: Like htop, but for AI coding agents",
+      "url": "https://github.com/graykode/abtop",
+      "authors": [
+        "graykode"
+      ],
+      "captured": "2026-06-20",
+      "source_type": "repo",
+      "topics": [
+        "agent-orchestration",
+        "harnesses",
+        "monitoring"
+      ],
+      "tags": [
+        "claude-code",
+        "codex-cli",
+        "opencode",
+        "rust",
+        "tui",
+        "rate-limits",
+        "token-tracking"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
     {
       "file": "2026-06-20-claude-code-artifacts.md",
       "title": "Claude Code now supports artifacts",
@@ -3941,6 +3969,20 @@
       "captured": "2026-05-28"
     },
     {
+      "name": "graykode/abtop",
+      "url": "https://github.com/graykode/abtop",
+      "stars": 0,
+      "source_title": "abtop: Like htop, but for AI coding agents",
+      "source_file": "2026-06-20-abtop-agent-monitor.md",
+      "topics": [
+        "agent-orchestration",
+        "harnesses",
+        "monitoring"
+      ],
+      "signal_level": "high",
+      "captured": "2026-06-20"
+    },
+    {
       "name": "hensu-project/hensu",
       "url": "https://github.com/hensu-project/hensu",
       "stars": 0,
@@ -4065,17 +4107,27 @@
     }
   ],
   "featured": {
-    "repo": "mvanhorn/last30days-skill",
-    "note": "Aggregates real-time community signal across Reddit, X, YouTube, HN, GitHub, TikTok, and Polymarket into a single ranked summary. The multi-source parallel synthesis pattern maps directly onto how this KB works — just with a different ingestion trigger.",
-    "set_on": "2026-06-16",
-    "age_days": 4,
-    "url": "https://github.com/mvanhorn/last30days-skill",
-    "stars": 39000
+    "repo": "Priivacy-ai/spec-kitty",
+    "note": "Spec-driven development harness with git worktree isolation, Kanban dashboard, and multi-agent support across Claude Code, Codex, Cursor, Gemini, and OpenCode. The 'spec → plan → tasks → next → review → accept → merge' loop is the most concrete implementation of the supervisory engineering middle-loop pattern in the KB.",
+    "set_on": "2026-06-20",
+    "age_days": 0,
+    "url": "https://github.com/Priivacy-ai/spec-kitty",
+    "stars": 0
   },
+  "featured_previous": [
+    {
+      "repo": "mvanhorn/last30days-skill",
+      "note": "Aggregates real-time community signal across Reddit, X, YouTube, HN, GitHub, TikTok, and Polymarket into a single ranked summary. The multi-source parallel synthesis pattern maps directly onto how this KB works — just with a different ingestion trigger.",
+      "set_on": "2026-06-16",
+      "age_days": 4,
+      "url": "https://github.com/mvanhorn/last30days-skill",
+      "stars": 39000
+    }
+  ],
   "topics": [
     [
       "harnesses",
-      45
+      46
     ],
     [
       "tool-use",
@@ -4142,12 +4194,12 @@
       10
     ],
     [
-      "spec-driven-development",
+      "agent-orchestration",
       9
     ],
     [
-      "agent-orchestration",
-      8
+      "spec-driven-development",
+      9
     ],
     [
       "code-review",
@@ -4168,6 +4220,10 @@
     [
       "personalization",
       2
+    ],
+    [
+      "monitoring",
+      1
     ]
   ],
   "topic_docs": {
@@ -4850,6 +4906,10 @@
       1
     ],
     [
+      "graykode",
+      1
+    ],
+    [
       "hensu-project",
       1
     ],
@@ -4883,12 +4943,12 @@
     ]
   ],
   "status": {
-    "raw": 25,
+    "raw": 26,
     "summarized": 99
   },
   "signal": {
+    "high": 54,
     "medium": 67,
-    "high": 53,
     "low": 4
   },
   "source_type": [
@@ -4902,7 +4962,7 @@
     ],
     [
       "repo",
-      26
+      27
     ],
     [
       "docs",

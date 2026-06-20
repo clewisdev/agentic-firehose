@@ -360,25 +360,36 @@ def main():
 
     # ---- featured repo (docs/featured.json, auto-expires after 10 days) ----
     featured = None
+    featured_previous = []
     featured_path = os.path.join(OUT, "featured.json")
     if os.path.exists(featured_path):
         try:
-            feat = json.load(open(featured_path, encoding="utf-8"))
-            set_on = datetime.date.fromisoformat(feat.get("set_on", ""))
-            age = (datetime.date.today() - set_on).days
-            if age <= 10:
-                # Resolve against repos for URL + stars
-                repo_rec = next((r for r in repos if r["name"] == feat.get("repo")), None)
-                featured = {
-                    "repo": feat.get("repo"),
-                    "note": feat.get("note", ""),
-                    "set_on": feat.get("set_on"),
+            feat_data = json.load(open(featured_path, encoding="utf-8"))
+            def resolve_pick(pick):
+                if not pick:
+                    return None
+                set_on = datetime.date.fromisoformat(pick.get("set_on", ""))
+                age = (datetime.date.today() - set_on).days
+                repo_rec = next((r for r in repos if r["name"] == pick.get("repo")), None)
+                return {
+                    "repo": pick.get("repo"),
+                    "note": pick.get("note", ""),
+                    "set_on": pick.get("set_on"),
                     "age_days": age,
-                    "url": repo_rec["url"] if repo_rec else f"https://github.com/{feat.get('repo')}",
+                    "url": repo_rec["url"] if repo_rec else f"https://github.com/{pick.get('repo')}",
                     "stars": repo_rec["stars"] if repo_rec else 0,
                 }
+            current = feat_data.get("current") if isinstance(feat_data, dict) else feat_data
+            if current:
+                resolved = resolve_pick(current)
+                if resolved and resolved["age_days"] <= 10:
+                    featured = resolved
+            for prev in (feat_data.get("previous", []) if isinstance(feat_data, dict) else []):
+                r = resolve_pick(prev)
+                if r:
+                    featured_previous.append(r)
         except (ValueError, KeyError, TypeError):
-            pass  # malformed or expired — hide the panel
+            pass
 
     data = {
         "generated": datetime.datetime.now().isoformat(timespec="seconds"),
@@ -387,6 +398,7 @@ def main():
         "syntheses": syntheses,
         "repos": repos,
         "featured": featured,
+        "featured_previous": featured_previous,
         "topics": sorted(topics.items(), key=lambda x: (-x[1], x[0])),
         "topic_docs": topic_docs,
         "authors": sorted(authors.items(), key=lambda x: (-x[1], x[0])),

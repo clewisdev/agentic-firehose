@@ -1,5 +1,14 @@
 {
-  "repo": "mvanhorn/last30days-skill",
-  "note": "Aggregates real-time community signal across Reddit, X, YouTube, HN, GitHub, TikTok, and Polymarket into a single ranked summary. The multi-source parallel synthesis pattern maps directly onto how this KB works — just with a different ingestion trigger.",
-  "set_on": "2026-06-16"
+  "current": {
+    "repo": "Priivacy-ai/spec-kitty",
+    "note": "Spec-driven development harness with git worktree isolation, Kanban dashboard, and multi-agent support across Claude Code, Codex, Cursor, Gemini, and OpenCode. The 'spec → plan → tasks → next → review → accept → merge' loop is the most concrete implementation of the supervisory engineering middle-loop pattern in the KB.",
+    "set_on": "2026-06-20"
+  },
+  "previous": [
+    {
+      "repo": "mvanhorn/last30days-skill",
+      "note": "Aggregates real-time community signal across Reddit, X, YouTube, HN, GitHub, TikTok, and Polymarket into a single ranked summary. The multi-source parallel synthesis pattern maps directly onto how this KB works — just with a different ingestion trigger.",
+      "set_on": "2026-06-16"
+    }
+  ]
 }
