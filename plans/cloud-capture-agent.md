@@ -1,8 +1,8 @@
 ---
 title: "Cloud-hosted email-triggered capture agent"
-status: in-progress  # planning | in-progress | shipped | abandoned
+status: shipped  # planning | in-progress | shipped | abandoned
 drafted: 2026-05-27
-updated: 2026-05-29
+updated: 2026-06-16
 owner: chris
 ---
 

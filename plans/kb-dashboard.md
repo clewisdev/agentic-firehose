@@ -1,8 +1,17 @@
 # Plan: KB activity dashboard (data-quality + PII gated)
 
 **Created:** 2026-06-14
-**Status:** planning — no execution yet
+**Status:** shipped — all phases complete as of 2026-06-16
 **Goal:** an at-a-glance dashboard (recent captures, topics, synthesis status, top authors, signal/source-type distributions) hosted with no new infra, accessible on the go.
+
+## Outcome
+
+All three phases shipped:
+- **Phase 1** (data quality): source_type normalisation, signal_level backfill, topic taxonomy consolidation (182→24 canonical topics), CRLF fix, Worker guards added.
+- **Phase 2** (PII gate): gitleaks clean, emails removed from wrangler.toml and git history, employer references anonymised, handoff.md gitignored.
+- **Phase 3** (dashboard): `docs/` static dashboard live at https://clewisdev.github.io/agentic-firehose/. GitHub Actions rebuilds on every push. Panels: topics, recent activity, synthesis, trending repos, status/signal/source-type distributions, top authors.
+
+Repo made public 2026-06-16.
 
 ## Hosting decision (deferred)
 
