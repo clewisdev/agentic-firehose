@@ -1,0 +1,5 @@
+{
+  "repo": "mvanhorn/last30days-skill",
+  "note": "Aggregates real-time community signal across Reddit, X, YouTube, HN, GitHub, TikTok, and Polymarket into a single ranked summary. The multi-source parallel synthesis pattern maps directly onto how this KB works — just with a different ingestion trigger.",
+  "set_on": "2026-06-16"
+}

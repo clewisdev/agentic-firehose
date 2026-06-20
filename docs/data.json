@@ -1,7 +1,277 @@
 {
-  "generated": "2026-06-18T09:24:04",
-  "total": 112,
+  "generated": "2026-06-20T14:54:51",
+  "total": 124,
   "sources": [
+    {
+      "file": "2026-06-20-claude-code-artifacts.md",
+      "title": "Claude Code now supports artifacts",
+      "url": "https://claude.com/blog/artifacts-in-claude-code",
+      "authors": [
+        "Anthropic"
+      ],
+      "captured": "2026-06-20",
+      "source_type": "blog",
+      "topics": [
+        "agentic-workflows",
+        "agent-architecture",
+        "tool-use"
+      ],
+      "tags": [
+        "claude-code",
+        "artifacts",
+        "collaboration",
+        "incident-investigation",
+        "visualization"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "2026-Q4"
+    },
+    {
+      "file": "2026-06-19-ai-adoption-measured-wrong.md",
+      "title": "AI adoption is being measured wrong",
+      "url": "https://www.linkedin.com/posts/troymagennis_here-is-my-open-letter-to-the-leaders-and-ugcPost-7473515403508412418-7Jy1/",
+      "authors": [
+        "Troy Magennis"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "post",
+      "topics": [
+        "evals",
+        "engineering-judgment",
+        "product-strategy"
+      ],
+      "tags": [
+        "ai-metrics",
+        "developer-productivity",
+        "measurement",
+        "dora"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "2026-Q3"
+    },
+    {
+      "file": "2026-06-19-ai-coding-agents-comparison.md",
+      "title": "AI Coding Agents & IDEs: The Complete 2026 Comparison",
+      "url": "https://lushbinary.com/blog/ai-coding-agents-comparison-cursor-windsurf-claude-copilot-kiro-2026/",
+      "authors": [
+        "Lushbinary Team"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "blog",
+      "topics": [
+        "tool-use",
+        "cost-management",
+        "ai-productivity"
+      ],
+      "tags": [
+        "claude-code",
+        "cursor",
+        "windsurf",
+        "github-copilot",
+        "kiro",
+        "antigravity",
+        "pricing",
+        "agentic-ide"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "2026-Q3"
+    },
+    {
+      "file": "2026-06-19-box-is-open.md",
+      "title": "The Box is Open",
+      "url": "https://wyrd-technology.com/blog/the-box-is-open/",
+      "authors": [
+        "Wyrd Technology"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "blog",
+      "topics": [
+        "cost-management",
+        "agentic-workflows",
+        "enterprise-deployment"
+      ],
+      "tags": [
+        "pricing",
+        "cloud-vs-local",
+        "agentic-loops",
+        "token-economics",
+        "inference-cost",
+        "infrastructure"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "2027-Q2"
+    },
+    {
+      "file": "2026-06-19-headroom-compression.md",
+      "title": "Headroom: Context Compression Layer for AI Agents",
+      "url": "https://github.com/chopratejas/headroom",
+      "authors": [
+        "Tejas Chopra"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "repo",
+      "topics": [
+        "cost-management",
+        "agent-architecture",
+        "context-engineering"
+      ],
+      "tags": [
+        "token-compression",
+        "proxy",
+        "mcp",
+        "reversible-compression",
+        "json",
+        "code-ast",
+        "rag"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-19-kiro-agentic-ide.md",
+      "title": "Kiro: Agentic IDE for Spec-Driven Development",
+      "url": "https://github.com/kirodotdev/Kiro",
+      "authors": [
+        "Amazon/kirodotdev"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "repo",
+      "topics": [
+        "agent-architecture",
+        "spec-driven-development",
+        "agentic-workflows",
+        "tool-use"
+      ],
+      "tags": [
+        "ide",
+        "cli",
+        "mcp",
+        "hooks",
+        "steering",
+        "amazon"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "medium",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-19-maintainability-sensors-coding-agents.md",
+      "title": "Maintainability sensors for coding agents",
+      "url": "https://martinfowler.com/articles/sensors-for-coding-agents.html",
+      "authors": [
+        "Birgitta Böckeler"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "blog",
+      "topics": [
+        "harnesses",
+        "agent-architecture",
+        "code-generation",
+        "evals"
+      ],
+      "tags": [
+        "static-analysis",
+        "eslint",
+        "mutation-testing",
+        "feedback-loops",
+        "typescript",
+        "nextjs",
+        "self-correction"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "evergreen"
+    },
+    {
+      "file": "2026-06-19-openkb-vectorless-knowledge-base.md",
+      "title": "OpenKB: Open LLM Knowledge Base",
+      "url": "https://github.com/VectifyAI/OpenKB",
+      "authors": [
+        "VectifyAI"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "repo",
+      "topics": [
+        "memory",
+        "context-engineering",
+        "system-design"
+      ],
+      "tags": [
+        "knowledge-base",
+        "reasoning-retrieval",
+        "multi-modal",
+        "wiki",
+        "pageindex",
+        "long-documents"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-19-ponytail-benchmark-eval.md",
+      "title": "Benchmarking Ponytail: Open-Source Agent Skill for Code Minimization",
+      "url": "https://www.linkedin.com/posts/dietrich-gebert-b3a314a9_opensource-softwareengineering-ai-share-7473408704768282624-VrVi/",
+      "authors": [
+        "Dietrich Gebert"
+      ],
+      "captured": "2026-06-19",
+      "source_type": "post",
+      "topics": [
+        "tool-use",
+        "agentic-workflows",
+        "evals"
+      ],
+      "tags": [
+        "code-generation",
+        "reproducible-benchmarks",
+        "ai-agents",
+        "safety-checks"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-18-agentic-code-review.md",
+      "title": "Agentic Code Review",
+      "url": "https://addyo.substack.com/p/agentic-code-review",
+      "authors": [
+        "Addy Osmani"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "post",
+      "topics": [
+        "code-review",
+        "agent-architecture",
+        "evals",
+        "engineering-judgment"
+      ],
+      "tags": [
+        "code-quality",
+        "review-automation",
+        "incident-rates",
+        "productivity-measurement"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "2026-Q3"
+    },
     {
       "file": "2026-06-18-build-self-improving-claude-skills.md",
       "title": "Full Tutorial: Build Self-Improving Claude Skills in 20 Min (Eval + Memory)",
@@ -142,6 +412,31 @@
       "status": "raw",
       "confidence": "high",
       "freshness_until": "unknown"
+    },
+    {
+      "file": "2026-06-18-slow-down-sit-with-it.md",
+      "title": "Slow down and sit with it",
+      "url": "https://yaoyue.org/blog/2026-slowdown/",
+      "authors": [
+        "Yao Yue"
+      ],
+      "captured": "2026-06-18",
+      "source_type": "blog",
+      "topics": [
+        "engineering-judgment",
+        "team-dynamics",
+        "skills"
+      ],
+      "tags": [
+        "cognitive-load",
+        "code-review",
+        "ai-integration",
+        "developer-identity"
+      ],
+      "signal_level": "medium",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "evergreen"
     },
     {
       "file": "2026-06-17-ai-engineering-from-scratch.md",
@@ -2686,6 +2981,34 @@
       "freshness_until": "2026-Q4"
     },
     {
+      "file": "2025-06-19-openkb-vectorless-kb.md",
+      "title": "OpenKB: Open LLM Knowledge Base",
+      "url": "https://github.com/VectifyAI/OpenKB",
+      "authors": [
+        "VectifyAI"
+      ],
+      "captured": "2025-06-19",
+      "source_type": "repo",
+      "topics": [
+        "memory",
+        "context-engineering",
+        "agentic-workflows"
+      ],
+      "tags": [
+        "knowledge-base",
+        "rag",
+        "pageindex",
+        "vectorless",
+        "wiki",
+        "obsidian",
+        "skill-distillation"
+      ],
+      "signal_level": "high",
+      "status": "raw",
+      "confidence": "high",
+      "freshness_until": "unknown"
+    },
+    {
       "file": "2025-06-14-ai-engineering-coach.md",
       "title": "AI Engineering Coach – VS Code Extension for AI Session Analysis",
       "url": "https://github.com/microsoft/AI-Engineering-Coach",
@@ -3518,6 +3841,21 @@
       "captured": "2026-06-18"
     },
     {
+      "name": "kirodotdev/Kiro",
+      "url": "https://github.com/kirodotdev/Kiro",
+      "stars": 3900,
+      "source_title": "Kiro: Agentic IDE for Spec-Driven Development",
+      "source_file": "2026-06-19-kiro-agentic-ide.md",
+      "topics": [
+        "agent-architecture",
+        "spec-driven-development",
+        "agentic-workflows",
+        "tool-use"
+      ],
+      "signal_level": "medium",
+      "captured": "2026-06-19"
+    },
+    {
       "name": "luongnv89/asm",
       "url": "https://github.com/luongnv89/asm",
       "stars": 450,
@@ -3573,6 +3911,20 @@
       ],
       "signal_level": "medium",
       "captured": "2026-06-03"
+    },
+    {
+      "name": "chopratejas/headroom",
+      "url": "https://github.com/chopratejas/headroom",
+      "stars": 0,
+      "source_title": "Headroom: Context Compression Layer for AI Agents",
+      "source_file": "2026-06-19-headroom-compression.md",
+      "topics": [
+        "cost-management",
+        "agent-architecture",
+        "context-engineering"
+      ],
+      "signal_level": "high",
+      "captured": "2026-06-19"
     },
     {
       "name": "google/skills",
@@ -3696,67 +4048,93 @@
       ],
       "signal_level": "high",
       "captured": "2026-05-20"
+    },
+    {
+      "name": "VectifyAI/OpenKB",
+      "url": "https://github.com/VectifyAI/OpenKB",
+      "stars": 0,
+      "source_title": "OpenKB: Open LLM Knowledge Base",
+      "source_file": "2026-06-19-openkb-vectorless-knowledge-base.md",
+      "topics": [
+        "memory",
+        "context-engineering",
+        "system-design"
+      ],
+      "signal_level": "high",
+      "captured": "2026-06-19"
     }
   ],
+  "featured": {
+    "repo": "mvanhorn/last30days-skill",
+    "note": "Aggregates real-time community signal across Reddit, X, YouTube, HN, GitHub, TikTok, and Polymarket into a single ranked summary. The multi-source parallel synthesis pattern maps directly onto how this KB works — just with a different ingestion trigger.",
+    "set_on": "2026-06-16",
+    "age_days": 4,
+    "url": "https://github.com/mvanhorn/last30days-skill",
+    "stars": 39000
+  },
   "topics": [
     [
       "harnesses",
-      44
+      45
     ],
     [
       "tool-use",
-      30
+      34
     ],
     [
       "agentic-workflows",
-      28
+      33
     ],
     [
       "agent-architecture",
-      27
-    ],
-    [
-      "code-generation",
-      19
-    ],
-    [
-      "memory",
-      19
-    ],
-    [
-      "cost-management",
-      18
+      32
     ],
     [
       "evals",
-      18
+      22
+    ],
+    [
+      "cost-management",
+      21
+    ],
+    [
+      "memory",
+      21
+    ],
+    [
+      "code-generation",
+      20
     ],
     [
       "skills",
+      16
+    ],
+    [
+      "context-engineering",
       15
     ],
     [
       "ai-productivity",
-      13
+      14
+    ],
+    [
+      "engineering-judgment",
+      14
     ],
     [
       "enterprise-deployment",
-      13
-    ],
-    [
-      "context-engineering",
-      12
+      14
     ],
     [
       "prompting",
       12
     ],
     [
-      "engineering-judgment",
-      11
+      "system-design",
+      12
     ],
     [
-      "system-design",
+      "team-dynamics",
       11
     ],
     [
@@ -3764,20 +4142,20 @@
       10
     ],
     [
-      "team-dynamics",
-      10
+      "spec-driven-development",
+      9
     ],
     [
       "agent-orchestration",
       8
     ],
     [
-      "spec-driven-development",
+      "code-review",
       8
     ],
     [
-      "code-review",
-      7
+      "product-strategy",
+      6
     ],
     [
       "technical-debt",
@@ -3785,10 +4163,6 @@
     ],
     [
       "model-internals",
-      5
-    ],
-    [
-      "product-strategy",
       5
     ],
     [
@@ -3945,11 +4319,11 @@
   "authors": [
     [
       "Anthropic",
-      7
+      8
     ],
     [
       "Addy Osmani",
-      5
+      6
     ],
     [
       "Martin Fowler",
@@ -3981,6 +4355,10 @@
     ],
     [
       "Bharani Subramaniam",
+      2
+    ],
+    [
+      "Birgitta Böckeler",
       2
     ],
     [
@@ -4016,6 +4394,10 @@
       2
     ],
     [
+      "VectifyAI",
+      2
+    ],
+    [
       "unknown",
       2
     ],
@@ -4029,6 +4411,10 @@
     ],
     [
       "Alibaba Group",
+      1
+    ],
+    [
+      "Amazon/kirodotdev",
       1
     ],
     [
@@ -4057,10 +4443,6 @@
     ],
     [
       "Benjamin André-Micolon",
-      1
-    ],
-    [
-      "Birgitta Böckeler",
       1
     ],
     [
@@ -4117,6 +4499,10 @@
     ],
     [
       "Dax Raad",
+      1
+    ],
+    [
+      "Dietrich Gebert",
       1
     ],
     [
@@ -4213,6 +4599,10 @@
     ],
     [
       "Lucian Moss",
+      1
+    ],
+    [
+      "Lushbinary Team",
       1
     ],
     [
@@ -4356,11 +4746,19 @@
       1
     ],
     [
+      "Tejas Chopra",
+      1
+    ],
+    [
       "Thomas Thornton",
       1
     ],
     [
       "Towards AI — Louis-François Bouchard",
+      1
+    ],
+    [
+      "Troy Magennis",
       1
     ],
     [
@@ -4388,6 +4786,10 @@
       1
     ],
     [
+      "Wyrd Technology",
+      1
+    ],
+    [
       "Xuanliang Zhang",
       1
     ],
@@ -4401,6 +4803,10 @@
     ],
     [
       "Yan Li",
+      1
+    ],
+    [
+      "Yao Yue",
       1
     ],
     [
@@ -4477,26 +4883,26 @@
     ]
   ],
   "status": {
-    "raw": 13,
+    "raw": 25,
     "summarized": 99
   },
   "signal": {
-    "high": 46,
-    "medium": 62,
+    "medium": 67,
+    "high": 53,
     "low": 4
   },
   "source_type": [
     [
       "post",
-      41
+      44
     ],
     [
       "blog",
-      32
+      37
     ],
     [
       "repo",
-      22
+      26
     ],
     [
       "docs",

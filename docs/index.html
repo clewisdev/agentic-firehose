@@ -188,6 +188,22 @@
   .filterbar.on { color:var(--brass); }
   .filterbar.on b { color:#fff; }
 
+  /* ---------- worth a look banner ---------- */
+  #featuredBanner { display:none; margin-bottom:16px;
+    background:linear-gradient(90deg, rgba(230,179,77,.08), rgba(230,179,77,.03));
+    border:1px solid rgba(230,179,77,.35); border-radius:5px; padding:13px 18px;
+    position:relative; }
+  #featuredBanner.show { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .feat-label { font-size:10px; text-transform:uppercase; letter-spacing:1.6px;
+    color:var(--brass); font-weight:700; flex:0 0 auto; white-space:nowrap; }
+  .feat-repo { font-size:13.5px; font-weight:700; flex:0 0 auto; }
+  .feat-repo a { color:#fff; }
+  .feat-repo a:hover { color:var(--brass); }
+  .feat-stars { font-size:11.5px; color:var(--brass); flex:0 0 auto; }
+  .feat-note { font-size:12.5px; color:#c8cdd2; line-height:1.5; flex:1; min-width:200px; }
+  .feat-age { font-size:10.5px; color:var(--mut); flex:0 0 auto; white-space:nowrap;
+    align-self:center; }
+
   /* ---------- repo rows ---------- */
   .repo-row { padding:7px 0; border-bottom:1px solid var(--line); }
   .repo-row:last-child { border:0; }
@@ -252,6 +268,15 @@
 
 <div class="wrap">
   <div class="readout" id="readout"></div>
+
+  <!-- worth a look banner -->
+  <div id="featuredBanner">
+    <span class="feat-label">worth a look</span>
+    <span class="feat-repo"><a id="featLink" href="#" target="_blank" rel="noopener"></a></span>
+    <span class="feat-stars" id="featStars"></span>
+    <span class="feat-note" id="featNote"></span>
+    <span class="feat-age" id="featAge"></span>
+  </div>
 
   <!-- 2-col layout: left col stacks Topics + Synthesis; right col is Recent Activity tall -->
   <div class="grid">
@@ -673,7 +698,23 @@ function renderRepos(){
   }).join("") || "<div style='color:var(--mut);font-size:12px;padding:8px'>No GitHub repos found.</div>";
 }
 
-function renderAll(){ renderBars(); renderTopicList(); renderFeed(); renderSynth(); renderRepos(); }
+// ---- worth a look banner ----
+function renderFeatured(){
+  const f = D.featured;
+  const banner = document.getElementById("featuredBanner");
+  if(!f){ banner.classList.remove("show"); return; }
+  const starsLabel = f.stars >= 1000
+    ? (Math.round(f.stars/1000) + "k★") : (f.stars > 0 ? f.stars + "★" : "");
+  document.getElementById("featLink").href = f.url;
+  document.getElementById("featLink").textContent = f.repo;
+  document.getElementById("featStars").textContent = starsLabel;
+  document.getElementById("featNote").textContent = f.note;
+  document.getElementById("featAge").textContent =
+    f.age_days === 0 ? "today" : f.age_days === 1 ? "yesterday" : `${f.age_days}d ago`;
+  banner.classList.add("show");
+}
+
+function renderAll(){ renderBars(); renderTopicList(); renderFeed(); renderSynth(); renderRepos(); renderFeatured(); }
 renderAll();
 </script>
 </body>

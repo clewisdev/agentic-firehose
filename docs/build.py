@@ -358,12 +358,35 @@ def main():
     signal = counter("signal_level")
     stype = counter("source_type")
 
+    # ---- featured repo (docs/featured.json, auto-expires after 10 days) ----
+    featured = None
+    featured_path = os.path.join(OUT, "featured.json")
+    if os.path.exists(featured_path):
+        try:
+            feat = json.load(open(featured_path, encoding="utf-8"))
+            set_on = datetime.date.fromisoformat(feat.get("set_on", ""))
+            age = (datetime.date.today() - set_on).days
+            if age <= 10:
+                # Resolve against repos for URL + stars
+                repo_rec = next((r for r in repos if r["name"] == feat.get("repo")), None)
+                featured = {
+                    "repo": feat.get("repo"),
+                    "note": feat.get("note", ""),
+                    "set_on": feat.get("set_on"),
+                    "age_days": age,
+                    "url": repo_rec["url"] if repo_rec else f"https://github.com/{feat.get('repo')}",
+                    "stars": repo_rec["stars"] if repo_rec else 0,
+                }
+        except (ValueError, KeyError, TypeError):
+            pass  # malformed or expired — hide the panel
+
     data = {
         "generated": datetime.datetime.now().isoformat(timespec="seconds"),
         "total": len(records),
         "sources": records,
         "syntheses": syntheses,
         "repos": repos,
+        "featured": featured,
         "topics": sorted(topics.items(), key=lambda x: (-x[1], x[0])),
         "topic_docs": topic_docs,
         "authors": sorted(authors.items(), key=lambda x: (-x[1], x[0])),
