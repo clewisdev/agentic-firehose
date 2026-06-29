@@ -1,6 +1,6 @@
 ---
 title: "Rotate Anthropic API key"
-status: planning
+status: cancelled
 drafted: 2026-06-16
 owner: chris
 ---
@@ -24,8 +24,6 @@ The repo went public on 2026-06-16. Although the API key is stored as a Wrangler
 4. Verify the Worker still captures: send a `[test]` email to the capture address and confirm a healthcheck entry lands in `sources/skipped/`
 5. Delete the old key in the Anthropic console
 
-## Notes
+## Why cancelled
 
-- No Worker redeploy needed — secrets take effect immediately
-- The GitHub token (`GITHUB_TOKEN`) does not need rotation for the same reason (it was never in source either), but rotate it too if you want to be thorough
-- If the key is also used anywhere else (local Claude Code sessions, other projects), update those separately — this plan only covers the Worker secret
+The key was stored as a Wrangler secret and never in source. The repo going public does not change the key's exposure surface. No rotation trigger exists. Cancelled 2026-06-29.

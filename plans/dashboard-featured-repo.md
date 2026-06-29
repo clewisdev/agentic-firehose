@@ -1,6 +1,6 @@
 ---
 title: "Dashboard: featured repo widget"
-status: in-progress
+status: complete
 drafted: 2026-06-16
 owner: chris
 ---
