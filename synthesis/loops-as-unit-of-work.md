@@ -1,7 +1,7 @@
 ---
 title: "Loops as the Unit of Work: Beyond Prompting to Loop Engineering"
 written: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-29
 topics: [agentic-workflows, agent-architecture, agent-orchestration, harnesses]
 tags: [loops, loop-engineering, ralph-loop, inner-loop, middle-loop, outer-loop, comprehension-debt, verification, sub-agents, worktrees, skills, external-memory]
 sources:
@@ -10,7 +10,7 @@ sources:
   - sources/2026-06-09-loop-engineering-coding-agents.md
   - sources/2026-05-28-chrismdp-ralph-loops.md
   - sources/2026-05-28-claude-ralph-loop-plugin.md
-  - sources/2026-06-09-supervisory-engineering-middle-loop.md
+  - sources/2026-06-15-we-dont-write-code-anymore.md
 status: draft
 ---
 
@@ -88,8 +88,10 @@ development as a whole:
 - **Middle loop** (new: verification, orchestration, and intent alignment) — where
   human judgment meets machine execution. This is the bottleneck that replaced the
   inner loop.
-- **Outer loop** (CI/CD, deployment, monitoring) — unchanged in structure but affected
-  by the inner loop's acceleration.
+- **Outer loop** (CI/CD, deployment, monitoring) — previously treated as unchanged in
+  structure, just accelerated by inner-loop speed. Quigley's field report
+  (`sources/2026-06-15-we-dont-write-code-anymore.md`) challenges this: the outer loop
+  is now an active agent workspace, not plumbing. See the next section.
 
 > "The bottleneck is no longer around how fast we can type or implement code, it's
 > about how fast we can verify." — Gall (Thoughtworks)
@@ -99,6 +101,49 @@ This framing is important for loop design: a loop that automates inner-loop work
 moving the bottleneck, not eliminating it. The Ralph loop self-corrects before human
 review — reducing the volume of trivial errors that consume human attention in the
 middle loop. But it does not eliminate middle-loop work; it makes it more tractable.
+
+## The outer loop is not plumbing: post-merge agent continuity
+
+The three-loop model originally treated the outer loop (CI/CD, deployment, monitoring)
+as infrastructure — accelerated by inner-loop speed but structurally unchanged. Quigley's
+nine-month field report (`sources/2026-06-15-we-dont-write-code-anymore.md`) revises this.
+
+> "The pipeline does not stop at merge. After release, the same context can help monitor
+> bugs, adoption, and behavior in production. A useful agent is not only a code generator.
+> It can become a long-running assistant that knows what was built, why it was built, and
+> what signals matter after it ships."
+
+> "You invest a lot of time in giving an agent context, make sure to squeeze all the value
+> out of it that you can."
+
+This is a structural claim, not a workflow preference. The context investment required to
+brief an agent — goal, constraints, existing patterns, edge cases, success criteria — is
+non-trivial. Most teams amortise it only across the build phase, then discard it at merge.
+Quigley's framing: that context has remaining value in the outer loop. An agent that retains
+build context can:
+
+- Watch production signals against the specific intent encoded in the spec
+- Surface regressions relative to what was *meant* to ship, not just what CI expected
+- Inform the next iteration with real behavioral data rather than requiring re-briefing from scratch
+
+**Why most teams don't do this yet:** The PR merge is a natural stopping point and
+culturally treated as the handoff from engineering to operations. Extending agent
+continuity past merge requires either persistent session state (not a default in any
+current tooling) or explicit context serialisation to a file the agent can reload. Neither
+is ergonomic today. This is the outer loop's equivalent of the Ralph loop's completion
+promise problem — the missing primitive is a contract for *resuming* an agent in a new
+context with a prior task's history.
+
+**Connection to loop design principles:** Post-merge continuity is an instance of principle 3
+above — external state, not context memory. If the build context is written to a durable
+artifact (spec file, ADR, structured log), the outer-loop agent can load it cold. The
+challenge is that today's practitioners are not yet writing build context with post-merge
+reuse in mind. It is treated as scaffolding that gets thrown away.
+
+This is the clearest gap between where loop engineering practice currently sits (inner and
+middle loops) and where it could sit (full change lifecycle). No KB source yet describes
+a concrete implementation of outer-loop agent continuity in production. Quigley identifies
+the value; the mechanism is unresolved.
 
 ## What loop engineering is not
 
@@ -159,6 +204,10 @@ From most to least leverage:
 
 ## Open questions
 
+- **How do you implement outer-loop agent continuity in practice?** Quigley identifies
+  the value (don't discard build context at merge) but no source describes a concrete
+  mechanism — persistent session, context serialisation to a spec file, structured ADR
+  that an agent can reload cold. This is the missing primitive for full-lifecycle loops.
 - **Where do loops break cleanly?** The Ralph loop is weak when tasks have strict
   hard ordering (write schema before migrating data). When does single-agent
   iteration fail and multi-agent orchestration become necessary?

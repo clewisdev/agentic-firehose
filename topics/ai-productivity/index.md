@@ -11,7 +11,7 @@ Formed in the Phase 1c topic consolidation (`plans/kb-dashboard.md`) by folding 
 ## Sources
 
 - [Lines of Code Got a Better Publicist](../../sources/2025-06-11-lines-of-code-better-publicist.md)
-- [We don't write code anymore — engineering manager's field report](../../sources/2025-06-13-we-dont-write-code-anymore.md)
+- [We don't write code anymore — engineering manager's field report](../../sources/2026-06-15-we-dont-write-code-anymore.md)
 - [AI Engineering Coach — VS Code session analysis](../../sources/2025-06-14-ai-engineering-coach.md)
 - [Is this sustainable? (Jamie Hurst)](../../sources/2026-05-29-jamie-hurst-is-this-sustainable.md)
 - [AI sprinkled on a broken software lifecycle](../../sources/2026-05-31-ai-sprinkled-broken-software.md)

@@ -7,7 +7,7 @@ tags: [verification, review-capacity, comprehension-debt, assurance, throughput,
 sources:
   - sources/2026-06-13-harness-engineering-codex.md
   - sources/2026-06-12-ai-engineering-report-2026.md
-  - sources/2025-06-13-we-dont-write-code-anymore.md
+  - sources/2026-06-15-we-dont-write-code-anymore.md
   - sources/2025-06-10-claude-fable-5-announcement.md
   - sources/2025-06-09-dynamic-workflows-claude-code.md
   - sources/2025-06-11-agent-skills-structured-workflows.md
