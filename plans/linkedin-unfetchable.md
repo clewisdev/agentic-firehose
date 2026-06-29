@@ -15,6 +15,23 @@ LinkedIn is the primary source of high-signal practitioner posts in this field, 
 
 Worker fetches the URL; LinkedIn returns 503 or a login wall. Worker logs the failure, writes a skipped entry, and moves on. The URL is lost.
 
+## LinkedIn URL types (investigated 2026-06-29)
+
+Not all LinkedIn URLs are equally gated. URL type determines fetchability without authentication:
+
+| URL pattern | Example | Fetchable? |
+|---|---|---|
+| `/posts/<slug>_...-ugcPost-<id>-...` | Native original post | **Yes** — LinkedIn serves these publicly |
+| `/posts/<slug>_...-activity-<id>-...` | Native activity post with profile slug | **Yes** — publicly served |
+| `/posts/<slug>_...-share-<id>-...` | Reshare of another post | **No** — always returns login wall |
+| `/feed/update/urn:li:activity:<id>` | Activity URL without profile slug | **No** — always returns login wall |
+
+The `share` type is set at post-creation time (it's a reshare, not original content) and cannot be worked around by rewriting the URL. The Worker correctly identifies these as unfetchable — the skipped classification is accurate, not a bug.
+
+**Practical implication for triage**: when a LinkedIn URL fails, check the slug. If it contains `-share-`, it is permanently gated. If it contains `-ugcPost-` or `-activity-` with a profile slug, it was likely a transient 503 and worth retrying.
+
+**For the Worker**: the debug HTML for `share`-type URLs contains `pageKey: d_registration-cold-join` — this is a reliable signal. The Worker could detect this pattern and set `reason: "linkedin-share-url-gated"` rather than the generic unfetchable reason, making skipped entries more informative.
+
 ## Options
 
 ### Option A — Manual paste flow (no new infrastructure)

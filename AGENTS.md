@@ -36,6 +36,8 @@ This list is mirrored in three places that **must change together**: the `CAPTUR
 
 At the beginning of every session, check whether `handoff.md` exists in the working directory. If it does, read it before doing anything else — it contains context from the previous session (accomplished work, current state, next steps).
 
+**Note:** `handoff.md` is listed in `.gitignore`. Commit it with `git add -f handoff.md` when including it in a commit.
+
 ## Setup (after a fresh clone)
 
 A straight `git clone` is not enough — this repo depends on global Claude Code skills that live outside it.
