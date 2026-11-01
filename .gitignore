@@ -19,3 +19,8 @@ temp/
 # Worker dependencies
 worker/node_modules/
 worker/.wrangler/
+
+# Worker local secrets (wrangler dev) — never commit
+worker/.dev.vars
+worker/.dev.vars.*
+!worker/.dev.vars.example

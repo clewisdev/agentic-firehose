@@ -11,9 +11,12 @@ enabled = true
 GITHUB_OWNER = "clewisdev"
 GITHUB_REPO = "agentic-firehose"
 GITHUB_DEFAULT_BRANCH = "main"
+# Gemini model used for captures (see worker/src/claude.ts)
+GEMINI_MODEL = "gemini-3.8-flash"
 
 # Secrets — set these once via wrangler CLI, never commit them:
-#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put GEMINI_API_KEY      (Google AI Studio key)
+#   For local `wrangler dev`, put it in worker/.dev.vars instead (gitignored).
 #   wrangler secret put GITHUB_TOKEN
 #   wrangler secret put ALLOWED_SENDERS   (comma-separated email allowlist)
 #

@@ -22,7 +22,7 @@ skills/       Agent Skills used in this KB
 worker/       Cloudflare Worker — email-triggered automated capture
 ```
 
-Sending a URL to the capture address triggers the Worker: it fetches the page, loads the KB conventions from `AGENTS.md`, calls the Anthropic API to triage and summarise the source, then commits a structured capture file directly to `sources/`. Periodically, a synthesis pass cross-links captures into topic indexes and writes synthesis essays.
+Sending a URL to the capture address triggers the Worker: it fetches the page, loads the KB conventions from `AGENTS.md`, calls the Google Gemini API to triage and summarise the source, then commits a structured capture file directly to `sources/`. Periodically, a synthesis pass cross-links captures into topic indexes and writes synthesis essays.
 
 ---
 
@@ -30,7 +30,7 @@ Sending a URL to the capture address triggers the Worker: it fetches the page, l
 
 ### Prerequisites
 
-- **LLM API key** — the Worker uses Anthropic's API by default (Claude Haiku for captures). Any provider supported by the API layer works; swap the model in `worker/src/claude.ts`.
+- **LLM API key** — the Worker uses Google's Gemini API by default (`gemini-3.8-flash` for captures, set via `GEMINI_MODEL` in `wrangler.toml`). To use another provider, swap the API call in `worker/src/claude.ts`.
 - **Cloudflare Workers** — free tier is sufficient. You'll also need [Email Routing](https://developers.cloudflare.com/email-routing/) enabled on a domain you control.
 - **GitHub Pages** — for the dashboard. Free on public repos.
 - **A coding agent** *(optional)* — to run the synthesise skill, build out topic indexes, and evolve the KB. Any agent that supports the [Agent Skills](https://agentskills.io) standard works.
@@ -49,7 +49,7 @@ Edit `AGENTS.md` to reflect your own topic vocabulary, interests, and capture co
 The Worker lives in `worker/`. It requires:
 
 - A Cloudflare account with [Email Routing](https://developers.cloudflare.com/email-routing/) enabled on a domain you control
-- An Anthropic API key
+- A Google Gemini API key ([AI Studio](https://aistudio.google.com/apikey))
 - A GitHub fine-grained PAT with **Contents: read+write** on your fork
 
 ```bash
@@ -64,12 +64,13 @@ Edit `wrangler.toml` — set your GitHub username, repo name, and default branch
 GITHUB_OWNER = "your-username"
 GITHUB_REPO  = "agentic-firehose"
 GITHUB_DEFAULT_BRANCH = "main"
+GEMINI_MODEL = "gemini-3.8-flash"
 ```
 
-Set secrets (never commit these):
+Set secrets (never commit these). For local `wrangler dev`, copy `.dev.vars.example` to `.dev.vars` and fill in `GEMINI_API_KEY` instead:
 
 ```bash
-npx wrangler secret put ANTHROPIC_API_KEY
+npx wrangler secret put GEMINI_API_KEY
 npx wrangler secret put GITHUB_TOKEN
 npx wrangler secret put ALLOWED_SENDERS   # comma-separated email addresses allowed to trigger captures
 ```
@@ -167,7 +168,7 @@ cd worker && npx wrangler deploy
 
 ```bash
 cd worker
-npx wrangler secret put ANTHROPIC_API_KEY
+npx wrangler secret put GEMINI_API_KEY
 npx wrangler secret put GITHUB_TOKEN
 npx wrangler secret put ALLOWED_SENDERS
 ```

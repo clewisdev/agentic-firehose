@@ -1,8 +1,12 @@
 import type { Env, CaptureResult, SignalLevel } from './types.js';
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
-// Keep in sync with the model note in plans/two-tier-processing.md
-const MODEL = 'claude-haiku-4-5-20251001';
+// Google Gemini API (generateContent). Model is set via the GEMINI_MODEL var in
+// wrangler.toml; DEFAULT_MODEL is the fallback if the var is unset.
+const API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
+const DEFAULT_MODEL = 'gemini-3.8-flash';
+// Gemini "thinking" tokens count against maxOutputTokens, so this is set well
+// above the ~1500 tokens a full capture needs to avoid truncated JSON.
+const MAX_OUTPUT_TOKENS = 8192;
 
 // Capture-only system prompt. Contains only what the automated path needs.
 // Synthesis, cross-linking, topic indexes, and advice mode are intentionally absent —
@@ -221,8 +225,12 @@ const TOPIC_ALIASES: Record<string, string> = {
   'personal-systems': 'personalization',
 };
 
-interface AnthropicResponse {
-  content: Array<{ type: string; text: string }>;
+interface GeminiResponse {
+  candidates?: Array<{
+    content?: { parts?: Array<{ text?: string; thought?: boolean }> };
+    finishReason?: string;
+  }>;
+  promptFeedback?: { blockReason?: string };
 }
 
 export async function runCapture(
@@ -235,32 +243,43 @@ export async function runCapture(
 ): Promise<CaptureResult> {
   const userMessage = buildUserMessage(url, fetchedContent, override, today);
 
-  const response = await fetch(API_URL, {
+  const model = env.GEMINI_MODEL || DEFAULT_MODEL;
+
+  const response = await fetch(`${API_BASE}/${model}:generateContent`, {
     method: 'POST',
     headers: {
-      'x-api-key': env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-beta': 'prompt-caching-2024-07-31',
+      'x-goog-api-key': env.GEMINI_API_KEY,
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 1500,
-      system: [
-        // CAPTURE_SYSTEM is static across all invocations — prompt caching keeps repeat cost low.
-        { type: 'text', text: CAPTURE_SYSTEM, cache_control: { type: 'ephemeral' } },
-      ],
-      messages: [{ role: 'user', content: userMessage }],
+      // CAPTURE_SYSTEM is static across all invocations — Gemini's implicit
+      // caching applies automatically to repeated prefixes; no flag needed.
+      systemInstruction: { parts: [{ text: CAPTURE_SYSTEM }] },
+      contents: [{ role: 'user', parts: [{ text: userMessage }] }],
+      generationConfig: {
+        maxOutputTokens: MAX_OUTPUT_TOKENS,
+        responseMimeType: 'application/json',
+      },
     }),
   });
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Anthropic API ${response.status}: ${text}`);
+    throw new Error(`Gemini API ${response.status}: ${text}`);
   }
 
-  const data = (await response.json()) as AnthropicResponse;
-  const text = data.content.find(b => b.type === 'text')?.text ?? '';
+  const data = (await response.json()) as GeminiResponse;
+  const candidate = data.candidates?.[0];
+  if (!candidate) {
+    throw new Error(`Gemini returned no candidates (blockReason: ${data.promptFeedback?.blockReason ?? 'none'})`);
+  }
+  const text = (candidate.content?.parts ?? [])
+    .filter(p => !p.thought && typeof p.text === 'string')
+    .map(p => p.text)
+    .join('');
+  if (candidate.finishReason && candidate.finishReason !== 'STOP') {
+    console.warn(`Gemini finishReason: ${candidate.finishReason}`);
+  }
 
   return parseCaptureResult(text);
 }
@@ -302,7 +321,7 @@ function isLinkedInUrl(url: string): boolean {
 function parseCaptureResult(raw: string): CaptureResult {
   const match = raw.match(/\{[\s\S]*\}/);
   if (!match) {
-    throw new Error(`No JSON found in Claude response. First 500 chars: ${raw.slice(0, 500)}`);
+    throw new Error(`No JSON found in Gemini response. First 500 chars: ${raw.slice(0, 500)}`);
   }
 
   const result = JSON.parse(match[0]) as Partial<CaptureResult>;

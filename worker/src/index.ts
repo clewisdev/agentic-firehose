@@ -74,7 +74,7 @@ export default {
 
     console.log(`[capture] signal=${result.signal_level} path=${result.file_path}`);
 
-    // When Haiku classifies a 200-response as unfetchable (e.g. login wall, paywall modal),
+    // When the model classifies a 200-response as unfetchable (e.g. login wall, paywall modal),
     // commit the raw HTML alongside the skipped file so the block can be inspected manually.
     if (result.signal_level === 'unfetchable' && rawHtml) {
       const debugSlug = toSlug(parsed.url, 40);

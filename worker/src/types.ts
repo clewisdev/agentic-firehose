@@ -1,5 +1,6 @@
 export interface Env {
-  ANTHROPIC_API_KEY: string;
+  GEMINI_API_KEY: string;
+  GEMINI_MODEL?: string;
   GITHUB_TOKEN: string;
   GITHUB_OWNER: string;
   GITHUB_REPO: string;
